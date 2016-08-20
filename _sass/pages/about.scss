@@ -1,0 +1,47 @@
+.about
+{
+    &>section
+    {
+        padding-left: $about-section-horizontal-padding;
+        padding-right: $about-section-horizontal-padding;
+        padding-top: $about-section-vertical-padding;
+        padding-bottom: $about-section-vertical-padding;
+    }
+    &>section:not(:last-child)
+    {
+
+        border-bottom: 1px solid $about-section-divider-color;
+    }
+    &__group-image
+    {
+        width: 100%;
+    }
+    &__people-list
+    {
+    }
+    &__person
+    {
+        text-align: center;
+        padding: 0;
+        &:not(:last-child)
+        {
+            margin-bottom: 60px;
+        }
+        img
+        {
+            padding-left: 70px;
+            padding-right: 70px;
+            width: 100%;
+            border-radius: 100%;
+            margin-bottom: 10px;
+        }
+    }
+    &__person-title
+    {
+        font-weight: bold;
+    }
+    &__person-position
+    {
+        font-style: italic;
+    }
+}

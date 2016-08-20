@@ -10,6 +10,8 @@
     padding-left: $header-horizontal-padding;
     padding-right: $header-horizontal-padding;
     height: $header-height;
+    z-index: 999;
+    font-weight: bold;
     a
     {
         color: $header-color;
@@ -17,6 +19,7 @@
     &__brand
     {
         font-size: $header__brand-font-size;
+        text-transform: uppercase;
     }
     &__hamburger
     {
@@ -78,7 +81,7 @@
         }
     }
 }
-.header-spacer
+.header__spacer
 {
     height: $header-height;
 }

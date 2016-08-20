@@ -14,10 +14,27 @@ $header__link-spacing: 15px;
 $header__menu-element-font-size: 20px;
 $header__brand-font-size: 20px;
 
+$articleheader__heading-underline-color: #4d73cb;
+
+$about-section-horizontal-padding: 30px;
+$about-section-vertical-padding: 60px;
+$about-section-divider-color: #eee;
+
+$footer-background-color: #333333;
+$footer-color: white;
+$footer-horizontal-padding: 60px;
+$footer-vertical-padding: 60px;
+
 $lighten: 20;
 $transition-duration: 0.25s;
 
 *
 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Raleway', sans-serif;
+}
+
+html, body
+{
+    overflow-x: hidden;
+    width: 100%;
 }
