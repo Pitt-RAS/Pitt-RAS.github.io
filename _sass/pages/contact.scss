@@ -1,0 +1,79 @@
+.contact
+{
+    &>section
+    {
+        padding-left: $contact-section-horizontal-padding;
+        padding-right: $contact-section-horizontal-padding;
+        padding-top: $contact-section-vertical-padding;
+        padding-bottom: $contact-section-vertical-padding;
+    }
+    &>section:not(:last-child)
+    {
+
+        border-bottom: 1px solid $contact-section-divider-color;
+    }
+    &__info
+    {
+    }
+    &__info-element
+    {
+        display: flex;
+        align-items: center;
+        &:not(:last-child)
+        {
+            margin-bottom: 30px;
+        }
+
+    }
+    &__info-title
+    {
+        font-weight: bold;
+        a
+        {
+            color: inherit;
+        }
+    }
+    &__info-icon
+    {
+        color: $contact-info-icon-color;
+        width: $contact-info-icon-size;
+        font-size: $contact-info-icon-font-size;
+        text-align: center;
+    }
+    &__mailing
+    {
+
+    }
+    &__mailing-label
+    {
+        display: block;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin: 0;
+        margin-top: 30px;
+    }
+    &__mailing-input
+    {
+        border: 0;
+        background: #e6e6e6;
+        width: 100%;
+        padding: 5px;
+        &:focus
+        {
+            outline: 0;
+        }
+    }
+    &__mailing-button
+    {
+        margin-top: 30px;
+        border: 0;
+        background: $contact-mailing-button-color;
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
