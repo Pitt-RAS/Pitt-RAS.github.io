@@ -13,6 +13,11 @@
         padding: 0;
         margin: 0;
         margin-bottom: 60px;
+        li
+        {
+            opacity: 0.6;
+            margin-top: 20px;
+        }
         img
         {
             width: 100%;
@@ -22,6 +27,7 @@
     {
         font-weight: bold;
         margin-bottom: 30px;
+        text-transform: uppercase;
     }
     &__copyright
     {
