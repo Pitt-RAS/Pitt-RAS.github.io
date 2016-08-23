@@ -2,4 +2,7 @@
 layout: default
 ---
 
-{{ content }}
+<article class="{{page.block}}">
+    {% include articleheader.html %}
+    {{ content }}
+</article>
