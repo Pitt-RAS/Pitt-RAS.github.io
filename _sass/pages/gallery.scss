@@ -1,0 +1,19 @@
+.gallery
+{
+    &>section
+    {
+        padding-left: $gallery-section-horizontal-padding;
+        padding-right: $gallery-section-horizontal-padding;
+        padding-top: $gallery-section-vertical-padding;
+        padding-bottom: $gallery-section-vertical-padding;
+    }
+    &>section:not(:last-child)
+    {
+
+        border-bottom: 1px solid $gallery-section-divider-color;
+    }
+    &__full-gallery
+    {
+        padding: 0 !important;
+    }
+}
