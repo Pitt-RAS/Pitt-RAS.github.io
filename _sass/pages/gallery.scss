@@ -14,6 +14,14 @@
     }
     &__full-gallery
     {
-        padding: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    &__album-title
+    {
+        &:not(:first-child)
+        {
+            margin-top: 30px;
+        }
     }
 }

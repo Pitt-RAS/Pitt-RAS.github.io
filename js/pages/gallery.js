@@ -1,3 +1,7 @@
+---
+---
 
-prepareFlickrAlbum("72157657489437146", "images1", 20);
-// prepareFlickrAlbum("72157641414241043", "images2", 20);
+{% for album in site.data.gallery %}
+    prepareFlickrAlbum("{{ album.albumID }}", "{{ album.htmlID }}", 999);
+{% endfor %}
+
