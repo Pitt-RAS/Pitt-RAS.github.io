@@ -1,0 +1,15 @@
+.projects
+{
+    &>section
+    {
+        padding-left: $projects-section-horizontal-padding;
+        padding-right: $projects-section-horizontal-padding;
+        padding-top: $projects-section-vertical-padding;
+        padding-bottom: $projects-section-vertical-padding;
+    }
+    &>section:not(:last-child)
+    {
+
+        border-bottom: 1px solid $projects-section-divider-color;
+    }
+}
