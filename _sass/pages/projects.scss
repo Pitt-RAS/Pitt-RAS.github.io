@@ -12,4 +12,54 @@
 
         border-bottom: 1px solid $projects-section-divider-color;
     }
+    &__projects
+    {
+        margin: 0;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    &__prev
+    {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    &__card
+    {
+        cursor: pointer;
+        padding: 0;
+        overflow: hidden;
+        img
+        {
+            width: 100%;
+        }
+        &:hover
+        {
+            .projects__card-info
+            {
+                background-color: rgba(0,0,0,0.6);
+                bottom: 0;
+            }
+        }
+    }
+    &__card-info
+    {
+        position: absolute;
+        color: white;
+        width: 100%;
+        bottom: -55px;
+        padding: 15px;
+        background-color: rgba(0,0,0,0.4);
+        transition: bottom $transition-duration, background-color $transition-duration;
+    }
+    &__card-title
+    {
+        font-weight: bold;
+    }
+    &__card-desc
+    {
+        border-top: 1px solid white;
+        margin-top: 15px;
+        padding-top: 15px;
+        width: 100%;
+    }
 }
