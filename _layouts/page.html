@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<article class="{{page.block}}">
+<article class="{% if page.block %}{{ page.block }}{% else %}{{ layout.block }}{% endif %}">
     {% include articleheader.html %}
     {{ content }}
 </article>

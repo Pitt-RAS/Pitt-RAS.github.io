@@ -1,0 +1,29 @@
+.project
+{
+    &>section
+    {
+        padding-left: $about-section-horizontal-padding;
+        padding-right: $about-section-horizontal-padding;
+        padding-top: $about-section-vertical-padding;
+        padding-bottom: $about-section-vertical-padding;
+    }
+    &>section:not(:last-child)
+    {
+
+        border-bottom: 1px solid $about-section-divider-color;
+    }
+    &__image
+    {
+        padding: 0 !important;
+        img
+        {
+            width: 100%;
+        }
+    }
+    &__gallery
+    {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 0 !important;
+    }
+}

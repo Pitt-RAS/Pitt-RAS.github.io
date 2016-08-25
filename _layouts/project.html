@@ -1,0 +1,25 @@
+---
+layout: page
+block: project
+---
+
+<section class="project__image">
+    <img src="{{ page.image }}">
+</section>
+<section class="project__info">
+    <b>LEADERS: </b>
+    <br>
+    {{ page.leaders }}
+    <br>
+    <br>
+    {% if page.isPrev != true %}
+    <b>MEETING TIME: </b>
+    <br>
+    {{ page.meeting_time }}
+    <br>
+    <br>
+    {% endif %}
+    <p>
+    {{ page.description }}
+    </p>
+</section>
