@@ -1,0 +1,49 @@
+---
+layout: default
+title: Home
+permalink: /
+---
+
+<article class="home">
+    <section class="home__news">
+        {% include sectiontitle.html title="News Feed" %}
+
+        {% for post in site.posts %}
+        <div class="home__post">
+            {% if post.icon == 'trophy' %}
+            <div class="home__post-icon"><i class="fa fa-trophy" aria-hidden="true"></i></div>
+            {% elsif post.icon == 'code' %}
+            <div class="home__post-icon"><i class="fa fa-code" aria-hidden="true"></i></div>
+            {% elsif post.icon == 'picture' %}
+            <div class="home__post-icon"><i class="fa fa-picture-o" aria-hidden="true"></i></div>
+            {% elsif post.icon == 'play' %}
+            <div class="home__post-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+            {% elsif post.icon == 'cogs' %}
+            <div class="home__post-icon"><i class="fa fa-cogs" aria-hidden="true"></i></div>
+            {% else %}
+            <div class="home__post-icon"><i class="fa fa-align-left" aria-hidden="true"></i></div>
+            {% endif %}
+            <h2 class="home__post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+            By {{ post.author }}
+            <hr>
+            {{ post.content }}
+            <hr>
+            <div class="home__post-footer">
+                <div>
+                    <span>
+                        <i class="fa fa-pencil" aria-hidden="true"></i>{{ post.author }}
+                    </span>
+                    <span>
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>{{ post.date | date: "%-m/%-d/%Y" }}
+                    </span>
+                </div>
+                <div>
+                    <span>
+                        <a href="{{ post.url }}"><i class="fa fa-link" aria-hidden="true"></i>Permalink</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+</article>

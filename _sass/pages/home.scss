@@ -1,0 +1,48 @@
+.home
+{
+    &>section
+    {
+        padding-left: $about-section-horizontal-padding;
+        padding-right: $about-section-horizontal-padding;
+        padding-top: $about-section-vertical-padding;
+        padding-bottom: $about-section-vertical-padding;
+    }
+    &>section:not(:last-child)
+    {
+
+        border-bottom: 1px solid $about-section-divider-color;
+    }
+    &__post
+    {
+        position: relative;
+        &:not(:last-child)
+        {
+            margin-bottom: 80px;
+        }
+        margin-left: 65px;
+        margin-right: 30px;
+    }
+    &__post-icon
+    {
+        opacity: 0.5;
+        position: absolute;
+        left: -55px;
+        font-size: 40px;
+        line-height: 40px;
+    }
+    &__post-title
+    {
+        font-weight: bold;
+    }
+    &__post-footer
+    {
+        span
+        {
+            i
+            {
+                margin-right: 10px;
+            }
+            margin-right: 30px;
+        }
+    }
+}
