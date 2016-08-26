@@ -1,15 +1,8 @@
 .gallery
 {
-    &__full-gallery
+    &__gallery
     {
         padding-left: 0 !important;
         padding-right: 0 !important;
-    }
-    &__album-title
-    {
-        &:not(:first-child)
-        {
-            margin-top: 30px;
-        }
     }
 }

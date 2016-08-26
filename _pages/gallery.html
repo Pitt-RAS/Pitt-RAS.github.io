@@ -5,11 +5,10 @@ block: gallery
 permalink: /gallery/
 ---
 
-<section class="gallery__full-gallery">
-    {% include photoswipe.html %}
-    {% for album in site.data.gallery %}
-        <h5 class="gallery__album-title">{{ album.title }}</h5>
-        <div class="image-container" id="{{album.htmlID}}" itemscope="" itemtype="http://schema.org/ImageGallery" data-pswp-uid="1"></div>
-    {% endfor %}
+{% include photoswipe.html %}
+{% for album in site.data.gallery %}
+<section class="gallery__gallery">
+    {% include sectiontitle.html title=album.title %}
+    <div class="image-container" id="{{album.htmlID}}" itemscope="" itemtype="http://schema.org/ImageGallery" data-pswp-uid="1"></div>
 </section>
-
+{% endfor %}

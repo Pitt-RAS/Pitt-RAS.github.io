@@ -19,15 +19,15 @@
     &__person
     {
         text-align: center;
-        padding: 0;
+        height: 250px;
         &:not(:last-child)
         {
             margin-bottom: 60px;
         }
         img
         {
-            padding-left: 70px;
-            padding-right: 70px;
+            padding-left: 50px;
+            padding-right: 50px;
             width: 100%;
             border-radius: 100%;
             margin-bottom: 10px;
@@ -40,5 +40,7 @@
     &__person-position
     {
         font-style: italic;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
