@@ -1,10 +1,11 @@
 $header__background-color: #003366;
 $header__color: white;
 $header__height: 200px;
+$header__height-sm: 200px;
 $header__horizontal-padding: 15px;
 $header__nav-background-color: #161616;
 $header__nav-width: 250px;
-$header__exit-background-color: #4d73cb;
+$header__exit-background-color: $header__background-color;
 $header__exit-size: 50px;
 $header__exit-font-size: 30px;
 $header__hamburger-size: 50px;

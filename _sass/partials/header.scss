@@ -1,31 +1,45 @@
 .header
 {
     position: fixed;
-    // background-color: $header__background-color;
+    background-color: $header__background-color;
     color: $header__color;
     width: 100%;
     padding-left: $header__horizontal-padding;
     padding-right: $header__horizontal-padding;
-    height: $header__height;
+    height: $header__height-sm;
     z-index: 999;
     font-weight: bold;
     @media (min-width: $md)
     {
         position: static;
         padding: 0;
+        height: $header__height;
     }
     &__container
     {
         height: 100%;
     }
     &__padding-container
-    {       
-        position: relative;
+    {
+        padding-top: 30px;  
+        padding-bottom: 30px;      
         display: flex;
+        align-items: center;
+        justify-content: space-between;
         height: 100%;
 
-        margin-left: $section-horizontal-padding;
-        margin-right: $section-horizontal-padding;
+        margin-left: $section-horizontal-padding-sm;
+        margin-right: $section-horizontal-padding-sm;
+        @media (min-width: $md)
+        { 
+            flex-direction: column;
+            margin-left: $section-horizontal-padding;
+            margin-right: $section-horizontal-padding;
+        }
+        @media (min-width: $lg)
+        {
+            flex-direction: row;
+        }
     }
     a
     {
@@ -33,26 +47,34 @@
     }
     &__brand
     {
-        position: absolute;
-        left: 0;
-        height: 100%;
         display: flex;
         align-items: center;
-        font-size: $header__brand-font-size;
-        text-transform: uppercase;
+        a
+        {
+            font-size: $header__brand-font-size;
+            text-transform: uppercase;
+            font-size: 40px;
+            font-family: Arial;
+        }
     }
     &__hamburger
     {
-        position: absolute;
-        right: 0;
-        right: 0;
-        height: 100%;
         width: $header__hamburger-size;
         height: $header__hamburger-size;
-        line-height: $header__hamburger-size;
         font-size: $header__hamburger-font-size;
+        cursor: pointer;
         text-align: center;
-        vertical-align: middle;
+        border: 2px solid white;
+        transition: background-color $transition-duration, color $transition-duration;
+        &:hover
+        {
+            background-color: white;
+            color: $header__background-color;
+        }
+        @media (min-width: $md)
+        {
+            display: none;
+        }
     }
     &__nav
     {
@@ -60,7 +82,7 @@
         position: fixed;
         background-color: $header__nav-background-color;
         width: $header__nav-width;
-        height: 100%;
+        height: auto;
         top: 0;
         right: -$header__nav-width;
         text-transform: uppercase;
@@ -68,6 +90,12 @@
         &--active
         {
             right: 0;
+        }
+        @media (min-width: $md)
+        {
+            position: static;
+            background-color: inherit;
+            width: auto;
         }
     }
     &__exit
@@ -83,15 +111,27 @@
         text-align: center;
         vertical-align: middle;
         transition: background-color $transition-duration;
+        cursor: pointer;
         &:hover
         {
             background-color: lighten($header__exit-background-color, $lighten);
+        }
+        @media (min-width: $md)
+        {
+            display: none;
         }
     }
     &__menu
     {
         list-style: none;
         padding: $header__menu-padding;
+        @media (min-width: $md)
+        {
+            display: flex;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+        }
     }
     &__menu-element
     {
@@ -101,14 +141,20 @@
         {
 
         }
+        @media (min-width: $md)
+        {
+            font-size: $header__menu-element-font-size;
+            margin-left: 30px;
+        }
     }
 }
 .header__spacer
 {
-    height: $header__height;
+    height: $header__height-sm;
     @media (min-width: $md)
     {
         display: none;
+        height: $header__height;
     }
 }
 
