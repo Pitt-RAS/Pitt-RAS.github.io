@@ -82,11 +82,11 @@
         position: fixed;
         background-color: $header__nav-background-color;
         width: $header__nav-width;
-        height: auto;
         top: 0;
         right: -$header__nav-width;
         text-transform: uppercase;
         transition: right $transition-duration;
+        height: 100%;
         &--active
         {
             right: 0;
@@ -96,6 +96,7 @@
             position: static;
             background-color: inherit;
             width: auto;
+            height: auto;
         }
     }
     &__exit
@@ -125,12 +126,14 @@
     {
         list-style: none;
         padding: $header__menu-padding;
+        height: 100%;
         @media (min-width: $md)
         {
             display: flex;
             align-items: center;
             padding: 0;
             margin: 0;
+            height: auto;
         }
     }
     &__menu-element
