@@ -1,30 +1,52 @@
 .header
 {
     position: fixed;
-    background-color: $header-background-color;
-    color: $header-color;
+    // background-color: $header__background-color;
+    color: $header__color;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: $header-horizontal-padding;
-    padding-right: $header-horizontal-padding;
-    height: $header-height;
+    padding-left: $header__horizontal-padding;
+    padding-right: $header__horizontal-padding;
+    height: $header__height;
     z-index: 999;
     font-weight: bold;
+    @media (min-width: $md)
+    {
+        position: static;
+        padding: 0;
+    }
+    &__container
+    {
+        height: 100%;
+    }
+    &__padding-container
+    {       
+        position: relative;
+        display: flex;
+        height: 100%;
+
+        margin-left: $section-horizontal-padding;
+        margin-right: $section-horizontal-padding;
+    }
     a
     {
-        color: $header-color;
+        color: $header__color;
     }
     &__brand
     {
+        position: absolute;
+        left: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
         font-size: $header__brand-font-size;
         text-transform: uppercase;
     }
     &__hamburger
     {
-        display: inline-block;
+        position: absolute;
         right: 0;
+        right: 0;
+        height: 100%;
         width: $header__hamburger-size;
         height: $header__hamburger-size;
         line-height: $header__hamburger-size;
@@ -34,7 +56,7 @@
     }
     &__nav
     {
-
+        z-index: 999;
         position: fixed;
         background-color: $header__nav-background-color;
         width: $header__nav-width;
@@ -83,5 +105,10 @@
 }
 .header__spacer
 {
-    height: $header-height;
+    height: $header__height;
+    @media (min-width: $md)
+    {
+        display: none;
+    }
 }
+

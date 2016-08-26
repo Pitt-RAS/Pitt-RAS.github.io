@@ -1,17 +1,5 @@
 .contact
 {
-    &>section
-    {
-        padding-left: $contact-section-horizontal-padding;
-        padding-right: $contact-section-horizontal-padding;
-        padding-top: $contact-section-vertical-padding;
-        padding-bottom: $contact-section-vertical-padding;
-    }
-    &>section:not(:last-child)
-    {
-
-        border-bottom: 1px solid $contact-section-divider-color;
-    }
     &__info
     {
     }
@@ -19,19 +7,25 @@
     {
         display: flex;
         align-items: center;
+        div
+        {
+            color: inherit;
+        }
         &:not(:last-child)
         {
             margin-bottom: 30px;
+        }
+        @media (min-width: $sm)
+        {
+            height: 72px;
         }
 
     }
     &__info-title
     {
         font-weight: bold;
-        a
-        {
-            color: inherit;
-        }
+        text-transform: uppercase;
+        font-size: inherit;
     }
     &__info-icon
     {

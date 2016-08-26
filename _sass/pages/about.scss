@@ -1,16 +1,13 @@
 .about
 {
-    &>section
+    &__description
     {
-        padding-left: $about-section-horizontal-padding;
-        padding-right: $about-section-horizontal-padding;
-        padding-top: $about-section-vertical-padding;
-        padding-bottom: $about-section-vertical-padding;
-    }
-    &>section:not(:last-child)
-    {
-
-        border-bottom: 1px solid $about-section-divider-color;
+        padding-bottom: 30px;
+        @media (min-width: $md)
+        {
+            padding: 0;
+            padding-right: 60px;
+        }
     }
     &__group-image
     {
