@@ -1,7 +1,7 @@
 $header__background-color: #003366;
 $header__color: white;
-$header__height: 200px;
-$header__height-sm: 100px;
+$header__height: 250px;
+$header__height-sm: 150px;
 $header__horizontal-padding: 15px;
 $header__nav-background-color: #161616;
 $header__nav-width: 250px;
@@ -53,6 +53,11 @@ $sm: 544px;
 $md: 768px;
 $lg: 922px;
 $xl: 1200px;
+$container-xs: auto;
+$container-sm: 576px;
+$container-md: 720px;
+$container-lg: 922px;
+$container-xl: 1140px;
 
 
 *
@@ -62,23 +67,22 @@ $xl: 1200px;
 
 .container
 {
-    // padding: 0;
-    // @media (min-width: $sm)
-    // {
-    //     max-width: $sm;
-    // }
-    // @media (min-width: $md)
-    // {
-    //     max-width: $sm;
-    // }
-    // @media (min-width: $lg)
-    // {
-    //     max-width: $md;
-    // }
-    // @media (min-width: $xl)
-    // {
-    //     max-width: $lg;
-    // }
+    @media (max-width: $sm)
+    {
+        max-width: $container-sm;
+    }
+    @media (max-width: $md)
+    {
+        max-width: $container-md;
+    }
+    @media (max-width: $lg)
+    {
+        max-width: $container-lg;
+    }
+    @media (max-width: $xl)
+    {
+        max-width: $container-xl;
+    }
     padding: 0;
 }
 

@@ -1,7 +1,7 @@
 <section class="articleheader">
         <div class="row">
-            <h1 class="articleheader__heading col-xs-12 col-sm-6">{{ page.title }}</h1> 
-            <ol class="articleheader__breadcrumb breadcrumb col-xs-12 col-sm-6">
+            <h1 class="articleheader__heading col-xs-12 col-md-6">{{ page.title }}</h1> 
+            <ol class="articleheader__breadcrumb breadcrumb col-xs-12 col-md-6">
             {% assign crumbs = page.url | remove:'/index.html' | split: '/' %}
             <li class="breadcrumb-item"><a href="{{ site.baseurl }}/">Home </a> </li>
             {% for crumb in crumbs offset: 1 %}
