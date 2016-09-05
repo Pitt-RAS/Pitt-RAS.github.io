@@ -1,5 +1,18 @@
 .projects
 {
+    &__times
+    {
+        text-align: center; 
+    }
+    &__times-table-container
+    {
+        display: inline-block;  
+        text-align: left;
+        td:not(:last-child)
+        {
+            width: 150px;
+        }
+    }
     &__projects
     {
         margin: 0;
