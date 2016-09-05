@@ -15,6 +15,7 @@ var artificialResponsiveness = function(e){
 			last_width = new_width;
 		};
 	};
+	$("#loader-" + destination_id.substring(1)).hide();
 };
 
 window.onresize = artificialResponsiveness;
