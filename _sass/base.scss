@@ -12,7 +12,7 @@ $header__hamburger-size: 50px;
 $header__hamburger-font-size: 30px;
 $header__menu-padding: 30px;
 $header__link-spacing: 15px;
-$header__menu-element-font-size: 20px;
+$header__menu-element-font-size: 25px;
 $header__brand-font-size: 20px;
 
 $articleheader__heading-underline-color: #4d73cb;
@@ -126,6 +126,16 @@ section:not(:last-child)
 {
 
     border-bottom: 1px solid $section-divider-color;
+}
+aside
+{ 
+    padding-right: $section-horizontal-padding-sm;
+    padding-top: $section-vertical-padding;
+    padding-bottom: $section-vertical-padding;
+    @media (min-width: $md)
+    {
+        padding-right: $section-horizontal-padding;
+    }
 }
 
 html, body
