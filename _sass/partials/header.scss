@@ -47,7 +47,6 @@
     }
     &__brand
     {
-        margin-bottom: 20px;
         .vertical
         {
             display: none;
@@ -70,7 +69,7 @@
         }
         img
         {
-            height: 75px;
+            height: 35px;
             @media(min-width: $md)
             {
                 height: 150px;
