@@ -129,15 +129,17 @@ section:not(:last-child)
 }
 aside
 { 
-   padding-left: $section-horizontal-padding-sm;
-   padding-right: $section-horizontal-padding-sm;
-   padding-top: $section-vertical-padding;
-   padding-bottom: $section-vertical-padding;
-   @media (min-width: $md)
-   {
+    padding-left: $section-horizontal-padding-sm;
+    padding-right: $section-horizontal-padding-sm;
+    padding-top: $section-vertical-padding;
+    padding-bottom: $section-vertical-padding;
+    border-bottom: 1px solid $section-divider-color;
+    @media (min-width: $md)
+    {
         padding-left: 0;
         padding-right: $section-horizontal-padding;
-   }
+        border-bottom: 0;
+    }
 }
 
 html, body
