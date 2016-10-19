@@ -4,6 +4,20 @@ layout: default
 
 <article class="post">
     <section class="post__post">
+        {% if page.icon == 'trophy' %}
+        <div class="post__post-icon"><i class="fa fa-trophy" aria-hidden="true"></i></div>
+        {% elsif page.icon == 'code' %}
+        <div class="post__post-icon"><i class="fa fa-code" aria-hidden="true"></i></div>
+        {% elsif page.icon == 'picture' %}
+        <div class="post__post-icon"><i class="fa fa-picture-o" aria-hidden="true"></i></div>
+        {% elsif page.icon == 'play' %}
+        <div class="post__post-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+        {% elsif page.icon == 'cogs' %}
+        <div class="post__post-icon"><i class="fa fa-cogs" aria-hidden="true"></i></div>
+        {% else %}
+        <div class="post__post-icon"><i class="fa fa-align-left" aria-hidden="true"></i></div>
+        {% endif %}
+        <h2 class="home__post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
         <div class="post__post-title">
             <h1>{{ page.title }}</h1>
         </div>

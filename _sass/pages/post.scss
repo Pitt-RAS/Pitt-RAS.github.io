@@ -6,9 +6,9 @@
     }
     &__post-icon
     {
+        float:left; 
+        margin-right: 20px;
         opacity: 0.5;
-        position: absolute;
-        left: -55px;
         font-size: 40px;
         line-height: 40px;
     }
