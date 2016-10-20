@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+<article class="post">
+    <section class="post__post">
+        <div class="post__post-title">
+            <h1>{{ page.title }}</h1>
+        </div>
+        <div class="post__post-meta row">
+            <div class="col-xs-12 col-sm-4">
+                <i class="fa fa-pencil" aria-hidden="true"></i>{{ page.author }}
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>{{ page.date | date: "%-m/%-d/%Y" }}
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <i class="fa fa-tag" aria-hidden="true"></i><span style="text-transform: capitalize;">{{ page.categories }}</span>
+            </div>
+        </div>
+        <hr>
+        {{ content }}
+    </section>
+</article>
