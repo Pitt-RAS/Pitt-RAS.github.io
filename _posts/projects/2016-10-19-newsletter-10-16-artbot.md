@@ -2,7 +2,7 @@
 layout: post
 title:  "Newsletter October 2016: Artbot"
 date:   2016-10-19
-author: James Braza, Jon Kenneson, & Eitan Barach 
+author: James Braza & Jon Kenneson
 categories: projects 2017-artbot
 icon: cogs
 ---
