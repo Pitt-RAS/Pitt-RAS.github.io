@@ -19,3 +19,7 @@ url: "http://pittras.org/" # the base hostname & protocol for your site
 markdown: kramdown
 
 include: ['_pages']
+
+gems: [jekyll-paginate]
+paginate: 5
+paginate_path: "/page:num/"
