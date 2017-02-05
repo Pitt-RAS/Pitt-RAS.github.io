@@ -1,0 +1,52 @@
+.join
+{
+    &__times
+    {
+        text-align: center; 
+    }
+    &__times-table-container
+    {
+        display: inline-block;  
+        text-align: left;
+        td:not(:last-child)
+        {
+            width: 150px;
+        }
+    }
+    &__mailing
+    {
+
+    }
+    &__mailing-label
+    {
+        display: block;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin: 0;
+        margin-top: 30px;
+    }
+    &__mailing-input
+    {
+        border: 0;
+        background: #e6e6e6;
+        width: 100%;
+        padding: 5px;
+        &:focus
+        {
+            outline: 0;
+        }
+    }
+    &__mailing-button
+    {
+        margin-top: 30px;
+        border: 0;
+        background: $contact-mailing-button-color;
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
