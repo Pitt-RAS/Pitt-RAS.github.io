@@ -13,3 +13,5 @@ The installation and setup process were fairly painless.  We have used both the 
 After that was done, everything worked flawlessly with the ROS packages provided by Slamtec [here](https://github.com/robopeak/rplidar_ros).
 
 We had no problems with noisy or invalid data coming out of the sensor; we were easily able to cluster the data into individual obstacles that could then be fed into our obstacle avoidance code.
+
+![RPLIDAR A2 on drone](/assets/images/posts/post-iarc-slamtec-review-rplidar.png)
