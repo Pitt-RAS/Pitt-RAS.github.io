@@ -20,7 +20,7 @@ The drone is currently capable of estimating its absolute position in the vertic
 <iframe width="854" height="480" src="https://www.youtube.com/embed/2w08D9MoOMk" frameborder="0" allowfullscreen></iframe>
 </div>
 
-Official autonomous flight at competition
+<p style="text-align: center;">Official autonomous flight at competition</p>
 
 ## System Details:
 
@@ -29,7 +29,8 @@ Official autonomous flight at competition
 The 2017 drone was designed to be crash resilient, easy to repair, and easy to modify. Additionally. the team's most constraining factor in constructing the frame was time. As a result a simple frame was designed that traded elegance for ease of construction and structural testing for overbuilt and heavy parts. Fully assembled, the drone is 1.1 meters across and weighs about 5kg (~10lbs.)
 
 ![Render of final CAD model](/assets/images/posts/post-update-iarc-postmortem-2017-08-05/drone-render.png)
-Render of final CAD model
+
+<p style="text-align: center;">Render of final CAD model</p>
     
 The frame is made primarily out of carbon fiber and 3D printed brackets. Two carbon fiber plates are used in the center of the drone to hold various electronics. 3D printed brackets connect the center plates to the carbon fiber crossbars. At the end of the crossbars the prop guard and motor mounts attach using a pressure fit. The lower bumper bars are attached to the prop guards using carbon fiber tubes. The side bumpers are made out of wood and the green button pushing pad is made out of a low density foam. Not pictured, is a firm cardboard piece that attaches to the bottom of the low density foam. Shielded copper wire is strung around the outer perimeter of the prop guard to form a 360 degree perimeter around the drone.
 
@@ -40,7 +41,8 @@ In our testing we found that the prop guards and boundary wires were extremely c
 An interesting mechanical problem was the construction of the landing gear. Significant impact needed to be absorbed in the case of a rough landing and the software team needed mechanical limit switch on each foot for control purposes. Additionally, if the drone hit the ground with a horizontal velocity, as could happen when landing on top of a roomba, the resulting torques on the needed to be controlled.
 
 ![Landing gear system](/assets/images/posts/post-update-iarc-postmortem-2017-08-05/switch-assembly-render.png)
-Landing gear system
+
+<p style="text-align: center;">Landing gear system</p>
 
 The image above shows how the three major concerns were integrated into a single unit. To limit the force delivered to the frame in the event of a rough landing a rubber sprint was put between the frame and the ground. To avoid excessive moments in the case of a landing with horizontal translation a carpet slider was mounted to the bottom of the spring. Finally, the limit switch was actuated with a plunger design that allowed for easily settable pre-travel and more than enough overtravel. Not pictured is a rubber band that pulls the plunger back down after it has been pressed.
 
@@ -49,7 +51,8 @@ The image above shows how the three major concerns were integrated into a single
 There are three separate electrical systems on the drone. The high voltage electronics, high voltage monitoring system, and the low voltage electronics. The high voltage electronics includes the motors and ESC’s. They are controlled by the high voltage monitoring system which has the ability to disable power to the ESC’s and motors and measures the motor battery voltage. The low voltage electronics includes the flight controller, computers, and sensors. Communication between the high and low voltage electronics is done over an opto-isolation barrier. This helps ensure that transients from the motors and ESC’s cannot damage the expensive sensors and computers.
 
 ![Overview of electrical systems](/assets/images/posts/post-update-iarc-postmortem-2017-08-05/high-level-design.png)
-Overview of electrical systems
+
+<p style="text-align: center;">Overview of electrical systems</p>
 
 The drone uses a Seriously Pro Racing F3 EVO for the flight controller. This type of flight controller is commonly used for racing drones. It contains the IMU used to determine the drone’s orientation and is capable of controlling the drone’s orientation. It receives throttle and orientation commands over a serial link with our main control computer.
 
@@ -62,7 +65,8 @@ The software system is built using ROS, and is running on a NVIDIA Jetson TX2 an
 Software engineering was taken seriously by the software team to ensure that a system as complex as IARC could be managed. We ended up designing a software stack that maintains abstractions between all major components, contains a built in failure recovery system, and allows for switching between controllers and planners in a safe and controlled manner during flight.
 
 ![High level relationship between major software components](/assets/images/posts/post-update-iarc-postmortem-2017-08-05/high-level-software-design.png)
-High level relationship between major software components
+
+<p style="text-align: center;">High level relationship between major software components</p>
 
 Illustrated above is general approach taken when designing the software stack. Not pictured, is the various sensor nodes and filters. Each component pictured was abstracted into separate nodes and ROS packages. This allowed us to choose different programming languages for different parts of the system. Additionally, it made it harder to break the abstractions set in place so that junior programmers could not turn the stack into spaghetti. 
 
