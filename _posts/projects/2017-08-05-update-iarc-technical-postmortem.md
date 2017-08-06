@@ -9,7 +9,7 @@ icon: cogs
 
 During the 2016-2017 academic year the Robotics and Automation Society at the University of Pittsburgh designed and built a drone to compete in Mission 7 of the International Aerial Robotics Competition. The team competed at the American venue and was awarded “Best System Design” and achieved the highest score at the venue.
 
-This paper will explore from a technical perspective the current capabilities of 2017’s entry, the overall design of the system, and the challenges facing the team in the 2017-2018 academic year.
+This post will explore from a technical perspective the current capabilities of 2017’s entry, the overall design of the system, and the challenges facing the team in the 2017-2018 academic year.
 
 ![Image of drone flying with pilots in background](/assets/images/posts/post-update-iarc-postmortem-2017-08-05/action-shot.png)
 
