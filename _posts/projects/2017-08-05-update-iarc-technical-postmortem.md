@@ -3,7 +3,7 @@ layout: post
 title: "IARC Mission 7 Technical Postmortem 2017"
 date: 2017-08-05
 author: Aaron Miller, Levi Burner
-categories: projects, 2017-iarc
+categories: projects 2017-iarc
 icon: cogs
 ---
 
@@ -14,6 +14,7 @@ This paper will explore from a technical perspective the current capabilities of
 ![Image of drone flying with pilots in background](/assets/images/posts/post-update-iarc-postmortem-2017-08-05/action-shot.png)
 
 ## Current Capabilities:
+<hr>
 The drone is currently capable of estimating its absolute position in the vertical direction and its absolute horizontal velocity.  We are capable of reliable and controlled autonomous takeoff and landing as well as horizontal translation under velocity control. Velocity control allows us to fly pseudo-waypoints (requesting a velocity for an amount of time, but with no absolution positional correction), and we have demonstrated both of these many times at home and at the competition.  The drone is also capable of detecting obstacles and ground robots, although these were not demonstrated at competition.  Other high-level behaviors such as absolute localization and waypoints based on the grid, and tracking and landing on ground robots, have been tested successfully in a simulator but not on a real-world system.
 
 <div class="post__post-youtube-container">
@@ -23,6 +24,7 @@ The drone is currently capable of estimating its absolute position in the vertic
 <p style="text-align: center;">Official autonomous flight at competition</p>
 
 ## System Details:
+<hr>
 
 ### Mechanical:
 
@@ -73,6 +75,7 @@ Illustrated above is general approach taken when designing the software stack. N
 Boundaries between the responsibilities of nodes allowed us to create a safety monitoring system that allowed for clearly defined safety procedures in the event of a node crashing. On startup nodes connect to the safety monitor. The monitor has a list of nodes that should connect on startup and an order in which safety responses are requested of nodes in the event of failure. Should a node crash or exit, the safety monitor will notify the next node in the chain of command to take an appropriate safety action. For instance, if the high level planner crashes the safety monitor will notify the controllers that they need to attempt a safety response. The controllers will then attempt to descend downward with a set velocity in a stable manner. In practice this system has allowed the drone to recover from unexpected software errors and land safely.
 
 ## Remaining Problems:
+<hr>
 
 The amount of lift that we are currently able to get out of our propulsion system is only approximately 130% of our weight.  Because all of our weight is concentrated in the center of the drone, we are still able to be fairly agile in the pitch/roll direction, but the drone has problems controlling its yaw, especially in windy conditions or in confined spaces where prop wash becomes an issue.  The yaw problem is not helped by the fact that the motors are mounted on circular carbon fiber tubes, which provide no reference to keep them vertically aligned.  This means that there is always some torque in either the clockwise or counterclockwise direction that the yaw controller must compensate for.
 
