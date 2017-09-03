@@ -166,6 +166,7 @@ html, body
     
     .btn-ras:hover,:active,:focus
     {
+        color: $dark-text-color;
         background-color: #bbb;
         border-color: #bbb;
     }
