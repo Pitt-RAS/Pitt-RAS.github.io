@@ -48,9 +48,9 @@ $copyright-background-color: #1a1a1a;
 $lighten: 20;
 $transition-duration: 0.25s;
 
-$dark-text-color: #373a3c;
-$btn-background-color: #ddd;
-$btn-focus-color: #bbb;
+$btn-text-color: white;
+$btn-background-color: $contact-mailing-button-color;
+$btn-focus-color: darken($contact-mailing-button-color, 20%);
 
 // >
 $xs: 0px;
@@ -161,28 +161,37 @@ html, body
 }
 
 .btn-ras {
-  color: $dark-text-color;
+  color: $btn-text-color;
   background-color: $btn-background-color;
   border-color: $btn-background-color;
+  margin-top: 30px;
+  border: 0;
+  background: $btn-background-color;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 
   &:focus,
   &.focus,
   &:hover {
-    color: $dark-text-color;
+    color: $btn-text-color;
     background-color: $btn-focus-color;
         border-color: $btn-focus-color;
   }
   &:active,
   &.active,
   .open > &.dropdown-toggle {
-    color: $dark-text-color;
+    color: $btn-text-color;
     background-color: $btn-focus-color;
         border-color: $btn-focus-color;
 
     &:hover,
     &:focus,
     &.focus {
-      color: $dark-text-color;
+      color: $btn-text-color;
       background-color: $btn-focus-color;
           border-color: $btn-focus-color;
     }
@@ -205,6 +214,6 @@ html, body
 
   .badge {
     color: $btn-background-color;
-    background-color: $dark-text-color;
+    background-color: $btn-text-color;
   }
 }
