@@ -49,6 +49,8 @@ $lighten: 20;
 $transition-duration: 0.25s;
 
 $dark-text-color: #373a3c;
+$btn-background-color: #ddd;
+$btn-focus-color: #bbb;
 
 // >
 $xs: 0px;
@@ -173,4 +175,53 @@ html, body
             border-color: #bbb;
         }
     }
+}
+
+.btn-ras {
+  color: $dark-text-color;
+  background-color: $btn-background-color;
+  border-color: $btn-background-color;
+
+  &:focus,
+  &.focus,
+  &:hover {
+    color: $dark-text-color;
+    background-color: $btn-focus-color;
+        border-color: $btn-focus-color;
+  }
+  &:active,
+  &.active,
+  .open > .dropdown-toggle& {
+    color: @color;
+    background-color: $btn-focus-color;
+        border-color: $btn-focus-color;
+
+    &:hover,
+    &:focus,
+    &.focus {
+      color: @color;
+      background-color: $btn-focus-color;
+          border-color: $btn-focus-color;
+    }
+  }
+  &:active,
+  &.active,
+  .open > .dropdown-toggle& {
+    background-image: none;
+  }
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus,
+    &.focus {
+      background-color: $btn-focus-color;
+          border-color: $btn-focus-color;
+    }
+  }
+
+  .badge {
+    color: $btn-background-color;
+    background-color: $dark-text-color;
+  }
 }
