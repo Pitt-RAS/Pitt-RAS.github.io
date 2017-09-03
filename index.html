@@ -75,7 +75,7 @@ title: Home
                 {% include sectiontitle.html title="Archive" %}
 
                 <ul>
-                  {% for post in site.posts limit:8 %}
+                  {% for post in site.posts limit:7 %}
                     {% unless post.next %}
                       <h5>{{ post.date | date: '%Y %b' }}</h5>
                     {% else %}
