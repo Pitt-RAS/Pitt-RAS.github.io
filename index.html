@@ -75,7 +75,7 @@ title: Home
                 {% include sectiontitle.html title="Archive" %}
 
                 <ul>
-                  {% for post in site.posts limit:7 %}
+                  {% for post in site.posts limit:8 %}
                     {% unless post.next %}
                       <h5>{{ post.date | date: '%Y %b' }}</h5>
                     {% else %}
@@ -90,7 +90,9 @@ title: Home
                   {% endfor %}
                 </ul>
 
-                {{ site.posts | length }}
+                <script type="text/javascript">
+                    console.log({{ site.posts | json }});
+                </script>
                 {% if site.posts.length > 8 %}
                   <a href="{{ site.baseurl }}/archive" class="btn btn-info btn-ras btn-lg btn-block" role="button">See More...</a>
                 {% endif %}
