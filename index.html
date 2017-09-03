@@ -69,6 +69,8 @@ title: Home
                 <!--<li>
                 </li>-->
             </ul>
+            <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#archive">Archive</button>
+            <div id="archive" class="collapse">
             {% include sectiontitle.html title="Archive" %}
             <ul>
               {% for post in site.posts %}
@@ -85,6 +87,7 @@ title: Home
                 <li style="margin: 0"><a href="{{ post.url }}">{{ post.title }}</a></li>
               {% endfor %}
             </ul>
+            </div>
         </aside>
     </div>
 
