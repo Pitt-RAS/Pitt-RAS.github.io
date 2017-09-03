@@ -74,11 +74,9 @@ title: Home
             <div id="archive">
                 {% include sectiontitle.html title="Archive" %}
 
-                <ul>
                   {% for post in site.posts limit:8 %}
                     {% unless post.next %}
-                      </ul>
-                        <h5>{{ post.date | date: '%Y %b' }}</h5>
+                      <h5>{{ post.date | date: '%Y %b' }}</h5>
                       <ul>
                     {% else %}
                       {% capture year %}{{ post.date | date: '%Y %b' }}{% endcapture %}
