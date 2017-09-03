@@ -163,4 +163,10 @@ html, body
         background-color: #ddd;
         border-color: #ddd;
     }
+    
+    .btn-ras:hover,:active,:focus
+    {
+        background-color: #bbb;
+        border-color: #bbb;
+    }
 }
