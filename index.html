@@ -63,7 +63,7 @@ title: Home
                   {% for page in (1..paginator.total_pages) %}
                     {% if page == paginator.page %}
                         <li class="page-item active">
-                          <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                          <a class="page-link" href="#">{{ page }} <span class="sr-only">(current)</span></a>
                         </li>
                     {% else %}
                         <li class="page-item">
