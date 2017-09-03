@@ -71,24 +71,28 @@ title: Home
                 <!--<li>
                 </li>-->
             </ul>
-            <button type="button" class="btn btn-info btn-ras btn-lg btn-block" data-toggle="collapse" data-target="#archive">Archive</button>
-            <div id="archive" class="collapse">
-            {% include sectiontitle.html title="Archive" %}
-            <ul>
-              {% for post in site.posts %}
-                {% unless post.next %}
-                  <h5>{{ post.date | date: '%Y %b' }}</h5>
-                {% else %}
-                  {% capture year %}{{ post.date | date: '%Y %b' }}{% endcapture %}
-                  {% capture nyear %}{{ post.next.date | date: '%Y %b' }}{% endcapture %}
-                  {% if year != nyear %}
-                    <h5>{{ post.date | date: '%Y %b' }}</h5>
-                  {% endif %}
-                {% endunless %}
+            <div id="archive">
+                {% include sectiontitle.html title="Archive" %}
 
-                <li style="margin: 0"><a href="{{ post.url }}">{{ post.title }}</a></li>
-              {% endfor %}
-            </ul>
+                <ul>
+                  {% for post in site.posts limit:8 %}
+                    {% unless post.next %}
+                      <h5>{{ post.date | date: '%Y %b' }}</h5>
+                    {% else %}
+                      {% capture year %}{{ post.date | date: '%Y %b' }}{% endcapture %}
+                      {% capture nyear %}{{ post.next.date | date: '%Y %b' }}{% endcapture %}
+                      {% if year != nyear %}
+                        <h5>{{ post.date | date: '%Y %b' }}</h5>
+                      {% endif %}
+                    {% endunless %}
+
+                    <li style="margin: 0"><a href="{{ post.url }}">{{ post.title }}</a></li>
+                  {% endfor %}
+                </ul>
+
+                {% if site.posts.length > 8 %}
+                  <a href="{{ site.baseurl }}/archive" class="btn btn-info btn-ras btn-lg btn-block" role="button">See More...</a>
+                {% endfor %}
             </div>
         </aside>
     </div>
