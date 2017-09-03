@@ -8,7 +8,7 @@ permalink: /archive/
 <article class="home row">
   <div class=" col-md-12">
     <section class="home__news">
-      {% for post in paginator.posts %}
+      {% for post in site.posts %}
           <div class="home__post">
               {% if post.icon == 'trophy' %}
               <div class="home__post-icon"><i class="fa fa-trophy" aria-hidden="true"></i></div>
@@ -40,19 +40,6 @@ permalink: /archive/
               </div>
           </div>
       {% endfor %}
-      <div class="pagination">
-        {% if paginator.previous_page %}
-            <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
-        {% else %}
-            <span class="previous">Previous</span>
-        {% endif %}
-            <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
-        {% if paginator.next_page %}
-            <a href="{{ paginator.next_page_path }}" class="next">Next</a>
-        {% else %}
-            <span class="next ">Next</span>
-        {% endif %}
-      </div>
     </section>
   </div>
 </article>
