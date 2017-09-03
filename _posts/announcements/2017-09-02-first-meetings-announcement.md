@@ -7,10 +7,9 @@ categories: announcements
 icon: general
 ---
 
-<p>
 #Pitt RAS has finalized first project meetings of the semester. 
+<p>
 <br />
-###They are as follows:
 <br />
 IARC: 		  Sept. 5th @ 9pm in 1235 Benedum Hall
 <br />
