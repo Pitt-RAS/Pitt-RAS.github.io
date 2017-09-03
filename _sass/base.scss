@@ -164,10 +164,13 @@ html, body
         border-color: #ddd;
     }
     
-    .btn-ras:hover,:active,:focus
+    .btn-ras
     {
-        color: $dark-text-color;
-        background-color: #bbb;
-        border-color: #bbb;
+        &:hover, &:active, &:focus
+        {
+            color: $dark-text-color;
+            background-color: #bbb;
+            border-color: #bbb;
+        }
     }
 }
