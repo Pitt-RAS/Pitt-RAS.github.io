@@ -189,7 +189,7 @@ html, body
   }
   &:active,
   &.active,
-  .open > .dropdown-toggle& {
+  .open > &.dropdown-toggle {
     background-image: none;
   }
   &.disabled,
