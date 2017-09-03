@@ -5,7 +5,10 @@
     }
     &__post
     {
-        margin-bottom: 40px;
+        &:not(:last-child)
+        {
+            margin-bottom: 40px;
+        }
     }
     &__post-icon
     {
