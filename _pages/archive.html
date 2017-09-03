@@ -1,0 +1,60 @@
+---
+layout: page
+title: Archive
+block: archive
+permalink: /archive/
+---
+
+<article class="home row">
+  <div class=" col-md-12">
+    <section class="home__news">
+      {% include sectiontitle.html title="Archive" %}
+
+      {% for post in paginator.posts %}
+          <div class="home__post">
+              {% if post.icon == 'trophy' %}
+              <div class="home__post-icon"><i class="fa fa-trophy" aria-hidden="true"></i></div>
+              {% elsif post.icon == 'code' %}
+              <div class="home__post-icon"><i class="fa fa-code" aria-hidden="true"></i></div>
+              {% elsif post.icon == 'picture' %}
+              <div class="home__post-icon"><i class="fa fa-picture-o" aria-hidden="true"></i></div>
+              {% elsif post.icon == 'play' %}
+              <div class="home__post-icon"><i class="fa fa-play-circle-o" aria-hidden="true"></i></div>
+              {% elsif post.icon == 'cogs' %}
+              <div class="home__post-icon"><i class="fa fa-cogs" aria-hidden="true"></i></div>
+              {% else %}
+              <div class="home__post-icon"><i class="fa fa-align-left" aria-hidden="true"></i></div>
+              {% endif %}
+              <h2 class="home__post-title"><a href="{{ post.url }}">{{ post.title }}</a></h2>
+              <div class="home__post-footer row">
+                  <div class="col-xs-12 col-sm-6">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>{{ post.author }}
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                      <i class="fa fa-clock-o" aria-hidden="true"></i>{{ post.date | date: "%-m/%-d/%Y" }}
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                      <a href="{{ post.url }}"><i class="fa fa-link" aria-hidden="true"></i>Permalink</a>
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                      <i class="fa fa-tag" aria-hidden="true"></i><span style="text-transform: capitalize;">{{ post.categories[0] }}</span>
+                  </div>
+              </div>
+          </div>
+      {% endfor %}
+      <div class="pagination">
+        {% if paginator.previous_page %}
+            <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
+        {% else %}
+            <span class="previous">Previous</span>
+        {% endif %}
+            <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+        {% if paginator.next_page %}
+            <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+        {% else %}
+            <span class="next ">Next</span>
+        {% endif %}
+      </div>
+    </section>
+  </div>
+</article>
