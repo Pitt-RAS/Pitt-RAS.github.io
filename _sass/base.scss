@@ -158,23 +158,6 @@ html, body
     // background-repeat: no-repeat;
     // background-color: #4d73cb;
     // background-attachment: fixed;
-    
-    .btn-ras
-    {
-        color: $dark-text-color;
-        background-color: #ddd;
-        border-color: #ddd;
-    }
-    
-    .btn-ras
-    {
-        &:hover, &:active, &:focus
-        {
-            color: $dark-text-color;
-            background-color: #bbb;
-            border-color: #bbb;
-        }
-    }
 }
 
 .btn-ras {
@@ -192,14 +175,14 @@ html, body
   &:active,
   &.active,
   .open > .dropdown-toggle& {
-    color: @color;
+    color: $dark-text-color;
     background-color: $btn-focus-color;
         border-color: $btn-focus-color;
 
     &:hover,
     &:focus,
     &.focus {
-      color: @color;
+      color: $dark-text-color;
       background-color: $btn-focus-color;
           border-color: $btn-focus-color;
     }
