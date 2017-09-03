@@ -48,6 +48,8 @@ $copyright-background-color: #1a1a1a;
 $lighten: 20;
 $transition-duration: 0.25s;
 
+$dark-text-color: #373a3c;
+
 // >
 $xs: 0px;
 $sm: 544px;
@@ -154,4 +156,21 @@ html, body
     // background-repeat: no-repeat;
     // background-color: #4d73cb;
     // background-attachment: fixed;
+    
+    .btn-ras
+    {
+        color: $dark-text-color;
+        background-color: #ddd;
+        border-color: #ddd;
+    }
+    
+    .btn-ras
+    {
+        &:hover, &:active, &:focus
+        {
+            color: $dark-text-color;
+            background-color: #bbb;
+            border-color: #bbb;
+        }
+    }
 }
