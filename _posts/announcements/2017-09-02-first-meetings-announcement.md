@@ -9,12 +9,12 @@ icon: general
 
 Pitt RAS has finalized first project meetings of the semester. 
 <p>
-IARC: 		  Sept. 5th @ 9pm in 1235 Benedum Hall
+IARC: 		  Tuesday, Sept. 5th @ 9pm in 1235 Benedum Hall
 <br />
-DraggleBot:   Sept. 6th @ 8pm in 1235 Benedum Hall
+DraggleBot:   Wednesday, Sept. 6th @ 8pm in 1235 Benedum Hall
 <br />
-Erasinator:   Sept. 6th @ 9pm in 1235 Benedum Hall
+Erasinator:   Wednesday, Sept. 6th @ 9pm in 1235 Benedum Hall
 <br />
-Sailbot: 	  Sept. 7th @ 9pm in 1235 Benedum Hall
+Sailbot: 	  Thursday, Sept. 7th @ 9pm in 1235 Benedum Hall
 </p>
 
