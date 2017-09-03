@@ -9,7 +9,6 @@ icon: general
 
 Pitt RAS has finalized first project meetings of the semester. 
 <p>
-<br />
 IARC: 		  Sept. 5th @ 9pm in 1235 Benedum Hall
 <br />
 DraggleBot:   Sept. 6th @ 8pm in 1235 Benedum Hall
