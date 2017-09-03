@@ -174,7 +174,7 @@ html, body
   }
   &:active,
   &.active,
-  .open > .dropdown-toggle& {
+  .open > &.dropdown-toggle {
     color: $dark-text-color;
     background-color: $btn-focus-color;
         border-color: $btn-focus-color;
