@@ -8,8 +8,6 @@ permalink: /archive/
 <article class="home row">
   <div class=" col-md-12">
     <section class="home__news">
-      {% include sectiontitle.html title="Archive" %}
-
       {% for post in paginator.posts %}
           <div class="home__post">
               {% if post.icon == 'trophy' %}
