@@ -13,14 +13,14 @@ description: > # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://pittras.org/" # the base hostname & protocol for your site
 
-plugins:
-  - jekyll-redirect-from
-
 # Build settings
 markdown: kramdown
 
 include: ['_pages']
 
-gems: [jekyll-paginate]
+gems:
+  - jekyll-paginate
+  - jekyll-redirect-from
+
 paginate: 3
 paginate_path: "/page:num/"
