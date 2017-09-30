@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "General Body Meeting on October 1st, 6pm in Old Engineering Hall 316"
+title: "General Body Meeting on October 2nd, 6pm in Old Engineering Hall 316"
 date: 2017-09-30
 author: Liam Berti
 categories: announcements
