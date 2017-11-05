@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "General Body Meeting on November 7th"
-date: 2017-11-07
+date: 2017-11-04
 author: Kaylene Stocking, Liam Berti
 categories: announcements
 icon: general
