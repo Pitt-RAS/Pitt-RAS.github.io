@@ -3,7 +3,7 @@ layout: post
 title: "Thoughts on Hull Design"
 date: 2017-11-04
 author: Jay Maier
-categories: sailbot
+categories:projects 2017-sailbot
 icon: cogs
 ---
 
