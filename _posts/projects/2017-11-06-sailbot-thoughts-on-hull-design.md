@@ -7,8 +7,6 @@ categories: sailbot
 icon: cogs
 ---
 
-## Thoughts on Hull Design
-
 <p>
 Looking at the kinds of things a boat in the Sailbot competition will have to do, it seems like being successful will be more determined by things like how well you can plot a course, perceive the world around you, and decide when to tack than on achieving an absolute minimum form drag.  This is most clear for tasks such as collision avoidance, searching an area, keeping a station, and navigating to a waypoint.  With this in mind, we will be doing anything we can to construct a platform which can deliver high quality sensor information to our perception team and which can maneuver in a predictable and responsive way.  In particular, this decision has led us to develop a wide-beam multihull.  
 </p>
