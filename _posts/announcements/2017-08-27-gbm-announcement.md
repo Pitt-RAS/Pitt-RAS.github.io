@@ -1,13 +1,18 @@
 ---
 layout: post
-title: "General Body Meeting on November 7th"
-date: 2017-11-04
-author: Kaylene Stocking, Liam Berti
+title: "General Body Meeting on September 3rd, 2pm-3pm in Benedum Hall 102"
+date: 2017-08-27
+author: Liam Berti
 categories: announcements
 icon: general
 ---
 
 <p>
-We will be having an Arduino building competition for our GBM next Tuesday, November 7th! You'll get to split up in small groups to build the spookiest project possible in 2 hours. There will be pizza for all and prizes for winning team, including Arduinos and/or snack shack credit. Please come even if you don't have experience with Arduinos, we'll make sure that every team has someone with experience and projects will be judged on creativity.
+The Pitt RAS will be holding our first general body meeting of the semester, 
+open to all, on
+Sunday, September 3rd at 2pm. The meeting will be held in Benedum Hall, room 102
+(The large conference room behind the orange desk on the first floor of Benedum,
+also known as the Engineering Building). We will be presenting our projects for
+the semester, and introducing our new project leads. Pizza will also be present.
 </p>
 
