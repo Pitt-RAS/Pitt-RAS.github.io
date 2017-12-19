@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+<LINK HREF="files/rc.css" REL=StyleSheet TYPE="text/css">
+<STYLE>A{text-decoration:none;}
+.month {position:absolute; width:350; height:350; top:35; left:0}
+.list {position:absolute; width:250; height:350; top:35; left:360}</STYLE>
+<SCRIPT LANGUAGE="JavaScript" SRC="files/events.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="files/holidays.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript" SRC="files/calendar.js"></SCRIPT>
+<TITLE>Pitt Robotics Club</TITLE>
+</HEAD>
+<BODY BACKGROUND="images/bg.gif" LINK=#FFFFFF VLINK=#FFFFFF>
+<IMG SRC="images/rings.gif" HEIGHT=170>
+<DIV CLASS="title"><IMG SRC="images/title.gif"></DIV>
+<DIV CLASS="menu"><B><FONT SIZE=3 FACE="Arial"><CENTER>
+<A HREF="index.html">Welcome</A><P>
+<A HREF="club.html">Club Info</A><P>
+<A HREF="area2/index.html">Member's Area</A><P>
+<A HREF="projects/index.html">Projects</A><P>
+<FONT COLOR=#CC9900>Calendar</FONT><P>
+Sponsors<P>
+<A HREF="pics/index.html">Image Gallery</A><P>
+<A HREF="news.html">News</A><P>
+<A HREF="links.html">Links</A><P>
+<A HREF="contact.html">Contact</A>
+</CENTER></B></FONT></DIV>
+<DIV CLASS="main">
+<FORM NAME="doc_dates">
+<SELECT NAME="doc_month">
+<OPTION SELECTED VALUE=0>-- Month --
+<OPTION value=1>January
+<OPTION value=2>February
+<OPTION value=3>March
+<OPTION value=4>April
+<OPTION value=5>May
+<OPTION value=6>June
+<OPTION value=7>July
+<OPTION value=8>August
+<OPTION value=9>September
+<OPTION value=10>October
+<OPTION value=11>November
+<OPTION value=12>December
+</SELECT>
+<SELECT NAME="doc_year">
+<OPTION SELECTED VALUE=0>-- Year --
+<OPTION VALUE=2000>2000
+<OPTION VALUE=2001>2001
+<OPTION VALUE=2002>2002
+</SELECT>
+<INPUT TYPE="button" VALUE="Display Month" onClick="write_all()"> 
+</FORM>
+<DIV STYLE="position:absolute;top:320px;left:0;width:100%;">
+<P ALIGN=RIGHT><SMALL><I>Last updated: <SCRIPT>document.write(mod_date)</SCRIPT></SMALL></I>
+</DIV>
+<SCRIPT>
+var current = new Date() ;
+var current_month = current.getMonth() + 1 ;
+var current_year = current.getYear() ;
+if (navigator.appName == "Netscape")
+  current_year += 1900 ;
+</SCRIPT>
+<DIV class="month" id="month_box">
+<SCRIPT>document.write(write_month(current_month,current_year))</SCRIPT>
+</DIV>
+<LAYER PAGEY=250 PAGEX=500 WIDTH=250 HEIGHT=350>
+<NOLAYER><DIV class="list" id="list_box"></NOLAYER>
+<SCRIPT>document.write(write_events(current_month,current_year))</SCRIPT></DIV></LAYER>
+</DIV>
+</BODY>
+</HTML>

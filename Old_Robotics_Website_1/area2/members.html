@@ -1,0 +1,88 @@
+<HTML>
+<HEAD>
+<LINK HREF="../files/rc.css" REL=StyleSheet TYPE="text/css">
+<STYLE>A {text-decoration: none;}</STYLE>
+<SCRIPT LANGUAGE="JAVASCRIPT">if(top.frames.length==0)parent.location="index.html";</SCRIPT>
+<SCRIPT NAME="javascript" SRC="../files/passwd.js"></SCRIPT>
+<SCRIPT>
+function validate(pswd) {
+  if (check(pswd)==1)
+    parent.main.location.href = dohash(pswd,9)+'.html?'+valid() ;
+  else
+    alert("That password is not valid") ;
+}
+</SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">
+n = (document.layers) ? 1:0 ;
+ie = (document.all) ? 1:0 ;
+menuon = false ;
+
+function cancelmenu(e) {
+  if (ie) {
+    if (event.button==2) {
+      menuon=true ;
+      if (popmenu.readyState==4) {
+        popmenu.RemoveAllItems() ;
+        popmenu.AddItem("Go Away","","","") ;
+        popmenu.Popup (event.x,event.y) ;
+      }
+      else
+        alert("Please wait. Page Loading...") ;
+    }
+    if (event.button==1)
+    if (menuon) {
+      popmenu.RemoveAllItems() ;
+      popmenu.Popup (event.x,event.y) ;
+      menuon=false ;
+    }
+  }
+  if (n)
+  if (e.which==3)
+    return false;
+}
+
+document.onmousedown = cancelmenu;
+if (n)
+  document.captureEvents(Event.MOUSEDOWN)
+</SCRIPT>
+<TITLE>Pitt Robotics Club</TITLE>
+</HEAD>
+<BODY BACKGROUND="../images/bg.gif" LINK=#FFFFFF VLINK=#FFFFFF>
+<IMG SRC="../images/rings.gif" HEIGHT=170>
+<DIV CLASS="title"><IMG SRC="../images/title.gif"></DIV>
+<DIV CLASS="menu"><B><FONT SIZE=3 FACE="Arial"><CENTER>
+<A HREF="../index.html" TARGET="_top">Welcome</A><P>
+<A HREF="../club.html">Club Info</A><P>
+<FONT COLOR=#CC9900>Member's Area</FONT><P>
+<A HREF="../projects/index.html" TARGET="_top">Projects</A><P>
+<A HREF="../events.html" TARGET="_top">Calendar</A><P>
+Sponsors<P>
+<A HREF="../pics/index.html" TARGET="_top">Image Gallery</A><P>
+<A HREF="../news.html" TARGET="_top">News</A><P>
+<A HREF="../links.html" TARGET="_top">Links</A><P>
+<A HREF="../contact.html" TARGET="_top">Contact</A>
+</CENTER></B></FONT></DIV>
+<DIV CLASS="main">
+<B>Project Proposal Forms</B>, available as an <A HREF="proj_ascii.html" STYLE="color:Blue;">HTML file you print out and fill in</A>, and a <A HREF="proj_email.html" STYLE="color:Blue;">form you can submit online</A>. If you fill out a proposal form, you still have to get officer's signatures, so we'd prefer you use the first option. Soon as I get the chance, I'll make it into a PDF you can fill out in Acrobat Reader.
+<BR><P>
+<FORM>
+<TABLE COLS=2 BORDER=0 WIDTH=200>
+  <TR>
+    <TD VALIGN=TOP><P ALIGN=RIGHT>Password:</TD>
+    <TD><input type="password" name="password"><BR><SMALL>try "members"</SMALL></TD>
+  </TR>
+  <TR>
+    <TD></TD>
+    <TD><INPUT TYPE=button VALUE="Login Here" onClick="validate(this.form.password.value)"></TD>
+  </TR>
+</TABLE>
+</FORM>
+</DIV>
+<OBJECT ID="popmenu" WIDTH=0 HEIGHT=0 CLASSID="CLSID:F5131C24-E56D-11CF-B78A-444553540000" CODEBASE="http://activex.microsoft.com/controls/iptdweb/ikcntrls.cab">
+    <PARAM NAME="_Version" VALUE="65536">
+    <PARAM NAME="_ExtentX" VALUE="2646">
+    <PARAM NAME="_ExtentY" VALUE="1341">
+    <PARAM NAME="_StockProps" VALUE="0">
+</OBJECT>
+</BODY>
+</HTML>

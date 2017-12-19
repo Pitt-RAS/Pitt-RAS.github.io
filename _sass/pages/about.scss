@@ -44,4 +44,34 @@
         padding-left: 15px;
         padding-right: 15px;
     }
+    &__website-list
+    {
+    }
+    &__website
+    {
+        text-align: center;
+        height: 250px;
+        &:not(:last-child)
+        {
+            margin-bottom: 60px;
+        }
+        img
+        {
+            padding-left: 50px;
+            padding-right: 50px;
+            max-width: 100%;
+            max-height: 100%;
+            margin-bottom: 10px;
+        }
+    }
+    &__website-title
+    {
+        font-weight: bold;
+    }
+    &__website-year
+    {
+        font-style: italic;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }

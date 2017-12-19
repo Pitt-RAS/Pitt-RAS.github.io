@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<LINK HREF="files/rc.css" REL=StyleSheet TYPE="text/css">
+<STYLE>A {text-decoration: none;}</STYLE>
+<TITLE>Pitt Robotics Club</TITLE>
+</HEAD>
+<BODY BACKGROUND="images/bg.gif" LINK=#FFFFFF VLINK=#FFFFFF>
+<IMG SRC="images/rings.gif" HEIGHT=170>
+<IMG SRC="images/title.gif">
+<DIV CLASS="menu"><B><FONT SIZE=3 FACE="Arial"><CENTER>
+<A HREF="index.html">Welcome</A><P>
+<A HREF="area/index.html">Member's Area</A><P>
+<A HREF="projects/index.html">Projects</A><P>
+<A HREF="events.html">Calender</A><P>
+<A HREF="sponsors.html">Sponsors</A><P>
+<A HREF="pics/index.html">Image Gallery</A><P>
+<A HREF="news.html">News</A><P>
+<A HREF="links.html">Links</A><P>
+<A HREF="contact.html">Contact</A>
+</CENTER></B></FONT></DIV>
+<DIV CLASS="main">
+
+</DIV>
+</BODY>
+</HTML>

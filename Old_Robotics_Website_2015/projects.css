@@ -1,0 +1,52 @@
+<!-- 
+Navy: #171340
+Gold: #CBB67C -->
+
+#galleriaProjects{
+    width:50%;
+    height:35%;
+    background: #000;
+    margin-left:auto;
+    margin-right:auto;
+    float:center;
+    padding-top: 5%;
+}
+
+p{
+    text-align: left;
+    font:"Helvetica";
+    color: #171340;
+    padding:.25%;
+    margin-left:auto;
+    margin-right:auto;
+    width:50%;
+    font-size: 1.1em;
+    line-height: 130%;
+}
+
+#title{
+    color:#CBB67C;
+    text-transform: uppercase;
+}
+
+
+#Description{
+    text-align: justify;
+    padding-bottom:2%;
+}
+
+#line{
+    color:#CBB67C;
+}
+
+#Copyright{
+    clear:both;
+    font: "Helvetica";
+    font-size: 1em;
+    color: #a8a8a8;
+	text-align: center;
+	line-height: 3;
+	margin:0;
+    display: inline-block;
+    width:70%;
+}

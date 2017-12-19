@@ -1,0 +1,42 @@
+.main {
+	FONT-SIZE: large; COLOR: #000000; FONT-FAMILY: Times
+}
+.code {
+	FONT-SIZE: 18px; COLOR: #000000; FONT-FAMILY: Helvetica
+}
+TD {
+	FONT-SIZE: small; COLOR: black; FONT-FAMILY: Times; align: center
+}
+H1 {
+	FONT-WEIGHT: 600; FONT-SIZE: x-large; COLOR: black; LETTER-SPACING: 0.15in; TEXT-ALIGN: center
+}
+H2 {
+	FONT-WEIGHT: 600; FONT-SIZE: large; TEXT-TRANSFORM: capitalize; COLOR: black; LETTER-SPACING: 0.02in; TEXT-ALIGN: left
+}
+STRONG {
+	FONT-WEIGHT: 700; FONT-SIZE: medium; COLOR: black; LETTER-SPACING: 1px
+}
+SMALL {
+	FONT-SIZE: x-small; COLOR: black; FONT-STYLE: italic
+}
+BLOCKQUOTE {
+	COLOR: #ffe0e0
+}
+CITE {
+	
+}
+P {
+	MARGIN-LEFT: 3em
+}
+LI {
+	MARGIN-LEFT: 3em
+}
+A:link {
+	COLOR: #0000ff; TEXT-DECORATION: underline
+}
+A:visited {
+	COLOR: purple; TEXT-DECORATION: underline
+}
+A:active {
+	
+}
