@@ -1,0 +1,191 @@
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE="JavaScript">
+var correct = true ;
+
+function checkData() {
+  correct = true ;
+
+  if (document.project.title.value == "") {
+    correct = false ;
+    alert("Please enter the project's title.") ;
+  }
+  else {
+    checkString("title",document.project.title.value) ;
+  }
+
+  if (document.project.head.value == "") {
+    correct = false ;
+    alert("Please enter the committee head's name and email.") ;
+  }
+  else {
+    checkEmail("committee head",document.project.head.value) ;
+  }
+
+  if (document.project.participants.value != "") {
+    checkEmail("participants",document.project.participants.value) ;
+  }
+
+  if (document.project.goal.value == "") {
+    correct = false ;
+    alert("Please enter the project's goals.") ;
+  }
+  else {
+    checkString("goals",document.project.goal.value) ;
+  }
+
+  if (document.project.description.value == "") {
+    correct = false ;
+    alert("Please enter the project's goals.") ;
+  }
+  else {
+    checkString("description",document.project.description.value) ;
+  }
+
+  if (document.project.start.value != "") {
+    checkString("starting date",document.project.start.value) ;
+  }
+
+  if (document.project.complete.value != "") {
+    checkString("completion date",document.project.complete.value) ;
+  }
+
+  if (document.project.guide.value == "") {
+    correct = false ;
+    alert("Please enter the project's guidelines.") ;
+  }
+  else {
+    checkString("guidelines",document.project.guide.value) ;
+  }
+
+  if (document.project.costs.value != "") {
+    checkString("cost",document.project.costs.value) ;
+  }
+
+  if (document.project.total.value != "") {
+    checkString("total",document.project.total.value) ;
+  }
+
+  if (document.project.facilities.value != "") {
+    checkString("facilities",document.project.facilities.value) ;
+  }
+
+  if (document.project.award.value != "") {
+    checkString("awards",document.project.award.value) ;
+  }
+
+  return correct ;
+}
+
+var swear = new Array(3)
+swear[0] = "kucF" ;
+swear[1] = "thiS" ;
+swear[2] = "citB" ;
+swear[3] = "lelH" ;
+swear[4] = "kucf" ;
+swear[5] = "this" ;
+swear[6] = "citb" ;
+swear[7] = "lelh" ;
+swear[8] = "KUCF" ;
+swear[9] = "THIS" ;
+swear[10] = "CITB" ;
+swear[11] = "LELH" ;
+
+function cypher(x) {
+  var m = "" ;
+  m += x.charAt(3) ;
+  m += x.charAt(1) ;
+  m += x.charAt(2) ;
+  m += x.charAt(0) ;
+  return m ;
+}
+
+function checkString(type,check) {
+  if (check.length <= 3) {
+    return ;
+  }
+
+  for (var i = 0; i <= check.length - 4; i++) {
+    for (var j=0; j <= 11; j++) {
+      if (check.substring(i,i+4) == cypher(swear[j])) {
+        alert("Invalid " + type + ".") ;
+        correct = false ;
+      }
+    }
+  }
+}
+
+function checkEmail(type,check) {
+  var EmailCorrect = false ;
+  for (var i = 0; i <= check.length; i++) {
+    if (check.charAt(i) == "@") {
+      EmailCorrect = true ;
+    }
+  }
+  var EMLength = check.length ;
+  if (EmailCorrect == false) {
+    alert("Invalid " + type + " and email.") ;
+    correct = false ;
+  }
+}
+
+function submit_form() {
+  if (checkData()) {
+    alert("You still need to get officers' approval on your project. Please attend the next meeting.") ;
+    document.project.method = "POST" ;
+    document.project.action = "mailto:sorc+robotics@pitt.edu" ;
+    return 1 ;
+  }
+  else
+    return 0 ;
+}
+</SCRIPT>
+</HEAD>
+<body bgcolor=#eeeeee text=#000055 alink=#806a4b vlink=#806a4b link=#806a4b>
+<CENTER>
+<TABLE COLS=1 WIDTH=570 BORDER=0>
+<TR><TD>
+<CENTER><FONT SIZE=+3 Face="Verdana, Arial"><B>PROJECT PROPOSAL FORM</B></FONT></CENTER>
+<br>
+<I><font face="Verdana, Arial" size=-1>This form is to be filled out by Robotics Club members before they utilize any of the club's resources in order to complete a project.  When requesting money from the budget, the project must be approved by the club officers before receiving any funds.
+</I>
+
+
+<BR>
+<FORM NAME="project" onSubmit="submit_form()">
+<TABLE COLS=1 BORDER=0>
+
+<TR><TD><B><font face="Verdana, Arial" size=-1>Project Title:&nbsp;&nbsp;<INPUT NAME="title" SIZE=63><P></TD></TR>
+
+<TR><TD><B><font face="Verdana, Arial" size=-1>Project Committee Head</B> (Name, Pitt e-mail)<B>:</B><BR>&nbsp;<INPUT NAME="head" SIZE=76><P></TD></TR>
+
+<TR VALIGN=TOP><TD><B><font face="Verdana, Arial" size=-1>Project Participants</B> (Name, Pitt e-mail)<B>:</B><BR><TEXTAREA NAME="participants" ROWS=7 COLS=66 WRAP="virtual"></TEXTAREA><P></TD></TR>
+
+<TR><TD><B><font face="Verdana, Arial" size=-1>Project Purpose and Goal:<BR><TEXTAREA NAME="goal" ROWS=6 COLS=66 WRAP="virtual"></TEXTAREA><P></TD></TR>
+
+<TR><TD><B><font face="Verdana, Arial" size=-1>Project Description:<BR><TEXTAREA NAME="description" ROWS=6 COLS=66 WRAP="virtual"></TEXTAREA><P></TD></TR>
+
+<TR><TD><B><font face="Verdana, Arial" size=-1>Starting Date:</B>&nbsp;&nbsp;<INPUT NAME="start" SIZE=38><P></TD></TR>
+
+<TR><TD><B><font face="Verdana, Arial" size=-1>Proposed Completion Date:</B>&nbsp;&nbsp;<INPUT NAME="complete" SIZE=25><P></TD></TR>
+
+<TR><TD><B><font face="Verdana, Arial" size=-1>Project Guidelines</B> (please include a copy of any competition rules if applicable)<B>:</B><BR><TEXTAREA NAME="guide" ROWS=6 COLS=66 WRAP="virtual"></TEXTAREA><P></TD></TR>
+
+<TR><TD><B><font face="Verdana, Arial" size=-1>Requested Materials and Costs:<BR><TEXTAREA NAME="costs" ROWS=16 COLS=66 WRAP="virtual"></TEXTAREA>
+<TR><TD><B>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><font face="Verdana, Arial" size=-1>Total: </B><INPUT NAME="total" SIZE=25><P></TD></TR>
+
+<TR><TD><B><font face="Verdana, Arial" size=-1>Equipment to be used</B> (lab computer, drill press, etc.)<B>:</B><BR>&nbsp;<TEXTAREA NAME="facilities" ROWS=3 COLS=66></TEXTAREA><P></TD></TR>
+
+<TR><TD><B><font face="Verdana, Arial" size=-1>Award Disbursement</B> (i.e. if competitive awards are gained with this project, how will the rewards be disbursed?):<BR><TEXTAREA NAME="award" ROWS=3 COLS=66 WRAP="virtual"></TEXTAREA><P></TD></TR>
+
+<TR><TD><B><font face="Verdana, Arial" size=-1><b>Project Completion Schedule:</b><br>
+<INPUT TYPE="file" NAME="attachedfile" MAXLENGTH=50 ALLOW="text/*" >
+</tr></td>
+<INPUT TYPE="hidden" NAME="success" VALUE="http://www.pitt.edu/~sorc/robotics/emailsent.html" target="_blank">
+
+<TR><TD ALIGN=CENTER><br><br><br><INPUT TYPE="submit" value="Submit Form"></TD></TR></TABLE>
+
+</TD></TR></TABLE>
+</FORM>
+</BODY>
+</HTML>

@@ -1,0 +1,116 @@
+<html><head>
+
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><title>Sharp GP2D12 (little) IR Rangefinder</title>
+
+
+
+<style>
+<!--
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{margin-right:0in;
+	mso-margin-top-alt:auto;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:.5in .5in .5in .5in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style></head>
+
+<body style="" lang="EN-US" link="blue" vlink="purple">
+
+<div class="Section1">
+
+<p class="MsoNormal" style="text-align: center; line-height: 150%;" align="center"><b style=""><span style="font-size: 20pt;">Sharp GP2D12
+(little) IR Rangefinder<o:p></o:p></span></b></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 16pt;">Sensor
+Operation:<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The GP2D12 outputs an analog voltage
+that varies as a function of the distance to an object obstructing its emitted
+infrared beam.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Inside the range finder, there is an
+infrared beam emitter and a &#8220;position sensing device,&#8221; or PSD.<span style="">&nbsp; </span>The PSD is a silicon device that works like
+a variable resistor whose resistance changes with the position at which the
+device is struck by light.<span style="">&nbsp; </span>When an
+object is placed in front of the sensor, it will reflect the emitted infrared
+beam back to the sensor.<span style="">&nbsp; </span>The angle of
+the returning beam will depend on how far away the object is.<span style="">&nbsp; </span>Returning beams with different incident
+angles will be focused by the receiver&#8217;s lens onto different parts of the PSD
+so that the resistance of the PSD varies with the distance from sensor to
+object.<span style="">&nbsp; </span>The sensor&#8217;s output voltage is
+based on this resistance.<o:p></o:p></span></p>
+
+<img src="Sharp%20GP2D12%20%28little%29%20IR%20Rangefinder_files/PSD.gif" height="198" width="719">
+
+<p style="text-indent: 0.5in;"><span style="font-size: 14pt;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></span>
+
+</p><p><span style="font-size: 16pt;">Sensor Pinout:<o:p></o:p></span></p>
+
+<p style="text-indent: 0.5in;"><span style="font-size: 14pt;">The rangefinder has
+only 3 pins: V<sub>out</sub>, Gnd, and Vcc (yellow, black, red, respectively).<o:p></o:p>
+
+<img src="Sharp%20GP2D12%20%28little%29%20IR%20Rangefinder_files/GP2D12_pinout.gif" border="0" height="92" width="402">
+Vcc may be between 4.5 and 5.5 volts.</span></p>
+
+<p style="text-indent: 0.5in;">from the datasheet at: <a href="http://www.philohome.com/sensors/gp2d12/gp2d12-datasheets/gp2d12.pdf">http://www.philohome.com/sensors/gp2d12/gp2d12-datasheets/gp2d12.pdf</a></p>
+
+<p><span style="font-size: 16pt;">Output Values:<o:p></o:p></span></p>
+
+<p><span style="font-size: 16pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span style="font-size: 14pt;">The analog voltage vs. range is graphed below,
+left.<span style="">&nbsp; </span>Beam width vs. distance is
+graphed below, right.<span style="">&nbsp; </span>The beam width
+chart refers to the spread of the beam as &#8220;detection distance.&#8221;<span style="">&nbsp; </span>As in distance perpendicular to the axis of
+the beam.<span style="">&nbsp; </span>The beam is pretty narrow;
+even at its upper sensing limit of 80cm, it only spreads to 5cm wide.<o:p></o:p></span></p>
+
+<img src="Sharp%20GP2D12%20%28little%29%20IR%20Rangefinder_files/GP2D12_charts.gif" border="0" height="315" width="653">
+
+<p style="line-height: 150%;"><span style="font-size: 14pt;">Distance can be
+approximated from the analog voltage by using the following power regression,
+where d is distance in cm and s is the sensor&#8217;s value from 0 to 255:<o:p></o:p></span></p>
+
+<p style="text-align: center;" align="center"><span style="font-size: 16pt;">d(s) = 2141.72055 s<sup>-1.078867</sup></span><span style="font-size: 16pt;"><o:p></o:p></span></p>
+
+<p style="text-align: center;" align="center">from <a href="http://zuff.info/SharpGP2D12_E.html">http://zuff.info/SharpGP2D12_E.html</a><span style="font-size: 14pt;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></span></p>
+
+</div>
+
+</body></html>

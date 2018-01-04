@@ -1,0 +1,298 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="ProgId" content="Word.Document">
+<meta name="Generator" content="Microsoft Word 9">
+<meta name="Originator" content="Microsoft Word 9">
+<link rel="File-List" href="http://scheinman.org/shadyrobotics/UPRC_lessons/ServoControl/ServoControl_files/filelist.xml">
+<link rel="Edit-Time-Data" href="http://scheinman.org/shadyrobotics/UPRC_lessons/ServoControl/ServoControl_files/editdata.mso">
+<link rel="OLE-Object-Data" href="http://scheinman.org/shadyrobotics/UPRC_lessons/ServoControl/ServoControl_files/oledata.mso"><title>Servo Control</title>
+
+<style>
+<!--
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-parent:"";
+	margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+p.MsoFootnoteText, li.MsoFootnoteText, div.MsoFootnoteText
+	{margin:0in;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"Times New Roman";}
+span.MsoFootnoteReference
+	{vertical-align:super;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:.5in .5in .5in .5in;
+	mso-header-margin:.5in;
+	mso-footer-margin:.5in;
+	mso-paper-source:0;}
+div.Section1
+	{page:Section1;}
+-->
+</style></head><body style="" lang="EN-US" link="blue" vlink="purple">
+
+<div class="Section1">
+
+<p class="MsoNormal" style="text-align: center; line-height: 150%;" align="center"><b style=""><span style="font-size: 20pt;">Servo
+Control<o:p></o:p></span></b></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 16pt;">Servo
+Operation:<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Hobby RC servo motors turn to some
+angle, based on a PWM control signal.<span style="">&nbsp;
+</span>The servo PWM signal consists of a 50Hz (20ms period) pulse train, in
+which the pulses may vary from 1ms - 2ms in width (I find 0.5-2.5ms is needed for
+full range of motion).<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>A pulse of 1.5ms is “center”
+value.<span style="">&nbsp; </span>Deviation from 1.5ms pulse width
+turns the servo as follows (but take these angles with a grain of salt):<o:p></o:p></span></p>
+
+<p><img src="ServoControl_files/servoPWM.png"></p>
+
+<p class="MsoNormal" style="line-height: 150%;">(from <a href="http://www.seattlerobotics.org/guide/servos.html">http://www.seattlerobotics.org/guide/servos.html</a>
+)</p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Different manufacturers’ servos behave
+slightly differently.<span style="">&nbsp; </span>For example, most
+servos claim to have a 90</span><span style="font-size: 14pt; font-family: Symbol;"><span style="">°</span></span><span style="font-size: 14pt;"> range of motion.<span style="">&nbsp; </span>These servos
+will respond as follows:<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>1ms pulse<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>-45</span><span style="font-size: 14pt; font-family: Symbol;"><span style="">°</span></span><span style="font-size: 14pt;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>1.5ms pulse<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>0</span><span style="font-size: 14pt; font-family: Symbol;"><span style="">°</span></span><span style="font-size: 14pt;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>2ms pulse<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>+45</span><span style="font-size: 14pt; font-family: Symbol;"><span style="">°</span></span><span style="font-size: 14pt;"><span style="">&nbsp; </span><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="text-indent: 0.5in; line-height: 150%;"><span style="font-size: 14pt;">The above pulselengths (1-2ms) are typical of the
+output from hobby RC radio receivers.<span style="">&nbsp;
+</span>However, most motors that claim to be 90</span><span style="font-size: 14pt; font-family: Symbol;"><span style="">°</span></span><span style="font-size: 14pt;"> will happily turn through 180</span><span style="font-size: 14pt; font-family: Symbol;"><span style="">°</span></span><span style="font-size: 14pt;"> if you supply them with appropriately shorter and
+longer pulses.<span style="">&nbsp; </span>I’ve achieved 180</span><span style="font-size: 14pt; font-family: Symbol;"><span style="">°</span></span><span style="font-size: 14pt;"> control of Futaba servos using pulse lengths varying
+from 0.5ms(-90</span><span style="font-size: 14pt; font-family: Symbol;"><span style="">°</span></span><span style="font-size: 14pt;">) to 2.5ms(+90</span><span style="font-size: 14pt; font-family: Symbol;"><span style="">°</span></span><span style="font-size: 14pt;">).<span style="">&nbsp; </span>It seems that outside of the
+–45</span><span style="font-size: 14pt; font-family: Symbol;"><span style="">°</span></span><span style="font-size: 14pt;">-45</span><span style="font-size: 14pt; font-family: Symbol;"><span style="">°</span></span><span style="font-size: 14pt;"> range, there is some loss of linearity.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The hardstops for the Futaba servos
+actually permit <i>more</i> than 180</span><span style="font-size: 14pt; font-family: Symbol;"><span style="">°</span></span><span style="font-size: 14pt;"> of motion.<span style="">&nbsp;
+</span>You can get an extra 20</span><span style="font-size: 14pt; font-family: Symbol;"><span style="">°</span></span><span style="font-size: 14pt;"> range of motion on both ends (from -110</span><span style="font-size: 14pt; font-family: Symbol;"><span style="">°</span></span><span style="font-size: 14pt;"> to +110</span><span style="font-size: 14pt; font-family: Symbol;"><span style="">°</span></span><span style="font-size: 14pt;">) by using pulses between nearly zero length and 3ms.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="text-indent: 0.5in; line-height: 150%;"><span style="font-size: 14pt;">Be careful of that “<i>nearly </i>zero” pulse
+length.<span style="">&nbsp; </span>Some servos have a failsafe
+feature that powers down the motor if the servo stops receiving pulses.<span style="">&nbsp; </span>Other motors interpret “no pulse” as “zero
+length pulse”.<span style="">&nbsp; </span>When the control signal
+is switched off, these motors will turn as far counterclockwise as they possibly
+can, until they collide with and press against their internal hardstop.<span style="">&nbsp; </span>High torque servos can self destruct this
+way.<span style="">&nbsp; </span>Even if the servo isn’t strong
+enough to damage itself, the DC motor inside will draw a very large current
+while it is stalled out.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>I worked around this “feature” of
+hobby servos by limiting my pulses to a minimum length.<span style="">&nbsp; </span>I found that a minimum pulse of 50</span>&#956;<span style="font-size: 14pt;">s was enough to save a Futaba servo from itself.<span style="">&nbsp; </span>Similarly, there will be a maximum
+pulselength, beyond which the servo collides with its other hard stop.</span></p>
+
+<span style="font-size: 14pt; font-family: &quot;Times New Roman&quot;;"><br style="page-break-before: always;" clear="all">
+</span>
+
+<p class="MsoNormal" style="margin-left: 0.5in; line-height: 150%;"><span style="font-size: 14pt;">The seattlerobotics.org page on modifying a servo for
+speed (instead of position) control<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;">has
+a good description of the innards of a hobby servo.<span style="">&nbsp; </span>The block diagram, below, illustrates how the major functional
+components inside a servo interact.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="text-indent: 0.5in; line-height: 150%;"><span style="font-size: 14pt;">The DC motor inside the servo is controlled by the
+H-bridge at top, right.<span style="">&nbsp; </span>When a control
+pulse comes in to the “Input” node at left, it triggers the Linear Pulse
+Generator, which outputs a pulse of length determined by the analog voltage of
+the “Feedback Signal.”<span style="">&nbsp; </span>The Feedback Signal
+is not just the voltage from the position-feedback potentiometer, it is also
+affected by “back EMF,” the voltage output by the spinning DC motor.<span style="">&nbsp; </span>The back EMF is a measure of velocity and is used to damp the servo's motion by
+preventing it from going too fast and overshooting its target position.<span style="">&nbsp; </span>The difference between the control pulse and
+the LPG pulse is used to generate a PWM signal for the DC motor.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="text-indent: 0.5in; line-height: 150%;"><span style="font-size: 14pt;">The
+speed control modification firstly eliminates position-dependence by
+replacing the potentiometer with a pair of fixed 220K resistors.
+Secondly, it drastically reduces the
+resistance on the speed side of the feedback resistor network. After
+modification the back EMF, not position, primarily determines the
+voltage at the LPG input. There is also a plastic tab that must be
+filed away to permit continuous rotation.<o:p></o:p></span></p>
+
+<p><img src="ServoControl_files/servoGuts.png"></p>
+
+
+
+<p class="MsoNormal" style="line-height: 150%;">(from <a href="http://www.seattlerobotics.org/encoder/200009/S3003C.html">http://www.seattlerobotics.org/encoder/200009/S3003C.html</a>
+)</p>
+
+<span style="font-size: 12pt; font-family: &quot;Times New Roman&quot;;"><br style="page-break-before: always;" clear="all">
+</span>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 16pt;">Mark’s
+Multiple Servo Controller:<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Mark Smorul has written a program for
+the PIC16F628 to control up to 9 servo motors, via a serial port with hardware
+(CTS/RTS) handshaking.<span style="">&nbsp; </span>The servo
+controller’s serial port has a CTS (Clear to Send) output that goes high when
+the chip is ready to receive new serial data.<span style="">&nbsp;
+</span>Sending data to the chip when it is not ready (ie. when CTS is low) will
+hang the chip.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>This can be avoided by placing a
+serial buffer (another of Mark’s creations) between your program and the servo
+controller chip.<span style="">&nbsp; </span>The buffer chips will
+accept up to 64 bytes of data, as fast as you can send it over a single Tx
+wire.<span style="">&nbsp; </span>The buffer chips monitor the
+servo controller’s CTS signal and send the buffered data to the servo
+controller when it’s ready.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>Serial instructions to the servo
+controller should be sent in 3-byte packets like this:<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;">255,
+address, data<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>“255” is a synch byte that lets the
+chip know a new instruction is about to come in.<span style="">&nbsp; </span>“Address” is the address of the motor to be adjusted.<span style="">&nbsp; </span>“Address” is a binary number from 0-8
+inclusive.<span style="">&nbsp; </span>“Address” is NOT an ASCII
+character, but a binary number.<span style="">&nbsp; </span>Lastly,
+“data” is the position to turn the servo at “address” to.<span style="">&nbsp; </span>“Data” may have any value between 0 and 250,
+inclusive.<span style="">&nbsp; </span>The values 251-255 are
+reserved for internal use by the servo controller chip.<span style="">&nbsp; </span>This means that “center” value is 125.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 16pt;">Interfacing
+to Mark’s Servo Controller:<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>A simple interface to Mark’s servo
+controller has been provided in Sam Scheinman’s
+<a href="ServoControl_files/servocontroller_interface.c">
+servocontroller_interface.c</a>.<span style="">&nbsp; </span>This file
+contains a #use rs-232 directive for communicating with the servo
+controller.<span style="">&nbsp; </span>As such, it must be
+#included AFTER your “#use delay” directive.<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;"><span style="font-size: 14pt;"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>The interface gives you the
+SC_SetServo function to control your motors:<o:p></o:p></span></p>
+
+<p class="MsoNormal" style="line-height: 150%;">short SC_SetServo(int address, int
+data, short buffer_status)<span style="font-size: 14pt;">.<span style="">&nbsp; </span>The function accepts an integer from 0-8
+(inclusive) for the address, 0-250 (inclusive) for data, and the #defined
+symbols BUFFERED and NOT_BUFFERED for buffer_status, which tells the program
+whether or not there is a serial buffer between it and the servo
+controller.<span style="">&nbsp; </span>If the buffer is in place,
+SC_SetServo doesn’t have to monitor CTS itself as this is done by the buffer.<o:p></o:p></span></p>
+
+<span style="font-size: 14pt; font-family: &quot;Times New Roman&quot;;"><br style="page-break-before: always;" clear="all">
+</span>
+
+<p class="MsoNormal">/*</p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp; </span>This program makes
+use of servocontroller_interface.c functions to talk to Mark Smorul's</p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp; </span>servo controller
+chips.<span style="">&nbsp; </span>It will set the positions of all
+9 servos controlled by the chip, based</p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp; </span>on the position of
+a potentiometer connected to Pin_A0.</p>
+
+<p class="MsoNormal">*/</p>
+
+<p class="MsoNormal"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+
+<p class="MsoNormal">#include &lt;16F877.h&gt;</p>
+
+<p class="MsoNormal">#fuses HS,NOWDT,NOBROWNOUT,NOLVP</p>
+
+<p class="MsoNormal">#use delay(clock = 20000000)</p>
+
+<p class="MsoNormal"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+
+<p class="MsoNormal">#include "servocontroller_interface.c"</p>
+
+<p class="MsoNormal"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+
+<p class="MsoNormal">#use fast_io(A)</p>
+
+<p class="MsoNormal">#use fast_io(B)</p>
+
+<p class="MsoNormal">#use fast_io(C)</p>
+
+<p class="MsoNormal"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+
+<p class="MsoNormal">void main(){</p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp; </span>int analog=128,
+i=0;</p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp; </span></p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp; </span>setup_port_a(
+RA0_ANALOG );</p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp; </span>setup_adc(
+ADC_CLOCK_INTERNAL );</p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp; </span>set_adc_channel( 0
+);</p>
+
+<p class="MsoNormal"><!--[if !supportEmptyParas]-->&nbsp;<!--[endif]--><o:p></o:p></p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp;
+</span>set_tris_a(0b00010001);<span style="">&nbsp; </span>//PorA
+inputs on pin0, analog, nad A4, serial Rx.</p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp; </span>set_tris_b(0);</p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp; </span>set_tris_c(0);</p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp; </span></p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp; </span>while(true){</p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>analog =
+read_adc();</p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>if(analog &gt;
+250) analog = 250;<span style="">&nbsp;&nbsp; </span>//full sweep for
+the servo chips is 0-250, NOT 255.</p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>for(i=0;i&lt;9;i++){<span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>SC_SetServo(i, analog, NOT_BUFFERED);</p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>}</p>
+
+<p class="MsoNormal"><span style="">&nbsp;&nbsp; </span>}</p>
+
+<p class="MsoNormal">}<span style="font-size: 14pt;"><o:p></o:p></span></p>
+
+</div>
+
+</body></html>

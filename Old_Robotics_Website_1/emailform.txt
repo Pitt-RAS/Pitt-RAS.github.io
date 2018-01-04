@@ -1,0 +1,9 @@
+To: sorc+robotics@pitt.edu
+Subject: membership form
+
+Name:	[name]
+E-Mail:	[email]
+Site:	[homepage]
+Year:	[year]
+Major:	[major]
+Ideas:	[ideas]			

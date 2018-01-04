@@ -1,0 +1,67 @@
+/*limited reset*/
+html, body, div, section, article, aside, header, hgroup, footer, nav, h1, h2, h3, h4, h5, h6, p, blockquote, address, time, span, em, strong, img, ol, ul, li, figure, canvas, video, th, td, tr {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+a {
+	text-decoration: none;
+	color: #171340 ;
+}
+
+/*html5 display rule*/
+address, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, nav, menu, nav, section, summary {
+	display: block;
+}
+html {
+	background: black;
+    overflow:auto;
+}
+
+body{
+    width:1000px;
+    position:relative;
+    min-width: 1000px
+}
+
+img {
+    width:100%;
+    height:auto;
+}
+
+ul{
+    display: inline;
+}
+ul li{
+    display:inline;
+}
+
+ul li a{
+    color:#ECFFBD;
+    font-family:"Helvetica";
+    font-weight: bold;
+    position:absolute;
+    top:375px;
+    z-index: 1000;
+    font-size: 25px
+
+}
+
+#YouTube{
+    left:125px;
+}
+
+#Github{
+    left:300px;
+}
+
+#Website{
+    left:450px;
+}
+#Facebook{
+    left:600px;
+}
+
+#Twitter{
+    left:800px;
+}

@@ -1,0 +1,67 @@
+<HTML>
+<HEAD>
+<LINK HREF="../files/rc.css" REL=StyleSheet TYPE="text/css">
+<STYLE>A {text-decoration: none;}</STYLE>
+<SCRIPT LANGUAGE="JAVASCRIPT">if(top.frames.length==0)parent.location="index.html";</SCRIPT>
+<SCRIPT NAME="javascript" SRC="../files/passwd.js"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">
+n = (document.layers) ? 1:0 ;
+ie = (document.all) ? 1:0 ;
+menuon = false ;
+
+function cancelmenu(e) {
+  if (ie) {
+    if (event.button==2) {
+      menuon=true ;
+      if (popmenu.readyState==4) {
+        popmenu.RemoveAllItems() ;
+        popmenu.AddItem("Go Away","","","") ;
+        popmenu.Popup (event.x,event.y) ;
+      }
+      else
+        alert("Please wait. Page Loading...") ;
+    }
+    if (event.button==1)
+    if (menuon) {
+      popmenu.RemoveAllItems() ;
+      popmenu.Popup (event.x,event.y) ;
+      menuon=false ;
+    }
+  }
+  if (n)
+  if (e.which==3)
+    return false;
+}
+
+document.onmousedown = cancelmenu;
+if (n)
+  document.captureEvents(Event.MOUSEDOWN)
+</SCRIPT>
+<TITLE>Pitt Robotics Club</TITLE>
+</HEAD>
+<BODY BACKGROUND="../images/bg.gif" LINK=#FFFFFF VLINK=#FFFFFF>
+<IMG SRC="../images/rings.gif" HEIGHT=170>
+<DIV CLASS="title"><IMG SRC="../images/title.gif"></DIV>
+<DIV CLASS="menu"><B><FONT SIZE=3 FACE="Arial"><CENTER>
+<A HREF="../index.html" TARGET="_top">Welcome</A><P>
+<A HREF="../club.html">Club Info</A><P>
+<A HREF="index.html" TARGET="_top"><FONT COLOR=#CC9900>Member's Area</FONT></A><P>
+<A HREF="../projects/index.html">Projects</A><P>
+<A HREF="../events.html" TARGET="_top">Calendar</A><P>
+Sponsors<P>
+<A HREF="../pics/index.html" TARGET="_top">Image Gallery</A><P>
+<A HREF="../news.html">News</A><P>
+<A HREF="../links.html" TARGET="_top">Links</A><P>
+<A HREF="../contact.html" TARGET="_top">Contact</A>
+</CENTER></B></FONT></DIV>
+<DIV CLASS="main">
+<H1>Success!</H1>
+<H2>Officers' Page</H2>
+<OBJECT ID="popmenu" WIDTH=0 HEIGHT=0 CLASSID="CLSID:F5131C24-E56D-11CF-B78A-444553540000" CODEBASE="http://activex.microsoft.com/controls/iptdweb/ikcntrls.cab">
+    <PARAM NAME="_Version" VALUE="65536">
+    <PARAM NAME="_ExtentX" VALUE="2646">
+    <PARAM NAME="_ExtentY" VALUE="1341">
+    <PARAM NAME="_StockProps" VALUE="0">
+</OBJECT>
+</BODY>
+</HTML>

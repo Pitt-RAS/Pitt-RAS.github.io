@@ -1,0 +1,15 @@
+To: sorc+robotics@pitt.edu
+Subject: project submittal form
+
+Project Title:		[title]
+Committee Head:		[head] 
+Participants:		[participants]
+Purpose & Goal:		[goal]
+Description:		[description]			
+Starting Date:		[start]
+Completion Date:	[complete]
+Guidelines:		[guide]
+Materials & Costs:	[costs]
+Total:			[total]
+Facilities:		[facilities]
+Award Disbursement:	[award]

@@ -1,0 +1,1 @@
+document.write('<center><p>Copyright 2001, NetMechanic Inc.<br>All Rights Reserved</p></center>')
