@@ -2,7 +2,7 @@
 layout: project
 title: DraggleBot
 permalink: /projects/2017-dragglebot/
-image: /assets/images/projects/2017/project-dragglebot.png
+image: /assets/images/projects/2017/project-dragglebot.jpg
 leaders: Jack Bartley & Dan Gilmour
 meeting_time: TBD
 albumID: 72157666933540901
