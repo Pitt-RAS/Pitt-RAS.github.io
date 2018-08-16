@@ -133,6 +133,9 @@ _Code:_ `iarc7_vision/src/RoombaEstimator.cpp`, `iarc7_vision_cnn/src/DarkflowRo
 
 We have two vision-based detectors for finding the target robots - one which runs on the bottom camera, and one which runs on the side cameras.
 
+![Bottom Camera Detector](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/bottom-camera-detector.png)
+<p style="text-align: center;">Bottom Camera Detector</p>
+
 The detector on the bottom camera is based on classical computer vision techniques designed to find the colored top plates of the robots.  It first converts the image to the HSV color space, then normalizes the saturation.  The image is then thresholded in the HSV space to produce a binary image of pixels which are believed to belong to a top plate.  Morphology operations are performed to get rid of extra noise pixels, and the boundaries of the resulting blobs are then found.  We then find the covariance matrix and diagonalize it - because the top plates are rectangular, the eigenvector with the larger eigenvalue points along the long direction of the top plate.  This gives us an oriented bounding box for the plate, but does not deal with rotations by 180 degrees.
 
 To fix this, we then test the four corners of the plate where we expect the cutouts to be (as seen in the image above).  Based on which corners are white, we are able to determine the direction of the front of the roomba exactly.
