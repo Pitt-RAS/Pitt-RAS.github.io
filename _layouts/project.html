@@ -20,4 +20,16 @@ block: project
     <br>
     {% endif %}
     {{ content }}
+
+    {% assign links = "" %}
+    {% for post in site.posts %}
+        {% if post.categories contains page.project_tag %}
+            {% assign links = links | append : '[' | append: post.title | append: '](' | append: post.url | append: ')<br>' %}
+        {% endif %}
+    {% endfor %}
+
+    {% if links.size != 0 %}
+        {{ "## Posts" | markdownify }}
+        {{ links | markdownify }}
+    {% endif %}
 </section>

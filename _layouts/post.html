@@ -29,7 +29,7 @@ layout: default
                 <i class="fa fa-clock-o" aria-hidden="true"></i>{{ page.date | date: "%-m/%-d/%Y" }}
             </div>
             <div class="col-xs-12 col-sm-4">
-                <i class="fa fa-tag" aria-hidden="true"></i><span style="text-transform: capitalize;">{{ page.categories[0]}}</span>
+                <i class="fa fa-tag" aria-hidden="true"></i><span style="text-transform: capitalize;">{{ page.categories | join: ", " }}</span>
             </div>
         </div>
         <hr>

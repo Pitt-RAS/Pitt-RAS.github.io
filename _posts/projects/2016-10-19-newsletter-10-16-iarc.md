@@ -3,7 +3,7 @@ layout: post
 title:  "Newsletter October 2016: IARC 7"
 date:   2016-10-19
 author: Levi Burner, Aaron Miller, & Dan Gilmour 
-categories: projects 2017-iarc
+categories: projects IARC
 icon: cogs
 ---
 

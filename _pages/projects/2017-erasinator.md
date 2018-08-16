@@ -6,6 +6,7 @@ image: /assets/images/projects/2017/project-erasinator.png
 leaders: Woody Fulmer
 meeting_time: TBD
 albumID: 72157666933540901
+project_tag: 2017-erasinator
 ---
 
 Ever wondered how much time is wasted in class by erasing whiteboards? It adds up over time to be a lot! What if there was a way to erase the whiteboard automatically, and with hardly any user input? That’s our goal!

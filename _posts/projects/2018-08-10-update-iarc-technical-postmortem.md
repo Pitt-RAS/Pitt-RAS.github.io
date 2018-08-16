@@ -3,44 +3,53 @@ layout: post
 title: "IARC Mission 7 Technical Postmortem 2018"
 date: 2018-08-10
 author: Aaron Miller
-categories: projects 2017-iarc
+categories: projects IARC
 icon: cogs
 ---
 
-Over the last two years, Robotics and Automation Society has supported a team for Mission 7 of the [International Aerial Robotics Competition](http://aerialroboticscompetition.org).  For an introduction to the challenges of Mission 7, take a look at the [IARC's summary of the mission](http://www.aerialroboticscompetition.org/mission7.php).  We've made multiple posts about our progress along the way, including posts about our success at competition last year, all of which can be found from the [RAS IARC project page](/projects/2017-iarc).  At this year's competition, we were awarded both "Best System Design" (for the design best suited to complete the mission) and "Best Technical Paper" (read our paper [here](/assets/misc/iarc-technical-paper-2018.pdf)) at the American Venue of the competition.  Furthermore, we achieved the highest overall score at the American Venue.
+Over the last two years, Robotics and Automation Society has supported a team for Mission 7 of the [International Aerial Robotics Competition](http://aerialroboticscompetition.org).  For an introduction to the challenges of Mission 7, take a look at the [IARC's summary of the mission](http://www.aerialroboticscompetition.org/mission7.php).  We've made multiple posts about our progress along the way, including posts about our success at competition last year, all of which can be found from the [RAS IARC project page](/projects/IARC).  At this year's competition, we were awarded both "Best System Design" (for the design best suited to complete the mission) and "Best Technical Paper" (read our paper [here](/assets/misc/iarc-technical-paper-2018.pdf)) at the American Venue of the competition.  Furthermore, we achieved the highest overall score at the American Venue.
 
 Now that the project is complete, we wanted to write up a dump of all the technical aspects of the project, that's what this document is for.  If you want to know the details of the interesting stuff we did and why we did it, read onward! (Or just skip to the part you're interested in)
 
-## Table of Contents
-### [Hardware](#hardware)
+<br>
+<div class="row">
+    <h1 id="table-of-contents-header" class="articleheader__heading col-xs-12">Table of Contents</h1>
+</div>
+<br>
+
+### [Hardware](#hardware-header)
  - [Frame](#frame)
  - [Propulsion](#propulsion)
  - [Sensors](#sensors)
  - [Compute](#compute)
 
-### [State Estimation](#state-estimation)
+### [State Estimation](#state-estimation-header)
  - [Optical flow](#optical-flow)
  - [Extended Kalman Filter (EKF)](#extended-kalman-filter-ekf)
  - [Arena boundary detection](#arena-boundary-detection)
  
-### [Controls](#controls)
+### [Controls](#controls-header)
  - [Dynamic Thrust Model](#dynamic-thrust-model)
  - [Motion Profile Controller](#motion-profile-controller)
 
-### [Target Robots](#target-robots)
+### [Target Robots](#target-robots-header)
  - [Target Detection](#target-detection)
  - [Target Filtering](#target-filtering)
 
-### [Obstacles](#obstacles)
+### [Obstacles](#obstacles-header)
  - [Obstacle Detection](#obstacle-detection)
  - [Obstacle Filtering](#obstacle-filtering)
  - [Obstacle Avoidance](#obstacle-avoidance)
  
-### [The things that didn't work (if only we had another month)](#the-things-that-didnt-work-if-only-we-had-another-month)
+### [The things that didn't work (if only we had another month)](#things-that-didnt-work-header)
  - [Grid-based Position Estimator](#grid-based-position-estimator)
  - [Search-based Planner](#search-based-planner)
 
-# Hardware
+<br>
+<div class="row">
+    <h1 id="hardware-header" class="articleheader__heading col-xs-12">Hardware</h1>
+</div>
+<br>
 
 Our team put a lot of time into building a custom drone for this competition.  Why did we do this?  We have a couple of reasons which are intimately tied together.  We wanted RGBD camera coverage around the bottom and sides of the drone and all computation done onboard; the only commercially available system which was close to our design goals while fitting inside the competition size limit is the DJI M100 when used with the DJI Guidance camera system.  We chose not to use this platform because it did not have quite enough thrust to carry the amount of compute we wanted available onboard the drone.  So, we built a custom system.
 
@@ -64,7 +73,12 @@ The drone is covered in a variety of sensors.  Some are only used for localizati
 ## Compute
 We do all of our compute onboard.  The primary computer is an NVIDIA Jetson TX2, which does all of the low-latency processing required for state estimation, target tracking, and control.  The secondary computer is an Intel NUC 6i7KYK, which does all processing for the side cameras, which includes target detection, obstacle detection, and obstacle filtering.  The two computers communicate over the network.
 
-# State Estimation
+<br>
+<div class="row">
+    <h1 id="state-estimation-header" class="articleheader__heading col-xs-12">State Estimation</h1>
+</div>
+<br>
+
 
 ## Optical Flow
 
@@ -90,7 +104,12 @@ _Code:_ `iarc7_vision/src/iarc7_vision/floor_detector.py`
 
 The Arena Boundary detector is a texture classifier intended to distinguish the floor in the interior of the arena from other floor textures (such as that outside of the arena).  It does this by splitting the image from the bottom camera into patches, and then classifying each patch separately as either "Arena floor" or "Other."  The classification is performed by first running an [MR filter bank](http://www.robots.ox.ac.uk/~vgg/research/texclass/filters.html) over the patch (with 3 added features for the average R, G, and B values of the patch), then using an SVM with an RBF kernel to classify the resulting feature vector.  Then, we must extract a boundary line from the classified patches - we use some heuristics to throw out detections which are likely to be noise, then train a linear SVM on the resulting red/green points to find the boundary line in the image which best separates them.
 
-# Controls
+<br>
+<div class="row">
+    <h1 id="controls-header" class="articleheader__heading col-xs-12">Controls</h1>
+</div>
+<br>
+
 ## Dynamic Thrust Model
 
 ![Controller Plot](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/controller-plot.png)
@@ -98,7 +117,12 @@ The Arena Boundary detector is a texture classifier intended to distinguish the 
 
 ## Motion Profile Controller
 
-# Target Robots
+<br>
+<div class="row">
+    <h1 id="target-robots-header" class="articleheader__heading col-xs-12">Target Robots</h1>
+</div>
+<br>
+
 
 ![The IARC Target Robots](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/targets-picture.jpg)
 <p style="text-align: center;">The IARC Target Robots</p>
@@ -122,8 +146,13 @@ The detector for the side cameras is a CNN based on the TinyYOLO architecture.  
 
 _Code:_ `iarc7_sensors/src/iarc7_sensors/roomba_filter.py`
 
-# Obstacles
-![An IARC Obstacle Robot](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/obstacle-picture.jpg)
+<br>
+<div class="row">
+    <h1 id="obstacles-header" class="articleheader__heading col-xs-12">Obstacles</h1>
+</div>
+<br>
+
+![An IARC Obstacle Robot](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/obstacle-picture.png)
 <p style="text-align: center;">An IARC Obstacle Robot</p>
 
 IARC Mission 7 requires the drone to avoid several obstacle robots in the arena, as seen above.  These obstacles primarily move in circles around the arena, although their movement is not very precise.
@@ -156,7 +185,11 @@ _Code:_ `iarc7_motion/src/iarc7_motion/iarc_tasks/task_utilities/obstacle_avoid_
 
 Obstacle avoidance is performed using a modified potential field like the one shown above, where the force generated by the field modifies the requested velocity from the current task.  The primary difference from a typical potential field is that the distance between the drone and the obstacle is predicted forward in time based on the drone's current velocity.  Because the drone's acceleration is severely limited relative to its maximum allowed velocity, this causes the drone to react sooner if it will take longer to decelerate and avoid the obstacle.
 
-# The things that didn't work (if only we had another month)
+<br>
+<div class="row">
+    <h1 id="things-that-didnt-work-header" class="articleheader__heading col-xs-12">The things that didn't work (if only we had another month)</h1>
+</div>
+<br>
 
 ## Grid-based Position Estimator
 

@@ -3,7 +3,7 @@ layout: post
 title:  "IARC7 Landing Gear Design Update November 27 2016"
 date:   2016-11-27
 author: Garret Sultzbach
-categories: projects 2017-iarc
+categories: projects IARC
 icon: cogs
 ---
 

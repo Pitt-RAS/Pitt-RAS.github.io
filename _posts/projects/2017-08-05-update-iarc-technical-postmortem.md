@@ -3,7 +3,7 @@ layout: post
 title: "IARC Mission 7 Technical Postmortem 2017"
 date: 2017-08-05
 author: Aaron Miller, Levi Burner
-categories: projects 2017-iarc
+categories: projects IARC
 icon: cogs
 ---
 
