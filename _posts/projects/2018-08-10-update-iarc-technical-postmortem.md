@@ -7,7 +7,7 @@ categories: projects 2017-iarc
 icon: cogs
 ---
 
-Over the last two years, Robotics and Automation Society has supported a team for Mission 7 of the [International Aerial Robotics Competition](http://aerialroboticscompetition.org).  We've made multiple posts about our progress along the way, including posts about our success at competition last year, all of which can be found from the [IARC project page](/projects/2017-iarc).  At this year's competition, we were awarded both "Best System Design" (for the design best suited to complete the mission) and "Best Technical Paper" (read our paper [here](/assets/misc/iarc-technical-paper-2018.pdf)) at the American Venue of the competition.  Furthermore, we achieved the highest overall score at the American Venue.
+Over the last two years, Robotics and Automation Society has supported a team for Mission 7 of the [International Aerial Robotics Competition](http://aerialroboticscompetition.org).  For an introduction to the challenges of Mission 7, take a look at the [IARC's summary of the mission](http://www.aerialroboticscompetition.org/mission7.php).  We've made multiple posts about our progress along the way, including posts about our success at competition last year, all of which can be found from the [RAS IARC project page](/projects/2017-iarc).  At this year's competition, we were awarded both "Best System Design" (for the design best suited to complete the mission) and "Best Technical Paper" (read our paper [here](/assets/misc/iarc-technical-paper-2018.pdf)) at the American Venue of the competition.  Furthermore, we achieved the highest overall score at the American Venue.
 
 Now that the project is complete, we wanted to write up a dump of all the technical aspects of the project, that's what this document is for.  If you want to know the details of the interesting stuff we did and why we did it, read onward! (Or just skip to the part you're interested in)
 
@@ -22,15 +22,10 @@ Now that the project is complete, we wanted to write up a dump of all the techni
  - [Optical flow](#optical-flow)
  - [Extended Kalman Filter (EKF)](#extended-kalman-filter-ekf)
  - [Arena boundary detection](#arena-boundary-detection)
- - [The things that didn't work (if only we had another month)](#the-things-that-didnt-work-if-only-we-had-another-month)
  
 ### [Controls](#controls)
  - [Dynamic Thrust Model](#dynamic-thrust-model)
  - [Motion Profile Controller](#motion-profile-controller)
-
-### [Planning](#planning)
- - [Target interaction](#target-interaction)
- - [Search-based planner?](#search-based-planner)
 
 ### [Target Robots](#target-robots)
  - [Target Detection](#target-detection)
@@ -40,8 +35,12 @@ Now that the project is complete, we wanted to write up a dump of all the techni
  - [Obstacle Detection](#obstacle-detection)
  - [Obstacle Filtering](#obstacle-filtering)
  - [Obstacle Avoidance](#obstacle-avoidance)
+ 
+### [The things that didn't work (if only we had another month)](#the-things-that-didnt-work-if-only-we-had-another-month)
+ - [Grid-based Position Estimator](#grid-based-position-estimator)
+ - [Search-based Planner](#search-based-planner)
 
-### Hardware
+# Hardware
 
 Our team put a lot of time into building a custom drone for this competition.  Why did we do this?  We have a couple of reasons which are intimately tied together.  We wanted RGBD camera coverage around the bottom and sides of the drone and all computation done onboard; the only commercially available system which was close to our design goals while fitting inside the competition size limit is the DJI M100 when used with the DJI Guidance camera system.  We chose not to use this platform because it did not have quite enough thrust to carry the amount of compute we wanted available onboard the drone.  So, we built a custom system.
 
@@ -60,6 +59,8 @@ The propulsion system this year is exactly the same as last year's.  We use four
 
 ## Sensors
 
+The drone is covered in a variety of sensors.  Some are only used for localization, including the accelerometer and gyroscope inside the flight controller, as well as two LIDAR altimeters.  We have two time-of-flight LIDARs (a LidarLite v2 and a VL53L0X) used as altimeters because the LidarLite works well at altitudes above ~1m and the VL53L0X works well below this altitude, so we switch between them with a small overlap region.  Other than that, we have 6 cameras - a narrow-angle bottom camera (Intel Realsense R200), a wide-angle bottom camera ([Leopard Imaging M021](https://leopardimaging.com/product/li-usb30-m021/)), and four depth cameras on the sides.  These cameras perform various other functions, including localization, target detection, and obstacle detection.
+
 ## Compute
 We do all of our compute onboard.  The primary computer is an NVIDIA Jetson TX2, which does all of the low-latency processing required for state estimation, target tracking, and control.  The secondary computer is an Intel NUC 6i7KYK, which does all processing for the side cameras, which includes target detection, obstacle detection, and obstacle filtering.  The two computers communicate over the network.
 
@@ -69,8 +70,8 @@ We do all of our compute onboard.  The primary computer is an NVIDIA Jetson TX2,
 
 _Code:_ `iarc7_vision/src/OpticalFlowEstimator.cpp`
 
-![Picture of flow statistics]()
-<p style="text-align: center;">Picture of flow statistics</p>
+![Picture of flow statistics](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/flow-filtered.png)
+<p style="text-align: center;">Picture of flow statistics - Green points represent observed differences in feature locations between images, red ellipse represents distribution shape after outlier rejection, white circle represents maximum allowed variance</p>
 
 We chose to do velocity estimation using optical flow on our bottom camera instead of using an optical flow module such as the PX4Flow.  This was primarily so that we could throw out flow from the moving targets, which would give us incorrect velocity estimates.  We use the Sparse PyrLK flow estimator in OpenCV, which provides flow vectors for a specified set of features between a pair of images.  These flow vectors are then filtered for outlier rejection.  Furthermore, if a frame does not have a tight enough distribution of flow estimates after outlier rejection, the entire frame is rejected.
 
@@ -82,34 +83,44 @@ We use the [robot_localization](http://docs.ros.org/melodic/api/robot_localizati
 _Code:_ `iarc7_vision/src/iarc7_vision/floor_detector.py`
 
 ![Arena Boundary](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/boundary-example.png)
-<p style="text-align: center;">Arena Boundary</p>
+<p style="text-align: center;">Arena Boundary Detector Input Image</p>
 
 ![Arena Boundary Detector](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/boundary-detector-example.png)
-<p style="text-align: center;">Arena Boundary Detector</p>
+<p style="text-align: center;">Arena Boundary Detector - Green squares above were classified as arena floor, red squares were classified as other.  The blue line is the calculated boundary.</p>
 
-## The things that didn't work (if only we had another month)
-
-_Code:_ `iarc7_vision/src/GridLineEstimator.cpp`
-
-![Grid Detector](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/grid-detector.png)
-<p style="text-align: center;">Grid Detector</p>
-
-The primary state estimation technique that we didn't use at competition was a global position estimator based on the grid on the competition floor, which would have killed the drift in both our yaw estimates and position estimates.  The grid detector we had implemented worked, but had problems with jumpy position estimates that made it unusable at competition.  The current implementation in the [iarc7_vision](https://github.com/pitt-ras/iarc7_vision) repository uses an edge detector and a Hough transform to find the two edges of each white line in the arena, and then does a fitting procedure to minimize the squared difference in angle between the observed lines and the grid, followed by another fit to minimize the squared difference in position.  The 1m translation and 90 degree rotation ambiguities this leaves are then resolved based on the current estimated pose of the drone.  As you can see in the image, OpenCV's Hough transform does not perform non-max suppression, so multiple detections are present for each line.  Work was in progress [here](https://github.com/Pitt-RAS/iarc7_vision/tree/better-grid-detector) to both perform the non-max suppression and to detect the core of the line instead of the two edges, but that work was not finished in time for competiion.
+The Arena Boundary detector is a texture classifier intended to distinguish the floor in the interior of the arena from other floor textures (such as that outside of the arena).  It does this by splitting the image from the bottom camera into patches, and then classifying each patch separately as either "Arena floor" or "Other."  The classification is performed by first running an [MR filter bank](http://www.robots.ox.ac.uk/~vgg/research/texclass/filters.html) over the patch (with 3 added features for the average R, G, and B values of the patch), then using an SVM with an RBF kernel to classify the resulting feature vector.  Then, we must extract a boundary line from the classified patches - we use some heuristics to throw out detections which are likely to be noise, then train a linear SVM on the resulting red/green points to find the boundary line in the image which best separates them.
 
 # Controls
 ## Dynamic Thrust Model
+
+![Controller Plot](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/controller-plot.png)
+<p style="text-align: center;">Controller Plot</p>
+
 ## Motion Profile Controller
 
-# Planning
-## Target Interaction
-## Search-based planner
-
 # Target Robots
+
+![The IARC Target Robots](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/targets-picture.jpg)
+<p style="text-align: center;">The IARC Target Robots</p>
+
 ## Target Detection
 
-We have two vision-based detectors for finding the target robots - one which runs on the bottom camera, and one which runs on the side cameras.  The detector on the bottom camera is based on classical computer vision techniques.  It first converts the image to the HSV color space, then normalizes the saturation.
+_Code:_ `iarc7_vision/src/RoombaEstimator.cpp`, `iarc7_vision_cnn/src/DarkflowRos.py`
+
+We have two vision-based detectors for finding the target robots - one which runs on the bottom camera, and one which runs on the side cameras.
+
+The detector on the bottom camera is based on classical computer vision techniques designed to find the colored top plates of the robots.  It first converts the image to the HSV color space, then normalizes the saturation.  The image is then thresholded in the HSV space to produce a binary image of pixels which are believed to belong to a top plate.  Morphology operations are performed to get rid of extra noise pixels, and the boundaries of the resulting blobs are then found.  We then find the covariance matrix and diagonalize it - because the top plates are rectangular, the eigenvector with the larger eigenvalue points along the long direction of the top plate.  This gives us an oriented bounding box for the plate, but does not deal with rotations by 180 degrees.
+
+To fix this, we then test the four corners of the plate where we expect the cutouts to be (as seen in the image above).  Based on which corners are white, we are able to determine the direction of the front of the roomba exactly.
+
+![TinyYOLO Roomba Detector](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/tinyyolo-roombas.png)
+<p style="text-align: center;">TinyYOLO Roomba Detector</p>
+
+The detector for the side cameras is a CNN based on the TinyYOLO architecture.  We used the [DarkFlow](http://github.com/pitt-ras/darkflow) implementation of TinyYOLO in Tensorflow to train the model on several thousand labeled examples.
 
 ## Target Filtering
+
+_Code:_ `iarc7_sensors/src/iarc7_sensors/roomba_filter.py`
 
 # Obstacles
 ![An IARC Obstacle Robot](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/obstacle-picture.jpg)
@@ -144,3 +155,18 @@ _Code:_ `iarc7_motion/src/iarc7_motion/iarc_tasks/task_utilities/obstacle_avoid_
 <p style="text-align: center;">Obstacle Avoidance Potential Field</p>
 
 Obstacle avoidance is performed using a modified potential field like the one shown above, where the force generated by the field modifies the requested velocity from the current task.  The primary difference from a typical potential field is that the distance between the drone and the obstacle is predicted forward in time based on the drone's current velocity.  Because the drone's acceleration is severely limited relative to its maximum allowed velocity, this causes the drone to react sooner if it will take longer to decelerate and avoid the obstacle.
+
+# The things that didn't work (if only we had another month)
+
+## Grid-based Position Estimator
+
+_Code:_ `iarc7_vision/src/GridLineEstimator.cpp`
+
+![Grid Detector](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/grid-detector.png)
+<p style="text-align: center;">Grid Detector</p>
+
+The primary state estimation technique that we didn't use at competition was a global position estimator based on the grid on the competition floor, which would have killed the drift in both our yaw estimates and position estimates.  The grid detector we had implemented worked, but had problems with jumpy position estimates that made it unusable at competition.  The current implementation in the [iarc7_vision](https://github.com/pitt-ras/iarc7_vision) repository uses an edge detector and a Hough transform to find the two edges of each white line in the arena, and then does a fitting procedure to minimize the squared difference in angle between the observed lines and the grid, followed by another fit to minimize the squared difference in position.  The 1m translation and 90 degree rotation ambiguities this leaves are then resolved based on the current estimated pose of the drone.  As you can see in the image, OpenCV's Hough transform does not perform non-max suppression, so multiple detections are present for each line.  Work was in progress [here](https://github.com/Pitt-RAS/iarc7_vision/tree/better-grid-detector) to both perform the non-max suppression and to detect the core of the line instead of the two edges, but that work was not finished in time for competiion.
+
+## Search-based planner
+
+_Code:_ `iarc7_planner`
