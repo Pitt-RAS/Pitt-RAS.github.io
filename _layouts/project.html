@@ -21,6 +21,26 @@ block: project
     {% endif %}
     {{ content }}
 
+
+    {% if page.galleries %}
+        {{ "## Photo Galleries" | markdownify }}
+        <div class="row">
+            {% for gallery in page.galleries %}
+                {% capture gallery_html %}
+                <div class="col-xs-12 col-md-6">
+                    <a href="{{ gallery.link }}">
+                        <img src="/assets/images/gallery-thumbnails/{{ gallery.thumb }}" style="width: 100%" />
+                        <div style="text-align: center">
+                            {{ gallery.title }}
+                        </div>
+                    </a>
+                </div>
+                {% endcapture %}
+                {{ gallery_html }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
     {% assign links = "" %}
     {% for post in site.posts %}
         {% if post.categories contains page.project_tag %}
