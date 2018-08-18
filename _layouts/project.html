@@ -33,7 +33,8 @@ block: project
 
 
     {% if page.galleries %}
-        {{ "## Photo Galleries" | markdownify }}<br>
+        {{ "## Photo and Video Galleries" | markdownify }}
+        {{ "Click on a gallery for more pictures" | markdownify }}
         <div class="row">
             {% for gallery in page.galleries %}
                 {% capture gallery_html %}
