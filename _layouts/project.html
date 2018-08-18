@@ -19,17 +19,27 @@ block: project
     <br>
     <br>
     {% endif %}
+    {% if page.isPrev == true %}
+    <b>YEARS ACTIVE: </b>
+    <br>
+    {{ page.years_active }}
+    <br>
+    <br>
+    {% endif %}
+
+
+    {{ "## Synopsis" | markdownify }}
     {{ content }}
 
 
     {% if page.galleries %}
-        {{ "## Photo Galleries" | markdownify }}
+        {{ "## Photo Galleries" | markdownify }}<br>
         <div class="row">
             {% for gallery in page.galleries %}
                 {% capture gallery_html %}
                 <div class="col-xs-12 col-md-6">
                     <a href="{{ gallery.link }}">
-                        <img src="/assets/images/gallery-thumbnails/{{ gallery.thumb }}" style="width: 100%" />
+                        <center><img src="/assets/images/gallery-thumbnails/{{ gallery.thumb }}" style="width: 80%;" /></center>
                         <div style="text-align: center">
                             {{ gallery.title }}
                         </div>
@@ -38,7 +48,7 @@ block: project
                 {% endcapture %}
                 {{ gallery_html }}
             {% endfor %}
-        </div>
+        </div><br>
     {% endif %}
 
     {% assign links = "" %}
