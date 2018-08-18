@@ -27,7 +27,7 @@ Now that the project is complete, we wanted to write up a dump of all the techni
  - [Optical flow](#optical-flow)
  - [Extended Kalman Filter (EKF)](#extended-kalman-filter-ekf)
  - [Arena boundary detection](#arena-boundary-detection)
- 
+
 ### [Controls](#controls-header)
  - [Dynamic Thrust Model](#dynamic-thrust-model)
  - [Motion Profile Controller](#motion-profile-controller)
@@ -40,7 +40,7 @@ Now that the project is complete, we wanted to write up a dump of all the techni
  - [Obstacle Detection](#obstacle-detection)
  - [Obstacle Filtering](#obstacle-filtering)
  - [Obstacle Avoidance](#obstacle-avoidance)
- 
+
 ### [The things that didn't work (if only we had another month)](#things-that-didnt-work-header)
  - [Grid-based Position Estimator](#grid-based-position-estimator)
  - [Search-based Planner](#search-based-planner)
@@ -53,7 +53,7 @@ Now that the project is complete, we wanted to write up a dump of all the techni
 
 Our team put a lot of time into building a custom drone for this competition.  Why did we do this?  We have a couple of reasons which are intimately tied together.  We wanted RGBD camera coverage around the bottom and sides of the drone and all computation done onboard; the only commercially available system which was close to our design goals while fitting inside the competition size limit is the DJI M100 when used with the DJI Guidance camera system.  We chose not to use this platform because it did not have quite enough thrust to carry the amount of compute we wanted available onboard the drone.  So, we built a custom system.
 
-![2018 Competition Drone](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/drone-image.png)
+![2018 Competition Drone](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/drone-image.jpg)
 <p style="text-align: center;">2018 Competition Drone</p>
 
 ## Frame
@@ -140,7 +140,7 @@ The detector on the bottom camera is based on classical computer vision techniqu
 
 To fix this, we then test the four corners of the plate where we expect the cutouts to be (as seen in the image above).  Based on which corners are white, we are able to determine the direction of the front of the roomba exactly.
 
-![TinyYOLO Roomba Detector](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/tinyyolo-roombas.png)
+![TinyYOLO Roomba Detector](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/tinyyolo-roombas.jpg)
 <p style="text-align: center;">TinyYOLO Roomba Detector</p>
 
 The detector for the side cameras is a CNN based on the TinyYOLO architecture.  We used the [DarkFlow](http://github.com/pitt-ras/darkflow) implementation of TinyYOLO in Tensorflow to train the model on several thousand labeled examples.
@@ -155,7 +155,7 @@ _Code:_ `iarc7_sensors/src/iarc7_sensors/roomba_filter.py`
 </div>
 <br>
 
-![An IARC Obstacle Robot](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/obstacle-picture.png)
+![An IARC Obstacle Robot](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/obstacle-picture.jpg)
 <p style="text-align: center;">An IARC Obstacle Robot</p>
 
 IARC Mission 7 requires the drone to avoid several obstacle robots in the arena, as seen above.  These obstacles primarily move in circles around the arena, although their movement is not very precise.
