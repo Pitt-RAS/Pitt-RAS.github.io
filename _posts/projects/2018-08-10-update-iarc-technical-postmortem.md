@@ -13,7 +13,7 @@ Now that the project is complete, we wanted to write up a dump of all the techni
 
 <br>
 <div class="row">
-    <h1 id="table-of-contents-header" class="articleheader__heading col-xs-12">Table of Contents</h1>
+    <h1 id="table-of-contents-header" class="left-heading col-xs-12">Table of Contents</h1>
 </div>
 <br>
 
@@ -47,15 +47,16 @@ Now that the project is complete, we wanted to write up a dump of all the techni
 
 <br>
 <div class="row">
-    <h1 id="hardware-header" class="articleheader__heading col-xs-12">Hardware</h1>
+    <h1 id="hardware-header" class="left-heading col-xs-12">Hardware</h1>
 </div>
 <br>
 
 Our team put a lot of time into building a custom drone for this competition.  Why did we do this?  We have a couple of reasons which are intimately tied together.  We wanted RGBD camera coverage around the bottom and sides of the drone and all computation done onboard; the only commercially available system which was close to our design goals while fitting inside the competition size limit is the DJI M100 when used with the DJI Guidance camera system.  We chose not to use this platform because it did not have quite enough thrust to carry the amount of compute we wanted available onboard the drone.  So, we built a custom system.
 
-<center><img style="width: 80%" src="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/drone-image.jpg"></center>
-
-<p style="text-align: center;">2018 Competition Drone</p>
+{% include post_image.html
+    image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/drone-image.jpg"
+    caption="2018 Competition Drone"
+    %}
 
 ## Frame
 The frame is largely the same as last year's, with a couple of major changes.  First, this year's drone does not have prop guards.  The primary reason for this was weight savings; the motors on the final drone were at their limit for power usage, and increasing the weight of the drone would have drastically decreased our flight time and control authority.  Furthermore, the team was much more confident in the reliability of our software system by this point, so we were comfortable flying without the extra protection of the prop guards.
@@ -76,7 +77,7 @@ We do all of our compute onboard.  The primary computer is an NVIDIA Jetson TX2,
 
 <br>
 <div class="row">
-    <h1 id="state-estimation-header" class="articleheader__heading col-xs-12">State Estimation</h1>
+    <h1 id="state-estimation-header" class="left-heading col-xs-12">State Estimation</h1>
 </div>
 <br>
 
@@ -85,9 +86,10 @@ We do all of our compute onboard.  The primary computer is an NVIDIA Jetson TX2,
 
 _Code:_ `iarc7_vision/src/OpticalFlowEstimator.cpp`
 
-<center><img style="width: 50%" src="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/flow-filtered.png"></center>
-
-<center><p style="text-align: center; width:50%">Picture of flow statistics - Green points represent observed differences in feature locations between images, red ellipse represents distribution shape after outlier rejection, white circle represents maximum allowed variance</p></center>
+{% include post_image.html
+    image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/flow-filtered.png"
+    caption="Picture of flow statistics - Green points represent observed differences in feature locations between images, red ellipse represents distribution shape after outlier rejection, white circle represents maximum allowed variance"
+    %}
 
 We chose to do velocity estimation using optical flow on our bottom camera instead of using an optical flow module such as the PX4Flow.  This was primarily so that we could throw out flow from the moving targets, which would give us incorrect velocity estimates.  We use the Sparse PyrLK flow estimator in OpenCV, which provides flow vectors for a specified set of features between a pair of images.  These flow vectors are then filtered for outlier rejection.  Furthermore, if a frame does not have a tight enough distribution of flow estimates after outlier rejection, the entire frame is rejected.
 
@@ -98,43 +100,46 @@ We use the [robot_localization](http://docs.ros.org/melodic/api/robot_localizati
 
 _Code:_ `iarc7_vision/src/iarc7_vision/floor_detector.py`
 
-<center>
-    <img style="width: 50%" src="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/boundary-example.png"><img style="width: 50%" src="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/boundary-detector-example.png">
-</center>
-<center>
-<p style="text-align: center;">
-    The left image contains an input to the arena boundary detector. The the right shows the classifications. Green squares above were classified as arena floor, red squares were classified as other.  The blue line is the calculated boundary.
-</p>
-</center>
+<div class="row">
+    <div class="col-xs-12 col-md-6">
+        <img style="width: 80%; margin: 0 10%" src="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/boundary-example.png">
+        <p style="text-align: center">An input to the arena boundary detector</p>
+    </div>
+    <div class="col-xs-12 col-md-6">
+        <img style="width: 75%; margin: 0 12.5%" src="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/boundary-detector-example.png">
+        <p style="text-align: center">
+            Green squares above were classified as arena floor, red squares were classified as other.  The blue line is the calculated boundary.
+        </p>
+    </div>
+</div>
 
 The Arena Boundary detector is a texture classifier intended to distinguish the floor in the interior of the arena from other floor textures (such as that outside of the arena).  It does this by splitting the image from the bottom camera into patches, and then classifying each patch separately as either "Arena floor" or "Other."  The classification is performed by first running an [MR filter bank](http://www.robots.ox.ac.uk/~vgg/research/texclass/filters.html) over the patch (with 3 added features for the average R, G, and B values of the patch), then using an SVM with an RBF kernel to classify the resulting feature vector.  Then, we must extract a boundary line from the classified patches - we use some heuristics to throw out detections which are likely to be noise, then train a linear SVM on the resulting red/green points to find the boundary line in the image which best separates them.
 
 <br>
 <div class="row">
-    <h1 id="controls-header" class="articleheader__heading col-xs-12">Controls</h1>
+    <h1 id="controls-header" class="left-heading col-xs-12">Controls</h1>
 </div>
 <br>
 
 ## Dynamic Thrust Model
 
-<center>
-    <img style="width: 90%" src="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/controller-plot.png">
-</center>
-<p style="text-align: center;">Controller Plot</p>
+{% include post_image.html
+    image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/controller-plot.png"
+    caption="Controller Plot"
+    %}
 
 ## Motion Profile Controller
 
 <br>
 <div class="row">
-    <h1 id="target-robots-header" class="articleheader__heading col-xs-12">Target Robots</h1>
+    <h1 id="target-robots-header" class="left-heading col-xs-12">Target Robots</h1>
 </div>
 <br>
 
-<center>
-    <img style="width: 50%" src="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/targets-picture.jpg">
-</center>
-
-<p style="text-align: center;">The IARC Target Robots</p>
+{% include post_image.html
+    image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/targets-picture.jpg"
+    caption="The IARC Target Robots"
+    %}
 
 ## Target Detection
 
@@ -142,19 +147,19 @@ _Code:_ `iarc7_vision/src/RoombaEstimator.cpp`, `iarc7_vision_cnn/src/DarkflowRo
 
 We have two vision-based detectors for finding the target robots - one which runs on the bottom camera, and one which runs on the side cameras.
 
-<center>
-    <img style="width: 50%" src="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/bottom-camera-detector.png">
-</center>
-<p style="text-align: center;">Bottom Camera Detector</p>
+{% include post_image.html
+    image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/bottom-camera-detector.png"
+    caption="Bottom Camera Detector"
+    %}
 
 The detector on the bottom camera is based on classical computer vision techniques designed to find the colored top plates of the robots.  It first converts the image to the HSV color space, then normalizes the saturation.  The image is then thresholded in the HSV space to produce a binary image of pixels which are believed to belong to a top plate.  Morphology operations are performed to get rid of extra noise pixels, and the boundaries of the resulting blobs are then found.  We then find the covariance matrix and diagonalize it - because the top plates are rectangular, the eigenvector with the larger eigenvalue points along the long direction of the top plate.  This gives us an oriented bounding box for the plate, but does not deal with rotations by 180 degrees.
 
 To fix this, we then test the four corners of the plate where we expect the cutouts to be (as seen in the image above).  Based on which corners are white, we are able to determine the direction of the front of the roomba exactly.
 
-<center>
-    <img style="width: 50%" src="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/tinyyolo-roombas.jpg">
-</center>
-<p style="text-align: center;">TinyYOLO Roomba Detector</p>
+{% include post_image.html
+    image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/tinyyolo-roombas.jpg"
+    caption="TinyYOLO Roomba Detector"
+    %}
 
 The detector for the side cameras is a CNN based on the TinyYOLO architecture.  We used the [DarkFlow](http://github.com/pitt-ras/darkflow) implementation of TinyYOLO in Tensorflow to train the model on several thousand labeled examples.
 
@@ -164,14 +169,16 @@ _Code:_ `iarc7_sensors/src/iarc7_sensors/roomba_filter.py`
 
 <br>
 <div class="row">
-    <h1 id="obstacles-header" class="articleheader__heading col-xs-12">Obstacles</h1>
+    <h1 id="obstacles-header" class="left-heading col-xs-12">Obstacles</h1>
 </div>
 <br>
 
-<center>
-    <img style="width: 50%" src="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/obstacle-picture.jpg">
-</center>
-<p style="text-align: center;">An IARC Obstacle Robot</p>
+<div class="row">
+    <div class="col-xs-12 col-md-6 offset-md-3">
+        <img src="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/obstacle-picture.jpg" />
+        <p style="text-align: center">An IARC Obstacle Robot</p>
+    </div>
+</div>
 
 IARC Mission 7 requires the drone to avoid several obstacle robots in the arena, as seen above.  These obstacles primarily move in circles around the arena, although their movement is not very precise.
 
@@ -183,10 +190,10 @@ Our obstacle detection is based on four Intel Realsense depth cameras, one point
 
 The detection algorithm first filters out points which do not belong to obstacles based on a variety of thresholds - these include throwing out the floor, throwing out points that are too far from the camera (because the noise in the depth map gets extremely large at long range), and throwing out points that are too close (because they are noise or they belong to the drone itself).  The points left should all belong to the PVC pipe obstacles that we expect in the arena, pictured below:
 
-<center>
-    <img style="width: 50%" src="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/obstacle-point-cloud.png">
-</center>
-<center><p style="text-align: center; width: 50%">Obstacle Point Cloud - The green sphere at the bottom indicates the position estimate from the detector, and the green cylinder indicates the filtered obstacle position</p></center>
+{% include post_image.html
+    image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/obstacle-point-cloud.png"
+    caption="Obstacle Point Cloud - The green sphere at the bottom indicates the position estimate from the detector, and the green cylinder indicates the filtered obstacle position"
+    %}
 
 To group these points into individual obstacles, we run the DBSCAN clustering algorithm.  We then calculate the bounding box of each of the resulting clusters and report them as obstacle detections.
 
@@ -200,16 +207,16 @@ The raw detections have a few problems: they are noisy, they occasionally have f
 
 _Code:_ `iarc7_motion/src/iarc7_motion/iarc_tasks/task_utilities/obstacle_avoid_helper.py`
 
-<center>
-    <img style="width: 50%" src="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/potential-field.png">
-</center>
-<p style="text-align: center;">Obstacle Avoidance Potential Field</p>
+{% include post_image.html
+    image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/potential-field.png"
+    caption="Obstacle Avoidance Potential Field"
+    %}
 
 Obstacle avoidance is performed using a modified potential field like the one shown above, where the force generated by the field modifies the requested velocity from the current task.  The primary difference from a typical potential field is that the distance between the drone and the obstacle is predicted forward in time based on the drone's current velocity.  Because the drone's acceleration is severely limited relative to its maximum allowed velocity, this causes the drone to react sooner if it will take longer to decelerate and avoid the obstacle.
 
 <br>
 <div class="row">
-    <h1 id="things-that-didnt-work-header" class="articleheader__heading col-xs-12">The things that didn't work (if only we had another month)</h1>
+    <h1 id="things-that-didnt-work-header" class="left-heading col-xs-12">The things that didn't work (if only we had another month)</h1>
 </div>
 <br>
 

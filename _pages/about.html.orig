@@ -16,7 +16,7 @@ permalink: /about/
 </section>
 <section class="about__people-list">
         <div class="row">
-            {% include sectiontitle.html title='Officers' %}
+            {% include centerheading.html title='Officers' %}
             <div class="about__person col-xs-12 col-sm-6 col-lg-4">
                 <img src="/assets/images/about/officer-kaylene.jpg">
                 <div class="about__person-title">Kaylene Stocking</div>
@@ -119,7 +119,7 @@ permalink: /about/
 </section>
 <section class="about__alumni-list">
         <div class="row">
-            {% include sectiontitle.html title='Alumni' %}
+            {% include centerheading.html title='Alumni' %}
             <div class="about__person col-xs-12 col-sm-6 col-lg-4">
                 <img src="/assets/images/about/officer-jon.jpg">
                 <div class="about__person-title">Jon Kenneson</div>
@@ -154,7 +154,7 @@ permalink: /about/
 </section>
 <section class="about__people-list">
         <div class="row">
-            {% include sectiontitle.html title='Advisors' %}
+            {% include centerheading.html title='Advisors' %}
             <div class="about__person col-xs-12 col-sm-6 col-lg-4 offset-lg-2">
                 <img src="/assets/images/about/advisor-dickerson.jpg">
                 <div class="about__person-title">Samuel Dickerson</div>
@@ -179,7 +179,7 @@ permalink: /about/
 </section>
 <section class="about__old-websites">
         <div class="row">
-            {% include sectiontitle.html title='Previous RAS Websites' %}
+            {% include centerheading.html title='Previous RAS Websites' %}
             <div class="about__website col-xs-12 col-sm-6 col-lg-4">
                 <a href="/Old_Robotics_Website_1/index.html">
                     <img src="/Old_Robotics_Website_1/images/title.gif">

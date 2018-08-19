@@ -74,4 +74,14 @@
         padding-left: 15px;
         padding-right: 15px;
     }
+    &__website-image-container
+    {
+        height: 250px;
+        display: table;
+
+        a {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
 }

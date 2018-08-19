@@ -1,26 +1,5 @@
 .articleheader
 {
-    &__heading
-    {
-        text-transform: uppercase;
-        font-weight: bold;
-        padding-bottom: 4px;
-        margin-bottom: 30px;
-        @media (min-width: $xl)
-        {
-            margin: 0;
-        }
-        &:after
-        {
-            content: "";
-            display: block;
-            position: relative;
-            top: 4px;
-            width: 100px;
-            height: 4px;
-            background-color: $articleheader__heading-underline-color;
-        }
-    }
     &__breadcrumb
     {
         border-radius: 0;

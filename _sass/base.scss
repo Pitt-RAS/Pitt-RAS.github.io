@@ -16,7 +16,7 @@ $header__menu-element-font-size-md: 15px;
 $header__menu-element-font-size-lg: 20px;
 $header__brand-font-size: 20px;
 
-$articleheader__heading-underline-color: #4d73cb;
+$heading-underline-color: #4d73cb;
 
 $section-horizontal-padding: 100px;
 $section-horizontal-padding-sm: 30px;
@@ -96,6 +96,52 @@ h1, h2, h3, h4, h5
     font-family: 'Montserrat', sans-serif;
     padding: 0;
     margin: 0;
+}
+
+.left-heading
+{
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-bottom: 4px;
+    margin-bottom: 30px;
+    @media (min-width: $xl)
+    {
+        margin: 0;
+    }
+    &:after
+    {
+        content: "";
+        display: block;
+        position: relative;
+        top: 4px;
+        width: 100px;
+        height: 4px;
+        background-color: $heading-underline-color;
+    }
+}
+
+.center-heading
+{
+    text-align: center;
+    &__heading
+    {
+        text-transform: uppercase;
+        font-weight: bold;
+        padding-bottom: 4px;
+        margin-bottom: 30px;
+        display: inline-block;
+        &:after
+        {
+            content: "";
+            display: block;
+            position: relative;
+            top: 4px;
+            width: 100px;
+            height: 4px;
+            margin: auto;
+            background-color: $heading-underline-color;
+        }
+    }
 }
 
 .row
