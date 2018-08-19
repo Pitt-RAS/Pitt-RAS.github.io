@@ -33,23 +33,25 @@ block: project
 
 
     {% if page.galleries %}
-        {{ "## Photo and Video Galleries" | markdownify }}
-        {{ "Click on a gallery for more pictures" | markdownify }}
-        <div class="row">
-            {% for gallery in page.galleries %}
-                {% capture gallery_html %}
-                <div class="col-xs-12 col-md-6">
-                    <a href="{{ gallery.link }}">
-                        <center><img src="/assets/images/gallery-thumbnails/{{ gallery.thumb }}" style="width: 80%;" /></center>
-                        <div style="text-align: center">
-                            {{ gallery.title }}
-                        </div>
-                    </a>
-                </div>
-                {% endcapture %}
-                {{ gallery_html }}
-            {% endfor %}
-        </div><br>
+        <div class="project__gallery">
+            {{ "## Photo and Video Galleries" | markdownify }}
+            {{ "Click on a gallery for more pictures" | markdownify }}
+            <div class="row">
+                {% for gallery in page.galleries %}
+                    {% capture gallery_html %}
+                    <div class="col-xs-12 col-md-6">
+                        <a href="{{ gallery.link }}">
+                            <img src="/assets/images/gallery-thumbnails/{{ gallery.thumb }}" />
+                            <div>
+                                {{ gallery.title }}
+                            </div>
+                        </a>
+                    </div>
+                    {% endcapture %}
+                    {{ gallery_html }}
+                {% endfor %}
+            </div>
+        </div>
     {% endif %}
 
     {% assign links = "" %}
