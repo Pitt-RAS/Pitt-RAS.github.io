@@ -87,7 +87,7 @@ We do all of our compute onboard.  The primary computer is an NVIDIA Jetson TX2,
 _Code:_ `iarc7_vision/src/OpticalFlowEstimator.cpp`
 
 {% include post_image.html
-    image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/flow-filtered.png"
+    image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/optical-flow.gif"
     caption="Picture of flow statistics - Green points represent observed differences in feature locations between images, red ellipse represents distribution shape after outlier rejection, white circle represents maximum allowed variance"
     %}
 
