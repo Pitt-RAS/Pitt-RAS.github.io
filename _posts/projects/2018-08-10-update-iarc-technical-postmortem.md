@@ -88,7 +88,9 @@ _Code:_ `iarc7_vision/src/OpticalFlowEstimator.cpp`
 
 {% include post_image.html
     image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/optical-flow.gif"
-    caption="Picture of flow statistics - Green points represent observed differences in feature locations between images, red ellipse represents distribution shape after outlier rejection, white circle represents maximum allowed variance"
+    caption="Right: Visualization of the tracked points between frames, showing that vectors are thrown out around targets.
+<br/>
+    Left: Visualization of flow vector statistics corresponding to the right visualization. Green points represent observed differences in feature locations between images, is the maximum variance an accepted point will have, the yellow circle represents the variance of the remaining vectors. The white circle represents maximum allowed variance of the filtered set."
     %}
 
 We chose to do velocity estimation using optical flow on our bottom camera instead of using an optical flow module such as the PX4Flow.  This was primarily so that we could throw out flow from the moving targets, which would give us incorrect velocity estimates.  We use the Sparse PyrLK flow estimator in OpenCV, which provides flow vectors for a specified set of features between a pair of images.  These flow vectors are then filtered for outlier rejection.  Furthermore, if a frame does not have a tight enough distribution of flow estimates after outlier rejection, the entire frame is rejected.
