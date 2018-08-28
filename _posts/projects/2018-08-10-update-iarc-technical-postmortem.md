@@ -234,3 +234,12 @@ The primary state estimation technique that we didn't use at competition was a g
 ## Search-based planner
 
 _Code:_ `iarc7_planner`
+
+## 6 DOF Drone
+
+![6 DOF Drone](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/6dof-uav.jpg)
+<p style="text-align: center;">Left: UAV with 6 controllable degrees of freedom that was intended for the 2018 competition. Side propellers are not mounted. <br/> Right: Actual drone used during the 2017 and 2018 competition pictured for scale.</p>
+
+Significant effort was put into developing a new UAV for the 2018 competition year. The focus was a UAV with 6 controllable degrees of freedom which could navigate without tilting by using 4 extra rotors mounted sideways. Such a vehicle would be able to execute interactions with targets much faster due to increased maneuverability and a better ability to sense of targets positions.
+
+A prototype, was built and was demonstrated as part of Levi Burner, Long Vo, Liam Berti, and Ritesh Misra's senior design project. Their demonstration video is embedded. However, this prototype could not carry all of the electronics required for Mission 7. The final model, pictured above, was built, however there was not time to migrate the computers and cameras to the new air frame.
