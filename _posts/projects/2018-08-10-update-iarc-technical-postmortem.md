@@ -7,11 +7,11 @@ categories: projects IARC
 icon: cogs
 ---
 
-Over the last two years, Robotics and Automation Society has supported a team for Mission 7 of the [International Aerial Robotics Competition](http://aerialroboticscompetition.org).  For an introduction to the challenges of Mission 7, take a look at the [IARC's summary of the mission](http://www.aerialroboticscompetition.org/mission7.php).  We've made multiple posts about our progress along the way, including posts about our success at competition last year, all of which can be found from the [RAS IARC project page](/projects/IARC).  At this year's competition, we were awarded both "Best System Design" (for the design best suited to complete the mission) and "Best Technical Paper" (read our paper [here](/assets/misc/iarc-technical-paper-2018.pdf)) at the American Venue of the competition.  Furthermore, we achieved the highest overall score at the American Venue.
+Over the last two years, Pitt's Robotics and Automation Society has supported a team for Mission 7 of the [International Aerial Robotics Competition](http://aerialroboticscompetition.org).  For an introduction to the challenges of Mission 7, take a look at the [IARC's summary of the mission](http://www.aerialroboticscompetition.org/mission7.php).  We've made multiple posts about our progress along the way, including notes on our success at last year's competition, all of which can be found on the [RAS IARC project page](/projects/IARC).  At the 2018 competition, we were awarded both "Best System Design" (for the design best suited to complete the mission) and "Best Technical Paper" (read our paper [here](/assets/misc/iarc-technical-paper-2018.pdf)) at the American Venue of the competition.  Furthermore, we achieved the highest overall score at the American Venue.
 
-Now that the project is complete, we wanted to write up a dump of all the technical aspects of the project, that's what this document is for.  If you want to know the details of the interesting stuff we did and why we did it, read onward! (Or just skip to the part you're interested in)
+Now that the project is complete, we wanted to write up a dump detailing the technical aspects of the project; that's what this post is for.  If you want to look at the interesting stuff we did and why we did it, read onward! (Or just skip to the part you're interested in)
 
-All of our code is open-source on GitHub in the Pitt-RAS organization.  Many of the sections below have source files associated with them listed as `<repository name>/path/to/file`.  If you just want a list of all the repos for the project, they're all [here, under the iarc7 topic](https://github.com/topics/iarc7?q=topic%3Aiarc7+org%3APitt-RAS&unscoped_q=topic%3Aiarc7+org%3APitt-RAS).
+All of our code is open-source (most is free software, licensed under GPLv2) on GitHub in the Pitt-RAS organization.  Many of the sections below have source files associated with them, listed as `<repository name>/path/to/file`.  If you just want a list of all the repos for the project, they're all [here, under the iarc7 topic](https://github.com/topics/iarc7?q=topic%3Aiarc7+org%3APitt-RAS&unscoped_q=topic%3Aiarc7+org%3APitt-RAS).
 
 <br>
 <div class="row">
@@ -74,7 +74,7 @@ Here the drone pushes off of any obstacles that come too close to it, maintainin
 
 ## Target Blocking Video
 
-Here the drone searches for a target, tracks it, blocks it, and returns to its starting position, all autonomously:
+Here the drone searches for a target, tracks it, blocks it, and returns to its starting position, fully autonomously:
 
 <div class="post__post-youtube-container">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/0w_acYpwZiE?start=13" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -105,7 +105,7 @@ In this video, the drone flies autonomously in a constant direction, but when it
 </div>
 <br>
 
-Our team put a lot of time into building a custom drone for this competition.  Why did we do this?  We have a couple of reasons which are intimately tied together.  We wanted RGBD camera coverage around the bottom and sides of the drone and all computation done onboard; the only commercially available system which was close to our design goals while fitting inside the competition size limit is the DJI M100 when used with the DJI Guidance camera system.  We chose not to use this platform because it did not have quite enough thrust to carry the amount of compute we wanted available onboard the drone.  So, we built a custom system.
+Our team put a lot of time into building a custom drone for this competition.  Why did we do this?  We have a couple of reasons which are intimately tied together.  We wanted nearly full RGBD camera coverage around the bottom and sides of the drone, and all computation done onboard; the only commercially available system which was close to our design goals while fitting inside the competition size limit is the DJI M100 when used with the DJI Guidance camera system.  We chose not to use this platform because it did not have quite enough thrust to carry the amount of compute we wanted available on the drone.  So, we built a custom system.
 
 {% include post_image.html
     image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/drone-image.jpg"
@@ -113,9 +113,9 @@ Our team put a lot of time into building a custom drone for this competition.  W
     %}
 
 ## Frame
-The frame is largely the same as last year's, with a couple of major changes.  First, this year's drone does not have prop guards.  The primary reason for this was weight savings; the motors on the final drone were at their limit for power usage, and increasing the weight of the drone would have drastically decreased our flight time and control authority.  Furthermore, the team was much more confident in the reliability of our software system by this point, so we were comfortable flying without the extra protection of the prop guards.
+The frame is largely the same as our UAV's in 2017, with a couple of major changes.  First, the 2018 drone does not have prop guards.  The primary reason for this was to save weight; the motors on the final drone were at their limit for power usage. Increasing the weight of the drone would have drastically decreased our flight time and control authority.  Furthermore, the team was much more confident in the reliability of our software system this year, so we were comfortable flying without the extra protection of the prop guards.
 
-The other major difference is the structure around the bottom of the drone.  Because we switched from a scanning LIDAR to depth cameras this year, we no longer needed the plastic cage between the core and the target interaction plate to hold the LIDAR.  Instead, the block of foam for shock absorbtion is mounted directly onto the core carbon fiber plate.  We then were able to mount our sensors and compute on the bottom plate instead of on the core.
+The other major difference is the structure around the bottom of the drone.  Because we switched from a scanning LIDAR to depth cameras this year, we no longer needed a plastic cage between the core of the drone and the target interaction plate to hold the LIDAR.  Instead, a block of foam for shock absorbtion was mounted directly onto the core carbon fiber plate.  We were also able to mount our sensors and compute on the bottom plate instead of on the core, providing a better weight distribution.
 
 Several other changes were made for weight saving purposes; the bottom plate was made from laser cut plywood instead of cardboard, and the side bumpers for the targets were a single wire this year instead of wood.
 
@@ -124,10 +124,10 @@ The propulsion system this year is exactly the same as last year's.  We use four
 
 ## Sensors
 
-The drone is covered in a variety of sensors.  Some are only used for localization, including the accelerometer and gyroscope inside the flight controller, as well as two LIDAR altimeters.  We have two time-of-flight LIDARs (a LidarLite v2 and a VL53L0X) used as altimeters because the LidarLite works well at altitudes above ~1m and the VL53L0X works well below this altitude, so we switch between them with a small overlap region.  Other than that, we have 6 cameras - a narrow-angle bottom camera (Intel Realsense R200), a wide-angle bottom camera ([Leopard Imaging M021](https://leopardimaging.com/product/li-usb30-m021/)), and four depth cameras on the sides.  These cameras perform various other functions, including localization, target detection, and obstacle detection.
+The drone is covered in a large montage of sensors.  Some are only used for localization, such as the accelerometer and gyroscope inside the flight controller, as well as two LIDAR altimeters.  We also included two time-of-flight LIDARs (a LidarLite v2 and a VL53L0X) to be used as altimeters because the LidarLite works well at altitudes above ~1m and the VL53L0X works well below this altitude, so we switch between them with a small transition region.  Other than that, we have 6 cameras - a narrow-angle bottom camera (Intel Realsense R200), a wide-angle bottom camera ([Leopard Imaging M021](https://leopardimaging.com/product/li-usb30-m021/)), and four depth cameras on the sides.  These cameras perform various other functions, including localization, target detection, and obstacle detection.
 
 ## Compute
-We do all of our compute onboard.  The primary computer is an NVIDIA Jetson TX2, which does all of the low-latency processing required for state estimation, target tracking, and control.  The secondary computer is an Intel NUC 6i7KYK, which does all processing for the side cameras, which includes target detection, obstacle detection, and obstacle filtering.  The two computers communicate over the network.
+We do all of our compution onboard.  The primary computer is an NVIDIA Jetson TX2, which does all of the low-latency processing required for state estimation, target tracking, and control.  The secondary computer is an Intel NUC 6i7KYK, which does all processing for the side cameras, which includes target detection, obstacle detection, and obstacle filtering.  The two computers communicate over the network.
 
 <br>
 <div class="row">
@@ -145,7 +145,7 @@ _Code:_ `iarc7_vision/src/OpticalFlowEstimator.cpp`
     caption="Picture of flow vectors and flow statistics - In the left image, red arrows are features detected in valid regions, meaning inside of the blue rectangle and outside of any green circles surrounding target robots.  The right image is a visualization of flow vector statistics.  Green points represent observed differences in feature locations between images, red ellipse represents distribution shape after outlier rejection, the yellow circle represents the variance of the remaining vectors, and the white circle represents maximum allowed variance of the filtered set"
     %}
 
-We chose to do velocity estimation using optical flow on our bottom camera instead of using an optical flow module such as the PX4Flow.  This was primarily so that we could throw out flow from the moving targets, which would give us incorrect velocity estimates.  We use the Sparse PyrLK flow estimator in OpenCV, which provides flow vectors for a specified set of features between a pair of images.  These flow vectors are then filtered for outlier rejection.  Furthermore, if a frame does not have a tight enough distribution of flow estimates after outlier rejection, the entire frame is rejected.
+We chose to do velocity estimation using optical flow on our bottom camera instead of using an optical flow module such as the PX4Flow.  This was primarily so that we could throw out flow from the moving targets, which would give us incorrect velocity estimates if we did not reject the target's region from the frame.  We use the Sparse PyrLK flow estimator in OpenCV, which provides flow vectors for a specified set of features between a pair of images.  These flow vectors are then filtered for outlier rejection.  Furthermore, if a frame does not have a tight enough distribution of flow estimates after outlier rejection, the entire frame is rejected.
 
 ## Extended Kalman Filter (EKF)
 We use the [robot_localization](http://docs.ros.org/melodic/api/robot_localization/html/index.html) state estimator, which uses an EKF to estimate 6DOF pose, 6DOF velocity, and translational acceleration.  We modified the filter to only estimate the translational components, because we use the orientation estimates straight out of the flight controller orientation estimator.
@@ -167,7 +167,7 @@ _Code:_ `iarc7_vision/src/iarc7_vision/floor_detector.py`
     </div>
 </div>
 
-The Arena Boundary detector is a texture classifier intended to distinguish the floor in the interior of the arena from other floor textures (such as that outside of the arena).  It does this by splitting the image from the bottom camera into patches, and then classifying each patch separately as either "Arena floor" or "Other."  The classification is performed by first running an [MR filter bank](http://www.robots.ox.ac.uk/~vgg/research/texclass/filters.html) over the patch (with 3 added features for the average R, G, and B values of the patch), then using an SVM with an RBF kernel to classify the resulting feature vector.  Then, we must extract a boundary line from the classified patches - we use some heuristics to throw out detections which are likely to be noise, then train a linear SVM on the resulting red/green points to find the boundary line in the image which best separates them.
+The Arena Boundary detector is a texture classifier intended to distinguish the floor in the interior of the arena from other floor textures (such as that outside of the arena).  We do this by splitting the image from the bottom camera into patches, and then classifying each patch separately as either "Arena floor" or "Other."  The classification is performed by first running an [MR filter bank](http://www.robots.ox.ac.uk/~vgg/research/texclass/filters.html) over the patch (with 3 added features for the average R, G, and B values of the patch), then using an SVM with an RBF kernel to classify the resulting feature vector.  Then, we must extract a boundary line from the classified patches - we use some heuristics to throw out detections which are likely to be noise, then train a linear SVM on the resulting red/green points to find the boundary line in the image which best separates them.
 
 <br>
 <div class="row">
@@ -186,7 +186,7 @@ _Code:_ `iarc7_fc_comms`, `cleanflight branch:ras-cleanflight`
 
 At the heart of the controls is the flight controller. We chose to use a Seriously Pro F3 Evo flight controller running Cleanflight. This flight controller is typically used for racing drones. It was chosen in 2016 when the project began. In the end, we believe this was a good choice.
 
-The most natural alternative was a Pixhawk running either Ardupilot or PX4. Later on, we found that neither of those platforms were particularly suited to indoor flight. For instance, at the time, it was impossible to turn the magnetometer off in the EKF2 state estimator in PX4. Additionally, the interfaces offered to the companion computer did not allow commanding a position and a velocity simultaneously. Finally, the takeoff proecedure in these systems was observed to be more suited to outdoor flight than indoor flight. We wanted to achieve precise control when taking off and landing, as these operations would need to be done repeatedly during Mission 7.
+The most popular alternative was a Pixhawk running either Ardupilot or PX4. Later on, we found that neither of those platforms were particularly suited to indoor flight. For instance, at the time, it was impossible to turn the magnetometer off in the EKF2 state estimator in PX4, perturbing indoor estimations. Additionally, the interfaces offered to the companion computer did not allow commanding a position and a velocity simultaneously. Finally, the takeoff proecedure in these systems was observed to be more suited to outdoor flight than indoor flight. We wanted to achieve precise control when taking off and landing, as these operations would need to be done repeatedly during Mission 7.
 
 The Cleanflight firmware was modified in several important ways:
  - Dual Receiver
@@ -225,7 +225,7 @@ In a manner similar to explicit model predictive control, the result of the mode
              The left vertical axis is thrust in kg/s"
     %}
 
-The dynamic thrust model provided several important benefits. It decreased rotor lag by as much as 80ms to 40ms. Thrust lag was fairly constant for all thrust slew rates (the steady state model saw considerable variation). Finally, it increased the maximum thrust slew rate by as much as four times. From a linear controls perspective, this greatly increased stability by increasing the gain and phase margins. Overall, it greatly improved the stability of the drone while holding height. It also made the drone much more responsive because feedforward of acceleration setpoints was possible.
+The dynamic thrust model provided several important benefits. It decreased rotor lag by as much as 80ms to 40ms. Thrust lag was fairly constant for all thrust slew rates (the steady state model saw considerable variation). Finally, it increased the maximum thrust slew rate by as much as four times. From a linear controls perspective, this greatly increased stability by increasing the gain and phase margins. Overall, it also improved the stability of the drone while holding height. It generally made the drone more responsive because feedforward of acceleration setpoints was possible.
 
 ## Motion Profile Controller
 
@@ -304,7 +304,7 @@ IARC Mission 7 requires the drone to avoid several obstacle robots in the arena,
 
 _Code:_ `iarc7_sensors/src/iarc7_sensors/obstacle_detector_r200.py`
 
-Our obstacle detection is based on four Intel Realsense depth cameras, one pointing horizontally on each side of the drone.  Using depth cameras instead of a scanning LIDAR gives us a better vertical field of view - we can see obstacles below us that would not be seen by a planar LIDAR.  Furthermore, we get better position estimates because the resolution on the depth cameras is better than that of the scanning LIDARs in our price range, such as the RP-LIDAR A2 or the Scanse Sweep.
+Our obstacle detection is based on four Intel Realsense depth cameras, one pointing horizontally on each side of the UAV.  Using depth cameras instead of a scanning LIDAR gives us a better vertical field of view - we can see obstacles below us that would not be seen by a planar LIDAR.  Furthermore, we achieved better position estimates because the resolution on the depth cameras is superior to the scanning LIDARs in our price range; such as the RP-LIDAR A2 or the Scanse Sweep.
 
 The detection algorithm first filters out points which do not belong to obstacles based on a variety of thresholds - these include throwing out the floor, throwing out points that are too far from the camera (because the noise in the depth map gets extremely large at long range), and throwing out points that are too close (because they are noise or they belong to the drone itself).  The points left should all belong to the PVC pipe obstacles that we expect in the arena, pictured below:
 
@@ -319,7 +319,7 @@ To group these points into individual obstacles, we run the DBSCAN clustering al
 
 _Code:_ `iarc7_sensors/src/iarc7_sensors/obstacle_filter.py`
 
-The raw detections have a few problems: they are noisy, they occasionally have false positives and false negatives, and there are blind spots around the drone.  To fix these problems, we run a filter on top of these raw detections.  The main filter is actually a collection of single-obstacle filters, just like the [target tracking filter](#target-filtering).  It uses the same mechanisms for sorting obstacles into single-obstacle filters.  The single-obstacle filters are then the same as the single-target filters, except that they never leave the naive position-velocity Kalman Filter.  Even though we do have a more detailed motion model for the obstacles which would allow for a better filter, the position-velocity filter is good enough for our purposes, and it allows us to track obstacles other than the PVC roombas used in the IARC competition.
+The raw detections have several issues: they are noisy, they occasionally have false positives and false negatives, and there are blind spots around the drone.  To fix these problems, we run a filter on top of these raw detections.  The main filter is actually a collection of single-obstacle filters, just like the [target tracking filter](#target-filtering).  It uses the same mechanisms for sorting obstacles into single-obstacle filters.  The single-obstacle filters are then the same as the single-target filters, except that they never leave the naive position-velocity Kalman Filter.  Even though we do have a more detailed motion model for the obstacles which would allow for a better filter, the position-velocity filter is good enough for our purposes, and it allows us to track obstacles other than the PVC roombas used in the IARC competition.
 
 ## Obstacle Avoidance
 
@@ -345,7 +345,7 @@ _Code:_ `iarc7_vision/src/GridLineEstimator.cpp`
 ![Grid Detector](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/grid-detector.png)
 <p style="text-align: center;">Grid Detector</p>
 
-The primary state estimation technique that we didn't use at competition was a global position estimator based on the grid on the competition floor, which would have killed the drift in both our yaw estimates and position estimates.  The grid detector we had implemented worked, but had problems with jumpy position estimates that made it unusable at competition.  The current implementation in the [iarc7_vision](https://github.com/pitt-ras/iarc7_vision) repository uses an edge detector and a Hough transform to find the two edges of each white line in the arena, and then does a fitting procedure to minimize the squared difference in angle between the observed lines and the grid, followed by another fit to minimize the squared difference in position.  The 1m translation and 90 degree rotation ambiguities this leaves are then resolved based on the current estimated pose of the drone.  As you can see in the image, OpenCV's Hough transform does not perform non-max suppression, so multiple detections are present for each line.  Work was in progress [here](https://github.com/Pitt-RAS/iarc7_vision/tree/better-grid-detector) to both perform the non-max suppression and to detect the core of the line instead of the two edges, but that work was not finished in time for competiion.
+The primary state estimation technique that we didn't enable at the competition was a global position estimator based on the grid on the competition floor, which would have killed the drift in both our yaw estimates and position estimates.  The grid detector we had implemented worked, but had problems with jumpy position estimates that made it unusable in some situations.  The current implementation in the [iarc7_vision](https://github.com/pitt-ras/iarc7_vision) repository uses an edge detector and a Hough transform to find the two edges of each white line in the arena, and then does a fitting procedure to minimize the squared difference in angle between the observed lines and the grid, followed by another fit to minimize the squared difference in position.  The 1m translation and 90 degree rotation ambiguities this leaves are then resolved based on the current estimated pose of the drone.  As you can see in the image, OpenCV's Hough transform does not perform non-max suppression, so multiple detections are present for each line.  Work was in progress [here](https://github.com/Pitt-RAS/iarc7_vision/tree/better-grid-detector) to both perform the non-max suppression and to detect the core of the line instead of the two edges, but that work was not finished in time for competiion.
 
 ## Search-based planner
 
@@ -372,4 +372,5 @@ A prototype was built and was demonstrated as part of Levi Burner, Long Vo, Liam
 </div>
 
 <br>
-Congratulations!  You made it to the bottom.  Thanks for reading!
+Congratulations!  You made it to the bottom. We hope you've had at least 1e-9
+as much fun reading this as we've had over the last two years!  Thanks for reading!
