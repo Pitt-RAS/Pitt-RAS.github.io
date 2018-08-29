@@ -3,7 +3,7 @@ layout: post
 title: "Review of Slamtec RPLIDAR A2 on NVIDIA Jetson"
 date: 2017-08-02
 author: Aaron Miller
-categories: reviews projects 2017-iarc
+categories: reviews projects IARC
 icon: cogs
 ---
 

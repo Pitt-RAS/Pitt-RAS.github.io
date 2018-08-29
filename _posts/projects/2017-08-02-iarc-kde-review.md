@@ -3,7 +3,7 @@ layout: post
 title: "Review of KDE Direct propulsion system"
 date: 2017-08-02
 author: Aaron Miller
-categories: reviews projects 2017-iarc
+categories: reviews projects IARC
 icon: cogs
 ---
 

@@ -8,7 +8,7 @@ permalink: /gallery/
 {% include photoswipe.html %}
 {% for album in site.data.gallery %}
 <section class="gallery__gallery">
-    {% include sectiontitle.html title=album.title %}
+    {% include centerheading.html title=album.title %}
     {% include loader.html htmlID=album.htmlID %}
     <div class="image-container" id="{{album.htmlID}}" itemscope="" itemtype="http://schema.org/ImageGallery" data-pswp-uid="1"></div>
 </section>

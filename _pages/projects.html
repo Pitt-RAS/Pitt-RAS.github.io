@@ -11,7 +11,7 @@ permalink: /projects/
         <br>
         <table>
             <tr>
-                <td><a href="/projects/2017-iarc">IARC</a>
+                <td><a href="/projects/IARC">IARC</a>
                     <td><b/>Shop Hours<b/>
                         <td>Sunday 4pm
                         <td>Monday 5:30pm
@@ -45,130 +45,88 @@ permalink: /projects/
     </div>
 </section>
 <section class="projects__projects row">
-    {% include sectiontitle.html title='Current Projects' %}
-    <div class="projects__card col-xs-12 col-md-6">
-        <a href="/projects/2017-iarc">
-            <img src="/assets/images/projects/2017/project-iarc.jpg">
-            <div class="projects__card-info">
-                <div class="projects__card-title">IARC Mission 7</div>
-                <div class="projects__card-desc"> Flying test of our custom quadcopter.</div>
-            </div>
-        </a>
-    </div>
-    <div class="projects__card col-xs-12 col-md-6">
-        <a href="/projects/2017-erasinator">
-            <img src="/assets/images/projects/2017/project-erasinator.png">
-            <div class="projects__card-info">
-                <div class="projects__card-title">Erasinator</div>
-                <div class="projects__card-desc">An automatic whiteboard eraser.</div>
-            </div>
-        </a>
-    </div>
-    <div class="projects__card col-xs-12 col-md-6">
-        <a href="/projects/2017-sailbot">
-            <img src="/assets/images/projects/2017/project-sailbot.jpg">
-            <div class="projects__card-info">
-                <div class="projects__card-title">Sailbot</div>
-                <div class="projects__card-desc">An autonomous sailboat.</div>
-            </div>
-        </a>
-    </div>
-    <div class="projects__card col-xs-12 col-md-6">
-        <a href="/projects/2017-artbot">
-            <img src="/assets/images/projects/2017/project-artbot.jpg">
-            <div class="projects__card-info">
-                <div class="projects__card-title">Artbot</div>
-                <div class="projects__card-desc">An artisitc robot with some form of robotic movement.</div>
-            </div>
-        </a>
-    </div>
-    <div class="projects__card col-xs-12 col-md-6">
-        <a href="/projects/2017-dragglebot">
-            <img src="/assets/images/projects/2017/project-dragglebot.jpg">
-            <div class="projects__card-info">
-                <div class="projects__card-title">DraggleBot</div>
-                <div class="projects__card-desc">A person-following cart robot.</div>
-            </div>
-        </a>
-    </div>
+    {% include centerheading.html title='Current Projects' %}
+    {% include projectcard.html
+        link="/projects/IARC"
+        image_source="2017/project-iarc.jpg"
+        name="IARC Mission 7"
+        description="An autonomous air vehicle capable of interaction with moving ground robots."
+        %}
+    {% include projectcard.html
+        link="/projects/2017-erasinator"
+        image_source="2017/project-erasinator.png"
+        name="Erasinator"
+        description="An automatic whiteboard eraser."
+        %}
+    {% include projectcard.html
+        link="/projects/2017-sailbot"
+        image_source="2017/project-sailbot.jpg"
+        name="Sailbot"
+        description="An autonomous sailboat."
+        %}
+    {% include projectcard.html
+        link="/projects/2017-artbot"
+        image_source="2017/project-artbot.jpg"
+        name="Artbot"
+        description="An artistic robot with some form of robotic movement."
+        %}
+    {% include projectcard.html
+        link="/projects/2017-dragglebot"
+        image_source="2017/project-dragglebot.jpg"
+        name="DraggleBot"
+        description="A person-following cart robot."
+        %}
 
 </section>
 <section class="projects__prev row">
-    {% include sectiontitle.html title='Previous Projects' %}
-    <div class="projects__card col-xs-12 col-md-6">
-        <a href="/projects/2017-micromouse">
-            <img src="/assets/images/projects/2017/project-micromouse.jpg">
-            <div class="projects__card-info">
-                <div class="projects__card-title">Micromouse</div>
-                <div class="projects__card-desc">An autonomous robot capable of solving mazes as quickly as possible.</div>
-            </div>
-        </a>
-    </div>
-    <div class="projects__card col-xs-12 col-md-6">
-        <a href="/projects/2017-motion-control">
-            <img src="/assets/images/projects/2017/project-motion-control.jpg">
-            <div class="projects__card-info">
-                <div class="projects__card-title">Motion Control 2017</div>
-                <div class="projects__card-desc">Research project to learn about robot motion control, with the goal of creating a motion control library that can be used on a wide variety of robots.</div>
-            </div>
-        </a>
-    </div>
-    <div class="projects__card col-xs-12 col-md-6">
-        <a href="/projects/2017-scorpion">
-            <img src="/assets/images/projects/2017/project-scorpion.jpg">
-            <div class="projects__card-info">
-                <div class="projects__card-title">Scorpion 2017</div>
-                <div class="projects__card-desc">Scorpion bot that can mimic a real scorpion.</div>
-            </div>
-        </a>
-    </div>
+    {% include centerheading.html title='Previous Projects' %}
 
-    <div class="projects__card col-xs-12 col-md-6">
-        <a href="/projects/2016-rover">
-            <img src="/assets/images/projects/2016/project-rover.jpg">
-            <div class="projects__card-info">
-                <div class="projects__card-title">Rover 2016</div>
-                <div class="projects__card-desc">WiFi controlled rover</div>
-            </div>
-        </a>
-    </div>
-    <div class="projects__card col-xs-12 col-md-6">
-        <a href="/projects/2016-minisumo">
-            <img src="/assets/images/projects/2016/project-minisumo.jpg">
-            <div class="projects__card-info">
-                <div class="projects__card-title">Mini Sumo 2016</div>
-                <div class="projects__card-desc">Autonomous robot which competes to push an opposing robot out of a ring.</div>
-            </div>
-        </a>
-    </div>
-    <div class="projects__card col-xs-12 col-md-6">
-        <a href="/projects/2016-micromouse">
-            <img src="/assets/images/projects/2016/project-micromouse.jpg">
-            <div class="projects__card-info">
-                <div class="projects__card-title">Micromouse 2016</div>
-                <div class="projects__card-desc">
-                    <p>An autonomous robot capable of solving mazes as quickly as possible.</p>
-                    <p>1st Place Winner in IEEE SAC 2016</p>
-                </div>
-            </div>
-        </a>
-    </div>
-    <div class="projects__card col-xs-12 col-md-6">
-        <a href="/projects/2016-linefollower">
-            <img src="/assets/images/projects/2016/project-linefollower.jpg">
-            <div class="projects__card-info">
-                <div class="projects__card-title">Line Follower 2016</div>
-                <div class="projects__card-desc">Autonomous robot which attempts to follow a black line in a trakc as fast as possible.</div>
-            </div>
-        </a>
-    </div>
-    <div class="projects__card col-xs-12 col-md-6">
-        <a href="/projects/2015-minisumo">
-            <img src="/assets/images/projects/2015/project-minisumo.jpg">
-            <div class="projects__card-info">
-                <div class="projects__card-title">Mini Sumo 2015</div>
-                <div class="projects__card-desc">Autonomous robot which competes to push an opposing robot out of a ring.</div>
-            </div>
-        </a>
-    </div>
+    {% include projectcard.html
+        link="/projects/2017-micromouse"
+        image_source="2017/project-micromouse.jpg"
+        name="Micromouse"
+        description="An autonomous robot capable of solving mazes as quickly as possible."
+        %}
+    {% include projectcard.html
+        link="/projects/2017-motion-control"
+        image_source="2017/project-motion-control.jpg"
+        name="Motion Control 2017"
+        description="Research project to learn about robot motion control, with the goal of creating a motion control library that can be used on a wide variety of robots."
+        %}
+    {% include projectcard.html
+        link="/projects/2017-scorpion"
+        image_source="2017/project-scorpion.jpg"
+        name="Scorpion 2017"
+        description="Scorpion bot that can mimic a real scorpion."
+        %}
+    {% include projectcard.html
+        link="/projects/2016-rover"
+        image_source="2016/project-rover.jpg"
+        name="Rover 2016"
+        description="WiFi controlled rover"
+        %}
+    {% include projectcard.html
+        link="/projects/2016-minisumo"
+        image_source="2016/project-minisumo.jpg"
+        name="Mini Sumo 2016"
+        description="Autonomous robot which competes to push an opposing robot out of a ring."
+        %}
+    {% include projectcard.html
+        link="/projects/2016-micromouse"
+        image_source="2016/project-micromouse.jpg"
+        name="Micromouse 2016"
+        description=""
+        %}
+    {% include projectcard.html
+        link="/projects/2016-linefollower"
+        image_source="2016/project-linefollower.jpg"
+        name="Line Follower 2016"
+        description="Autonomous robot which attempts to follow a black line in a track as fast as possible."
+        %}
+    {% include projectcard.html
+        link="/projects/2015-minisumo"
+        image_source="2015/project-minisumo.jpg"
+        name="Mini Sumo 2015"
+        description="Autonomous robot which competes to push an opposing robot out of a ring."
+        %}
 </section>
