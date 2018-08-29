@@ -11,11 +11,19 @@ Over the last two years, Robotics and Automation Society has supported a team fo
 
 Now that the project is complete, we wanted to write up a dump of all the technical aspects of the project, that's what this document is for.  If you want to know the details of the interesting stuff we did and why we did it, read onward! (Or just skip to the part you're interested in)
 
+All of our code is open-source on GitHub in the Pitt-RAS organization.  Many of the sections below have source files associated with them listed as `<repository name>/path/to/file`.  If you just want a list of all the repos for the project, they're all [here, under the iarc7 topic](https://github.com/topics/iarc7?q=topic%3Aiarc7+org%3APitt-RAS&unscoped_q=topic%3Aiarc7+org%3APitt-RAS).
+
 <br>
 <div class="row">
     <h1 id="table-of-contents-header" class="left-heading col-xs-12">Table of Contents</h1>
 </div>
 <br>
+
+### [Behaviors Demonstrated](#behaviors-header)
+ - [Obstacle Avoidance](#obstacle-avoidance-video)
+ - [Target Blocking](#target-blocking-video)
+ - [Target Hitting](#target-hitting-video)
+ - [Arena Boundary Bouncing](#arena-boundary-bouncing-video)
 
 ### [Hardware](#hardware-header)
  - [Frame](#frame)
@@ -46,6 +54,50 @@ Now that the project is complete, we wanted to write up a dump of all the techni
  - [Grid-based Position Estimator](#grid-based-position-estimator)
  - [Search-based Planner](#search-based-planner)
  - [6 Degree of Freedom UAV](#6-degree-of-freedom-uav)
+
+<br>
+<div class="row">
+    <h1 id="behaviors-header" class="left-heading col-xs-12">Behaviors Demonstrated</h1>
+</div>
+<br>
+
+Our team developed several high-level behaviors - although obstacle avoidance is the only one of these that was successfully demonstrated at competition, others were demonstrated in our test arenas.  Here are a couple videos of successful runs:
+
+## Obstacle Avoidance Video
+
+Here the drone pushes off of any obstacles that come too close to it, maintaining a safe distance.  When no obstacles are nearby, it just hovers in place:
+
+<div class="post__post-youtube-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/m67g71pt6yk" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+<br>
+
+## Target Blocking Video
+
+Here the drone searches for a target, tracks it, blocks it, and returns to its starting position, all autonomously:
+
+<div class="post__post-youtube-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0w_acYpwZiE?start=13" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+<br>
+
+## Target Hitting Video
+
+Here the drone tracks a target, and then instead of blocking it, the drone lands on top of the target to press the top switch:
+
+<div class="post__post-youtube-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EI7F6Hz41PI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+<br>
+
+## Arena Boundary Bouncing Video
+
+In this video, the drone flies autonomously in a constant direction, but when it detects that it has hit a boundary of the arena (the gray floor), it bounces off and moves in a new direction until it hits another boundary:
+
+<div class="post__post-youtube-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9l7DOeNJ3So" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+<br>
 
 <br>
 <div class="row">
@@ -90,9 +142,7 @@ _Code:_ `iarc7_vision/src/OpticalFlowEstimator.cpp`
 
 {% include post_image.html
     image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/optical-flow.gif"
-    caption="Right: Visualization of the tracked points between frames, showing that vectors are thrown out around targets.
-<br/>
-    Left: Visualization of flow vector statistics corresponding to the right visualization. Green points represent observed differences in feature locations between images, is the maximum variance an accepted point will have, the yellow circle represents the variance of the remaining vectors. The white circle represents maximum allowed variance of the filtered set."
+    caption="Picture of flow vectors and flow statistics - In the left image, red arrows are features detected in valid regions, meaning inside of the blue rectangle and outside of any green circles surrounding target robots.  The right image is a visualization of flow vector statistics.  Green points represent observed differences in feature locations between images, red ellipse represents distribution shape after outlier rejection, the yellow circle represents the variance of the remaining vectors, and the white circle represents maximum allowed variance of the filtered set"
     %}
 
 We chose to do velocity estimation using optical flow on our bottom camera instead of using an optical flow module such as the PX4Flow.  This was primarily so that we could throw out flow from the moving targets, which would give us incorrect velocity estimates.  We use the Sparse PyrLK flow estimator in OpenCV, which provides flow vectors for a specified set of features between a pair of images.  These flow vectors are then filtered for outlier rejection.  Furthermore, if a frame does not have a tight enough distribution of flow estimates after outlier rejection, the entire frame is rejected.
@@ -134,19 +184,19 @@ _Code:_ `iarc7_fc_comms`, `cleanflight branch:ras-cleanflight`
     caption="Seriously Pro F3 Evo flight controller"
     %}
 
-At the heart of the controls is the flight controller. We chose to use a Seriously Pro F3 Evo flight controller running Cleanflight. This flight controller is typically used for racing drones. It was chosen in 2016 when the project began, as the team was familiar with. In the end, we believe this was a good choice.
+At the heart of the controls is the flight controller. We chose to use a Seriously Pro F3 Evo flight controller running Cleanflight. This flight controller is typically used for racing drones. It was chosen in 2016 when the project began. In the end, we believe this was a good choice.
 
-The most common alternative, was a Pixhawk running either Ardupilot or PX4. Later on, we found that both softwares were not particularly suited to indoor flight. For instance, at the time, it was impossible to turn the magnetometer off and use the EKF2 state estimator in PX4. Additionally, the interfaces offered to the companion computer did not allow commanding a position and a velocity simultaneously. Finally, the takeoff proecedure in these softwares was seen to be more suited to outdoor flight than indoor flight. We wanted to achieve precise control when taking off and landing as these operations would need to be done repeatedly during Mission 7.
+The most natural alternative was a Pixhawk running either Ardupilot or PX4. Later on, we found that neither of those platforms were particularly suited to indoor flight. For instance, at the time, it was impossible to turn the magnetometer off in the EKF2 state estimator in PX4. Additionally, the interfaces offered to the companion computer did not allow commanding a position and a velocity simultaneously. Finally, the takeoff proecedure in these systems was observed to be more suited to outdoor flight than indoor flight. We wanted to achieve precise control when taking off and landing, as these operations would need to be done repeatedly during Mission 7.
 
 The Cleanflight firmware was modified in several important ways:
  - Dual Receiver
-   - Allowed receiving RX commands from a radio and via the MSP protocol simultaneously. This allowed a safety pilot to take over and fly the drone normally in the case of emergency.
+   - Allowed receiving RX commands from a radio and from the autopilot via the MSP protocol simultaneously. This allowed a safety pilot to take over and fly the drone normally in the case of emergency.
  - Seperate accelerometer low pass filter for state estimation
-   - The low pass filter on accelerometer measurements used for orientation estimation within cleanflight was not suitable for state estimation.
+   - The low pass filter on accelerometer measurements used for orientation estimation within Cleanflight was not suitable for state estimation.
  - Made the angle controller a full PID controller
    - The angular position controller was a proportional controller on top of a PID angular rate controller. We made the angular positional controller a PID controller on angular position cascaded with a PID controller on angular rate.
 
-The flight controller set an average throttle as commanded by the Jetson's software via a serial interface. It then modulated the thrust to individual rotors to achieve a commanded orientation. Thus, the flight controller could stabilize orientation, but it could not control position. This was handled by the dynamic thrust model and motion profile controller.
+The flight controller sets an average throttle as commanded by the Jetson's software via a serial interface. It then modulates the thrust to individual rotors to achieve a commanded orientation. Thus, the flight controller can stabilize orientation, but it cannot control position. This is handled by the dynamic thrust model and motion profile controller.
 
 ## Dynamic Thrust Model
 
@@ -154,14 +204,18 @@ _Code:_ `iarc7_motion/scripts/thrust_model_v2`, `iarc7_motion/include/iarc7_moti
 
 {% include post_image.html
     image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/controller-plot.png"
-    caption="A thrust model visualized. The red line shows when the starting thrust is equal to the ending thrust. Colored dots indicate achievable thrusts and the voltage required given a starting thrust. Bilinear interpolation was used to fill in the gaps."
+    caption="A thrust model visualized - Each point shows the thrust at the next timestep if the given voltage is applied at the current thrust.  The red line shows when the current thrust is equal to the thrust at the next timestep. Colored dots indicate achievable thrusts and the voltage required given a starting thrust. Bilinear interpolation was used in the controller to fill in the gaps."
     %}
 
-The throttle applied to a rotor does not linearly correspond to a thrust. In the 2016-2017 academic year, work was done to linearize the rotor's using a steady state thrust model that mapped a steady state operating condition with to a thrust. However, it was observed in the 2017-2018 year that significant performance gains could be achieved with a model that was aware of the current operating point of a rotor. Such a model could apply a voltage higher or lower than the steady state voltage in order to achieve a desired thrust more quickly.
+The throttle applied to a rotor does not linearly correspond to a thrust. In the 2016-2017 academic year, work was done to linearize the rotors using a steady-state thrust model that mapped a steady-state operating condition to a thrust. However, it was observed in the 2017-2018 year that significant performance gains could be achieved with a model that was aware of the current operating point of a rotor. Such a model could apply a voltage higher or lower than the steady state voltage in order to achieve a desired thrust more quickly.
 
-Thus, a custom dynamic rotor model was derived and used. The model's parameters are found using a form of system identification requiring a dynomometer stand capable of logging a rotors thrust and applied voltage over time. The response of the rotor to over 100 step impulses, linearly spaced over the entire throttle range, were used to find a mathmatical model that approximates the next achievable thrust based on the current thrust and an applied voltage.
+Thus, a custom dynamic rotor model was derived and used. The model's parameters are found using a form of system identification requiring a dynomometer stand capable of logging a rotors thrust and applied voltage over time. The response of the rotor to over 100 step impulses, linearly spaced over the entire throttle range, were used to find a mathmatical model that approximates the next achievable thrust based on the current thrust and an applied voltage.  This process is demonstrated below:
 
-In a manner similar to explicit model predictive control, the result of the model is precomputed for a wide range of starting voltages and starting thrusts. On the drone, the resulting approximation, is searched in real-time to find the optimal voltage to achieve a desired thrust in the next time step.
+<div class="post__post-youtube-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JuNPhER9lvA" frameborder="0" allowfullscreen></iframe>
+</div>
+
+In a manner similar to explicit model predictive control, the result of the model is precomputed for a wide range of starting voltages and starting thrusts. On the drone, the resulting approximation is searched in real time to find the optimal voltage to achieve a desired thrust in the next time step.
 
 {% include post_image.html
     image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/thrustmodelperformance.png"
@@ -171,7 +225,7 @@ In a manner similar to explicit model predictive control, the result of the mode
              The left vertical axis is thrust in kg/s"
     %}
 
-The dynamic thrust model provided several important benefits. It decreased rotor lag by as much as 80ms to 40ms. Thrust lag was fairly constant for all thrust slew rates (the steady state model which saw considerable variation). Finally, it increased the the maximum thrust slew rate by as much as four times. From a linear controler perspective, this greatly increased stability by increasing the gain and phase margins. Overall, it greatly improved the stability of the drone while holding height. It also made by the drone much more responsive because feedforward of acceleration setpoints was possible.
+The dynamic thrust model provided several important benefits. It decreased rotor lag by as much as 80ms to 40ms. Thrust lag was fairly constant for all thrust slew rates (the steady state model saw considerable variation). Finally, it increased the maximum thrust slew rate by as much as four times. From a linear controls perspective, this greatly increased stability by increasing the gain and phase margins. Overall, it greatly improved the stability of the drone while holding height. It also made the drone much more responsive because feedforward of acceleration setpoints was possible.
 
 ## Motion Profile Controller
 
@@ -219,11 +273,17 @@ To fix this, we then test the four corners of the plate where we expect the cuto
     caption="TinyYOLO Roomba Detector"
     %}
 
-The detector for the side cameras is a CNN based on the TinyYOLO architecture.  We used the [DarkFlow](http://github.com/pitt-ras/darkflow) implementation of TinyYOLO in Tensorflow to train the model on several thousand labeled examples.
+The detector for the side cameras is a CNN based on the TinyYOLO architecture.  We used the [DarkFlow](http://github.com/pitt-ras/darkflow) implementation of TinyYOLO in Tensorflow to train the model on approximately 3600 labeled examples.
 
 ## Target Filtering
 
 _Code:_ `iarc7_sensors/src/iarc7_sensors/roomba_filter.py`
+
+The target filter is a collection of multiple custom filters, one for each target that is currently being tracked.  When a new measurement comes into the filter, it is first compared against all the targets the system is currently aware of.  If it is close enough (defined by both physical distance and a p-test on the probability that the new measurement could have come from the current filter distribution), then the measurement is added into that single-target filter.  Otherwise, a new target filter is added to the system.  A variety of metrics are tracked to determine whether each single-target filter should be thrown out, including time since last measurement, statistical uncertainty in the target's position, and a combination of how many times the target has been seen versus how many frames it was not detected in a frame where it should have been visible based on camera position.
+
+Each single-target filter is a collection of two Kalman filters; one is a simple filter on the 2d position and velocity of the target, which is used when we don't know the target's orientation.  Once the target's orientation is known (either because the velocity is well-known or because the detector is confident about the target orientation as described above), the model switches to an EKF with a state space of position, heading, and yaw rate.  The speed is fixed at the known speed of the target robots when they are moving.
+
+Finally, the single-target filter has a mechanism for dealing with a target that is stopped and turning around by 180 degrees (which the targets do every 20 seconds).  The filter keeps a history of measured positions, and attempts to fit a model of linear motion up to some stopping time for a set of possible stopping times.  If, for any possible stopping time, the observed history is statistically better explained by the target stopping than continuing forward, the target speed is changed to 0 in the filter at that time and the yaw rate is set to the known constant yaw rate of the target robots.
 
 <br>
 <div class="row">
@@ -291,6 +351,13 @@ The primary state estimation technique that we didn't use at competition was a g
 
 _Code:_ `iarc7_planner`
 
+{% include post_image.html
+    image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/motion-planner.png"
+    caption="Search-based Planner - Planned trajectory, including velocity in blue and acceleration in green, with expanded states in gray"
+    %}
+
+We wanted to use a search-based planner to generate plans that satisfied our dynamic constraints while also avoiding obstacles.  Our planner was based on the one described in [Search-based Motion Planning for Quadrotors using Linear Quadratic Minimum Time Control](https://arxiv.org/abs/1709.05401), using a fork of the code that they provided [here](https://github.com/sikang/mpl_ros).  In summary, the planner searches through a graph with edges defined as short trajectories which are optimal with respect to a combination of time and control effort.  Obstacles are represented as a 3D occupancy grid; the drone is modeled as a sphere, so the occupied regions are simply inflated by the drone radius.  The search used is a Weighted A\*.  The planner was able to consistently generate smooth plans well within the time constraint of 100ms, but suffered from some stability and integration issues which were not able to be resolved in time for competition.
+
 ## 6 Degree of Freedom UAV
 
 ![6 DOF UAV](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/6dof-uav.jpg)
@@ -298,4 +365,11 @@ _Code:_ `iarc7_planner`
 
 Significant effort was put into developing a new UAV for the 2018 competition year. The focus was a UAV with 6 controllable degrees of freedom. It would navigate without tilting by using 4 extra rotors mounted sideways. This would increase the positional maneuverability and allow for quicker ground target interaction.
 
-A prototype, was built and was demonstrated as part of Levi Burner, Long Vo, Liam Berti, and Ritesh Misra's senior design project. Their demonstration video is embedded. However, this prototype could not carry all of the electronics required for Mission 7. A model suited for Mission 7, pictured above, was built, however there was not time to migrate the computers and cameras to the new air frame.
+A prototype was built and was demonstrated as part of Levi Burner, Long Vo, Liam Berti, and Ritesh Misra's senior design project. Their demonstration video is embedded below. However, this prototype could not carry all of the electronics required for Mission 7. A model suited for Mission 7, pictured above, was built, however there was not time to migrate the computers and cameras to the new air frame.
+
+<div class="post__post-youtube-container">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/potRCO5AENA" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<br>
+Congratulations!  You made it to the bottom.  Thanks for reading!
