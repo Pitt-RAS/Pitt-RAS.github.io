@@ -2,7 +2,7 @@
 layout: post
 title: "IARC Mission 7 Technical Postmortem 2018"
 date: 2018-08-10
-author: Aaron Miller
+author: Aaron Miller, Levi Burner
 categories: projects IARC
 icon: cogs
 ---
@@ -29,6 +29,7 @@ Now that the project is complete, we wanted to write up a dump of all the techni
  - [Arena boundary detection](#arena-boundary-detection)
 
 ### [Controls](#controls-header)
+ - [Flight Controller](#flight-controller)
  - [Dynamic Thrust Model](#dynamic-thrust-model)
  - [Motion Profile Controller](#motion-profile-controller)
 
@@ -44,6 +45,7 @@ Now that the project is complete, we wanted to write up a dump of all the techni
 ### [The things that didn't work (if only we had another month)](#things-that-didnt-work-header)
  - [Grid-based Position Estimator](#grid-based-position-estimator)
  - [Search-based Planner](#search-based-planner)
+ - [6 Degree of Freedom UAV](#6-degree-of-freedom-uav)
 
 <br>
 <div class="row">
@@ -123,14 +125,68 @@ The Arena Boundary detector is a texture classifier intended to distinguish the 
 </div>
 <br>
 
+## Flight Controller
+
+_Code:_ `iarc7_fc_comms`, `cleanflight branch:ras-cleanflight`
+
+{% include post_image.html
+    image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/SPF3EVO.png"
+    caption="Seriously Pro F3 Evo flight controller"
+    %}
+
+At the heart of the controls is the flight controller. We chose to use a Seriously Pro F3 Evo flight controller running Cleanflight. This flight controller is typically used for racing drones. It was chosen in 2016 when the project began, as the team was familiar with. In the end, we believe this was a good choice.
+
+The most common alternative, was a Pixhawk running either Ardupilot or PX4. Later on, we found that both softwares were not particularly suited to indoor flight. For instance, at the time, it was impossible to turn the magnetometer off and use the EKF2 state estimator in PX4. Additionally, the interfaces offered to the companion computer did not allow commanding a position and a velocity simultaneously. Finally, the takeoff proecedure in these softwares was seen to be more suited to outdoor flight than indoor flight. We wanted to achieve precise control when taking off and landing as these operations would need to be done repeatedly during Mission 7.
+
+The Cleanflight firmware was modified in several important ways:
+ - Dual Receiver
+   - Allowed receiving RX commands from a radio and via the MSP protocol simultaneously. This allowed a safety pilot to take over and fly the drone normally in the case of emergency.
+ - Seperate accelerometer low pass filter for state estimation
+   - The low pass filter on accelerometer measurements used for orientation estimation within cleanflight was not suitable for state estimation.
+ - Made the angle controller a full PID controller
+   - The angular position controller was a proportional controller on top of a PID angular rate controller. We made the angular positional controller a PID controller on angular position cascaded with a PID controller on angular rate.
+
+The flight controller set an average throttle as commanded by the Jetson's software via a serial interface. It then modulated the thrust to individual rotors to achieve a commanded orientation. Thus, the flight controller could stabilize orientation, but it could not control position. This was handled by the dynamic thrust model and motion profile controller.
+
 ## Dynamic Thrust Model
+
+_Code:_ `iarc7_motion/scripts/thrust_model_v2`, `iarc7_motion/include/iarc7_motion/ThrustModel.hpp`
 
 {% include post_image.html
     image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/controller-plot.png"
-    caption="Controller Plot"
+    caption="A thrust model visualized. The red line shows when the starting thrust is equal to the ending thrust. Colored dots indicate achievable thrusts and the voltage required given a starting thrust. Bilinear interpolation was used to fill in the gaps."
     %}
 
+The throttle applied to a rotor does not linearly correspond to a thrust. In the 2016-2017 academic year, work was done to linearize the rotor's using a steady state thrust model that mapped a steady state operating condition with to a thrust. However, it was observed in the 2017-2018 year that significant performance gains could be achieved with a model that was aware of the current operating point of a rotor. Such a model could apply a voltage higher or lower than the steady state voltage in order to achieve a desired thrust more quickly.
+
+Thus, a custom dynamic rotor model was derived and used. The model's parameters are found using a form of system identification requiring a dynomometer stand capable of logging a rotors thrust and applied voltage over time. The response of the rotor to over 100 step impulses, linearly spaced over the entire throttle range, were used to find a mathmatical model that approximates the next achievable thrust based on the current thrust and an applied voltage.
+
+In a manner similar to explicit model predictive control, the result of the model is precomputed for a wide range of starting voltages and starting thrusts. On the drone, the resulting approximation, is searched in real-time to find the optimal voltage to achieve a desired thrust in the next time step.
+
+{% include post_image.html
+    image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/thrustmodelperformance.png"
+    caption="Example of the dynamic versus the static model performance for the same thrust profile<br/>
+             The commanded thrust profile (red) is trapezoidal with 10kg/s slew rates<br/>
+             The horizontal axis is time in seconds<br/>
+             The left vertical axis is thrust in kg/s"
+    %}
+
+The dynamic thrust model provided several important benefits. It decreased rotor lag by as much as 80ms to 40ms. Thrust lag was fairly constant for all thrust slew rates (the steady state model which saw considerable variation). Finally, it increased the the maximum thrust slew rate by as much as four times. From a linear controler perspective, this greatly increased stability by increasing the gain and phase margins. Overall, it greatly improved the stability of the drone while holding height. It also made by the drone much more responsive because feedforward of acceleration setpoints was possible.
+
 ## Motion Profile Controller
+
+_Code:_ `iarc7_motion/src/QuadVelocityController.cpp`
+
+{% include post_image.html
+    image_source="/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/SingleAxisController.png"
+    caption="Controller diagram for a single axis of the motion profile controller"
+    %}
+
+While, the Dynamic Thrust Model allowed the average rotor thrust to be accurately controlled, it did not correct for errors in position and velocity. For this, a linear controller was used. The above diagram shows the controller as used for a single axis. One of these controllers was independently run for the X, Y, and Z axis. This controller design was found through trial and error and is loosely based on the PX4 controller used at the time of writing. The main differences are that the PX4 controller does not allow for feedforward or multiple inputs as our controller did.
+
+We called the controller a Motion Profile Controller because it accepted accepted a future stamped list of positions, velocities, and accelerations. It would the attempt to achieve the motion profile, while correcting for errors in position, velocity, and acceleration simultaneously.
+
+The greatest benefit of this controller was the ability to use acceleration setpoints. This made the drone much more responsive than if the controller only accepted velocity setpoints. PX4 and Ardupilot did not support this feature at the time.
 
 <br>
 <div class="row">
@@ -235,11 +291,11 @@ The primary state estimation technique that we didn't use at competition was a g
 
 _Code:_ `iarc7_planner`
 
-## 6 DOF Drone
+## 6 Degree of Freedom UAV
 
-![6 DOF Drone](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/6dof-uav.jpg)
-<p style="text-align: center;">Left: UAV with 6 controllable degrees of freedom that was intended for the 2018 competition. Side propellers are not mounted. <br/> Right: Actual drone used during the 2017 and 2018 competition pictured for scale.</p>
+![6 DOF UAV](/assets/images/posts/post-update-iarc-technical-postmortem-2018-08-10/6dof-uav.jpg)
+<p style="text-align: center;">Left: UAV with 6 controllable degrees of freedom that was intended for the 2018 competition. Side propellers are not mounted. <br/> Right: Actual drone used during the 2017 and 2018 competition (pictured for scale).</p>
 
-Significant effort was put into developing a new UAV for the 2018 competition year. The focus was a UAV with 6 controllable degrees of freedom which could navigate without tilting by using 4 extra rotors mounted sideways. Such a vehicle would be able to execute interactions with targets much faster due to increased maneuverability and a better ability to sense of targets positions.
+Significant effort was put into developing a new UAV for the 2018 competition year. The focus was a UAV with 6 controllable degrees of freedom. It would navigate without tilting by using 4 extra rotors mounted sideways. This would increase the positional maneuverability and allow for quicker ground target interaction.
 
-A prototype, was built and was demonstrated as part of Levi Burner, Long Vo, Liam Berti, and Ritesh Misra's senior design project. Their demonstration video is embedded. However, this prototype could not carry all of the electronics required for Mission 7. The final model, pictured above, was built, however there was not time to migrate the computers and cameras to the new air frame.
+A prototype, was built and was demonstrated as part of Levi Burner, Long Vo, Liam Berti, and Ritesh Misra's senior design project. Their demonstration video is embedded. However, this prototype could not carry all of the electronics required for Mission 7. A model suited for Mission 7, pictured above, was built, however there was not time to migrate the computers and cameras to the new air frame.
