@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "General Body Meeting on September 27th, 7-8pm in Benedum Hall 102"
-date: 2017-08-27
+date: 2017-09-26
 author: Andrew Lobos
 categories: announcements
 icon: general
