@@ -10,7 +10,7 @@ icon: general
 <p>
 Hello everyone!
 
-Our first GBM of the semester will be at September 5th at 7pm in Benedum 102.
+Our first GBM of the semester will be on September 5th at 7 pm in Benedum 102.
 
 We will be covering the projects for this year, general info, and much more.
 If you are interested, please do swing by and check us out!
