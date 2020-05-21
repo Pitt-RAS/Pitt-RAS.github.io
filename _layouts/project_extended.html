@@ -1,0 +1,45 @@
+---
+layout: page
+block: project
+---
+
+<section class="project__image">
+    <img src="{{ page.image }}">
+</section>
+<section class="project__info">
+    <b>LEADERS: </b>
+    <br>
+    {{ page.leaders }}
+    <br>
+    <br>
+    {% if page.isPrev != true %}
+    <b>MEETING TIME: </b>
+    <br>
+    {{ page.meeting_time }}
+    <br>
+    <br>
+    
+    {% endif %}
+    {{ page.info }}
+    {% if page.isPrev == true %}
+    <b>YEARS ACTIVE: </b>
+    <br>
+    {{ page.years_active }}
+    <br>
+    <br>
+    {% endif %}
+
+
+    
+    {% assign links = "" %}
+    {% for post in site.posts %}
+        {% if post.categories contains page.project_tag %}
+            {% assign links = links | append : '[' | append: post.title | append: '](' | append: post.url | append: ')<br>' %}
+        {% endif %}
+    {% endfor %}
+
+    {% if links.size != 0 %}
+        {{ "## Posts" | markdownify }}
+        {{ links | markdownify }}
+    {% endif %}
+</section>
