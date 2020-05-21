@@ -1,6 +1,6 @@
 ---
 layout: project_extended
-title: Indy Autonomus Challenge
+title: Indy Autonompous Challenge
 permalink: /projects/2020-auto-indy
 image: /assets/images/projects/2020/project-auto-indy.jpg
 leaders: Nayana Suvarna, Andrew Saba, Joshua Spisak, and Prem Bharatia
