@@ -6,7 +6,7 @@ block: project
 <section class="project__image">
     <img src="{{ page.image }}">
 </section>
-<section class="project__info">
+<!-- <section class="project__info">
     <b>LEADERS: </b>
     <br>
     {{ page.leaders }}
@@ -28,8 +28,6 @@ block: project
     <br>
     <br>
     {% endif %}
-
-
     
     {% assign links = "" %}
     {% for post in site.posts %}
@@ -42,4 +40,9 @@ block: project
         {{ "## Posts" | markdownify }}
         {{ links | markdownify }}
     {% endif %}
+</section> -->
+
+<section>
+    {% include centerheading.html title="Project Overview: " %}
+    <p>The goal of Indy Autonomus Challenge is to implement a software stack capable of operating a Formula One style car in a head to head competition against teams all over the world in a setting similar to the Indy 500. The final race is scheduled for October 23, 2021 at the Indiapolis Motor Speedway, however preceding that there are multiple qualifing rounds including the writing of a white paper, a demonstartion of basic operation, and competing in a simulated race. </p>
 </section>
