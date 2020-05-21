@@ -27,13 +27,10 @@ project_tag: 2020-auto-indy
     
     <div class="row2">
         <p class="about__description col-xs-12 col-md-6">
- The goal of <a href="https://www.indyautonomouschallenge.com">Indy Autonomus Challenge</a> is to implement a software stack capable of operating a Formula One style car in a head to head competition against teams all over the world in a setting similar to the Indy 500. The final race is scheduled for October 23, 2021 at the Indiapolis Motor Speedway, however preceding that there are multiple qualifing rounds including the writing of a white paper, a demonstartion of basic operation, and competing in a simulated race.
+ The goal of <a href="https://www.indyautonomouschallenge.com">Indy Autonomus Challenge</a> is to implement a software stack capable of operating a Formula One style car in a head to head competition against teams all over the world in a setting similar to the Indy 500. The final race is scheduled for October 23, 2021 at the Indianapolis Motor Speedway, however preceding that there are multiple qualifing rounds including the writing of a white paper, a demonstartion of basic operation, and competing in a simulated race.
         <div class="col-xs-12 col-md-6">
            <a href="https://indyautonomouschallenge.com/timeline"> <img class="about__group-image" src="/assets/images/projects/2020/indy-timeline.jpg"></a>
         </div>
-    
-    
-    <br><br>
 
     <a href="https://static1.squarespace.com/static/5da73021d0636f4ec706fa0a/t/5e604e57e4fc8938f7a8ed33/1583369815480/University+of+Pittsburgh+White+Paper.pdf">Read Our Whitepaper!</a>
 
