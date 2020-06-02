@@ -97,4 +97,3 @@ project_tag: 2020-auto-indy
         If you are interested in sponsoring our team please email us at <a href="mailto:ras@pitt.edu">ras@pitt.edu</a>
     </p>
     
-</section>
