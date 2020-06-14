@@ -27,7 +27,7 @@ project_tag: 2020-auto-indy
     
     <div class="row2">
         <p class="about__description col-xs-12 col-md-6">
- The goal of <a href="https://www.indyautonomouschallenge.com">Indy Autonomus Challenge</a> is to implement a software stack capable of operating a Formula One style car in a head to head competition against teams all over the world in a setting similar to the Indy 500. The final race is scheduled for October 23, 2021 at the Indianapolis Motor Speedway, however preceding that there are multiple qualifing rounds including the writing of a white paper, a demonstartion of basic operation, and competing in a simulated race.
+ The goal of <a href="https://www.indyautonomouschallenge.com">Indy Autonomus Challenge</a> is to implement a software stack capable of operating a Formula One style car in a head to head competition against teams all over the world in a setting similar to the Indy 500. The final race is scheduled for October 23, 2021 at the Indianapolis Motor Speedway, however preceding that there are multiple qualifying rounds including the writing of a white paper, a demonstration of basic operation, and competing in a simulated race.
         <div class="col-xs-12 col-md-6">
            <a href="https://indyautonomouschallenge.com/timeline"> <img class="about__group-image" src="/assets/images/projects/2020/indy-timeline.jpg"></a>
         </div>
@@ -68,7 +68,53 @@ project_tag: 2020-auto-indy
     <br>
 
     {% include centerheading.html title='Project Members: ' %}
-    <h5>Elissa Wilton, Matthew Sivaprakasam, Michael Finnegan, Michael Sohnen, Mike Hayden Morgan Visnesky, Shane Raible</h5>
+    <div class="row">
+        <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/elissa-wilton.png">
+                <div class="about__person-title">Elissa Wilton</div>
+                <div class="about__person-position">Project Member</div>
+            </div>
+            <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/lizzie-seward.jpg">
+                <div class="about__person-title">Lizzie Seward</div>
+                <div class="about__person-position">Project Member</div>
+            </div>
+            <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/sridhar-reddy.jpg">
+                <div class="about__person-title">Sridhar Reddy Velagala</div>
+                <div class="about__person-position">Project Member</div>
+            </div>
+            <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/matthew-sivaprakasam.jpg">
+                <div class="about__person-title">Matthew Sivaprakasam</div>
+                <div class="about__person-position">Project Member</div>
+            </div>
+            <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/michael-sohnen.jpg">
+                <div class="about__person-title">Michael Sohnen</div>
+                <div class="about__person-position">Project Member</div>
+            </div>
+            <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/mike-hayden.jpg">
+                <div class="about__person-title">Mike Hayden</div>
+                <div class="about__person-position">Project Member</div>
+            </div>
+            <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/morgan-visnesky.jpg">
+                <div class="about__person-title">Morgan Visnesky</div>
+                <div class="about__person-position">Project Member</div>
+            </div>
+            <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/shane-raible.jpg">
+                <div class="about__person-title">Shane Raible</div>
+                <div class="about__person-position">Project Member</div>
+            </div>
+            <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/sush-acharya.jpg">
+                <div class="about__person-title">Sush Acharya</div>
+                <div class="about__person-position">Project Member</div>
+            </div>
+        </div>
 
     <br><br>
 
