@@ -120,6 +120,9 @@ project_tag: 2020-auto-indy
 
     <br><br>
 </section>
+    <br>
+
+
     {% include centerheading.html title='How to Join' %}
     <p>
         Whether you are just starting out or you have years of experience, you can find a place to contribute to our team. The best way to get involved is to join our slack. No experience is necessary but please note that this project is a rather large time commitment.
@@ -138,7 +141,7 @@ project_tag: 2020-auto-indy
     {% include centerheading.html title='Media Coverage' %}
     <a href="https://www.post-gazette.com/business/tech-news/2020/06/01/Indy-Autonomous-Challenge-Indy-500-Indianapolis-Motor-Speedway-Ansys-Aptiv-self-driving-cars/stories/202005280137">Self driving cars rev their engines for their own Indy 500 race</a> 
 
-    <br><br>
+    <br><br><br><br>
 
     {% include centerheading.html title='Sponsorship' %}
     <p>
