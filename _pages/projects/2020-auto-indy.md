@@ -49,7 +49,7 @@ project_tag: 2020-auto-indy
             <div class="about__person-position">Project Co-Lead</div>
         </div>
         <div class="about__person col-xs-12 col-sm-6 col-lg-4">
-            <img src="/assets/images/about/alumni/officer-andrew.jpg">
+            <img src="/assets/images/projects/2020/mentors/andrew-saba.jpg">
             <div class="about__person-title">Andrew Saba</div>
             <div class="about__person-position">Project Mentor</div>
         </div>
