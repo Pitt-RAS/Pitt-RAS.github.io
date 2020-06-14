@@ -116,7 +116,7 @@ project_tag: 2020-auto-indy
             </div>
         </div>
 
-    <br><br>
+    <br>
 
     {% include centerheading.html title='How to Join' %}
     <p>
@@ -136,7 +136,7 @@ project_tag: 2020-auto-indy
     {% include centerheading.html title='Media Coverage' %}
     <a href="https://www.post-gazette.com/business/tech-news/2020/06/01/Indy-Autonomous-Challenge-Indy-500-Indianapolis-Motor-Speedway-Ansys-Aptiv-self-driving-cars/stories/202005280137">Self driving cars rev their engines for their own Indy 500 race</a> 
 
-    <br><br>
+    <br><br><br><br>
 
     {% include centerheading.html title='Sponsorship' %}
     <p>
