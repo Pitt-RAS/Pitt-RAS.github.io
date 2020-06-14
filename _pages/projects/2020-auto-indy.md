@@ -36,6 +36,7 @@ project_tag: 2020-auto-indy
 
     <br><br>
 
+<section>
     {% include centerheading.html title='Project Leads: ' %}
     <div class="row">
         <div class="about__person col-xs-12 col-sm-6 col-lg-4">
@@ -66,7 +67,8 @@ project_tag: 2020-auto-indy
     </div>
 
     <br>
-
+</section>
+<section>
     {% include centerheading.html title='Project Members: ' %}
     <div class="row">
         <div class="about__person col-xs-12 col-sm-6 col-lg-4">
@@ -117,7 +119,7 @@ project_tag: 2020-auto-indy
         </div>
 
     <br><br>
-
+</section>
     {% include centerheading.html title='How to Join' %}
     <p>
         Whether you are just starting out or you have years of experience, you can find a place to contribute to our team. The best way to get involved is to join our slack. No experience is necessary but please note that this project is a rather large time commitment.
