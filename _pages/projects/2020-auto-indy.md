@@ -29,7 +29,7 @@ project_tag: 2020-auto-indy
             <div class="col-xs-12 col-md-6">
             <a href="https://indyautonomouschallenge.com/timeline"> <img class="about__group-image" src="/assets/images/projects/2020/indy-timeline.jpg"></a>
             </div>
-            <a href="https://static1.squarespace.com/static/5da73021d0636f4ec706fa0a/t/5e604e57e4fc8938f7a8ed33/1583369815480/University+of+Pittsburgh+White+Paper.pdf">Read Our Whitepaper!</a>
+            <h5><a href="https://www.indyautonomouschallenge.com/university-of-pittsburgh">Our IAC Page!</a></h5>
         </div>
 </section>
 
