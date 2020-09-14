@@ -131,6 +131,8 @@ project_tag: 2020-auto-indy
 <section>
     {% include centerheading.html title='Media Coverage' %}
     <a href="https://www.post-gazette.com/business/tech-news/2020/06/01/Indy-Autonomous-Challenge-Indy-500-Indianapolis-Motor-Speedway-Ansys-Aptiv-self-driving-cars/stories/202005280137">Self driving cars rev their engines for their own Indy 500 race</a> 
+<br>
+<a href="https://riss.ri.cmu.edu/cmu-riss-alumni-spotlight/">CMU RISS Alumni Spotlight</a> 
 </section>
 
 <!-- Sponsorship -->
