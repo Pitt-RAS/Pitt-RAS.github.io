@@ -40,13 +40,9 @@ project_tag: 2020-auto-indy
         <div class="about__person col-xs-12 col-sm-6 col-lg-4">
             <img src="/assets/images/about/current/nayana-suvarna.jpg">
             <div class="about__person-title">Nayana Suvarna</div>
-            <div class="about__person-position">Project Co-Lead</div>
+            <div class="about__person-position">Project Lead</div>
         </div>
-        <div class="about__person col-xs-12 col-sm-6 col-lg-4">
-            <img src="/assets/images/about/current/prem-bharatia.jpg">
-            <div class="about__person-title">Prem Bharatia</div>
-            <div class="about__person-position">Project Co-Lead</div>
-        </div>
+        
         <div class="about__person col-xs-12 col-sm-6 col-lg-4">
             <img src="/assets/images/projects/2020/mentors/andrew-saba.jpg">
             <div class="about__person-title">Andrew Saba</div>
@@ -55,13 +51,40 @@ project_tag: 2020-auto-indy
         <div class="about__person col-xs-12 col-sm-6 col-lg-4">
             <img src="/assets/images/projects/2020/mentors/josh-spisak.jpg">
             <div class="about__person-title">Joshua Spisak</div>
-            <div class="about__person-position">Project Mentor</div>
-        </div>
+            <div class="about__person-position">Project Mentor
+            </div>
+        </div><div class="about__person col-xs-12 col-sm-6 col-lg-4">
+            <img src="/assets/images/about/current/prem-bharatia.jpg">
+            <div class="about__person-title">Prem Bharatia</div>
+            <div class="about__person-position">Controls Lead</div>
+        </div>    
         <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/morgan-visnesky.jpg">
+                <div class="about__person-title">Morgan Visnesky</div>
+                <div class="about__person-position">Perception Lead</div>
+            </div>
+       <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/matthew-sivaprakasam.jpg">
+                <div class="about__person-title">Matthew Sivaprakasam</div>
+                <div class="about__person-position">Planning Lead</div>
+            </div>
+       
+        <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/elissa-wilton.png">
+                <div class="about__person-title">Elissa Wilton</div>
+                <div class="about__person-position">Operations Lead</div>
+            </div>
+    
+          <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/shane-raible.jpg">
+                <div class="about__person-title">Shane Raible</div>
+                <div class="about__person-position">Scrum Lead</div>
+            </div>
+             <div class="about__person col-xs-12 col-sm-6 col-lg-4">
             <img src="/assets/images/about/advisors/advisor-dickerson.jpg">
             <div class="about__person-title">Samuel Dickerson</div>
             <div class="about__person-position">Project Advisor</div>
-        </div>
+        </div> 
     </div>
 </section>
 
@@ -69,11 +92,7 @@ project_tag: 2020-auto-indy
 <section>
     {% include centerheading.html title='Project Members: ' %}
     <div class="row">
-        <div class="about__person col-xs-12 col-sm-6 col-lg-4">
-                <img src="/assets/images/projects/2020/members/elissa-wilton.png">
-                <div class="about__person-title">Elissa Wilton</div>
-                <div class="about__person-position">Project Member</div>
-            </div>
+     
             <div class="about__person col-xs-12 col-sm-6 col-lg-4">
                 <img src="/assets/images/projects/2020/members/lizzie-seward.jpg">
                 <div class="about__person-title">Lizzie Seward</div>
@@ -84,11 +103,7 @@ project_tag: 2020-auto-indy
                 <div class="about__person-title">Sridhar Reddy Velagala</div>
                 <div class="about__person-position">Project Member</div>
             </div>
-            <div class="about__person col-xs-12 col-sm-6 col-lg-4">
-                <img src="/assets/images/projects/2020/members/matthew-sivaprakasam.jpg">
-                <div class="about__person-title">Matthew Sivaprakasam</div>
-                <div class="about__person-position">Project Member</div>
-            </div>
+            
             <div class="about__person col-xs-12 col-sm-6 col-lg-4">
                 <img src="/assets/images/projects/2020/members/michael-sohnen.jpg">
                 <div class="about__person-title">Michael Sohnen</div>
@@ -99,11 +114,7 @@ project_tag: 2020-auto-indy
                 <div class="about__person-title">Mike Hayden</div>
                 <div class="about__person-position">Project Member</div>
             </div>
-            <div class="about__person col-xs-12 col-sm-6 col-lg-4">
-                <img src="/assets/images/projects/2020/members/morgan-visnesky.jpg">
-                <div class="about__person-title">Morgan Visnesky</div>
-                <div class="about__person-position">Project Member</div>
-            </div>
+           
             <div class="about__person col-xs-12 col-sm-6 col-lg-4">
                 <img src="/assets/images/projects/2020/members/shane-raible.jpg">
                 <div class="about__person-title">Shane Raible</div>

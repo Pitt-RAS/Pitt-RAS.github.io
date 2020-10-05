@@ -1,0 +1,21 @@
+---
+layout: page
+block: project
+---
+
+<section class="project__image">
+    <img src="{{ page.image }}">
+</section>
+<section class="workshop_video">
+  {% include centerheading.html title="Video " %}
+  <div style="margin:auto;align:center">
+<iframe width="100%" height="600" src="{{ page.video }}" frameborder="0" allow="picture-in-picture" allowfullscreen></iframe>
+</div>
+</section>
+
+<section class="workshop_presentation">
+  {% include centerheading.html title="Presentation " %}
+  <div style="margin:auto;align:center">
+<iframe width="100%" height="600" src="{{ page.presentation }}" ></iframe>
+</div>
+</section>
