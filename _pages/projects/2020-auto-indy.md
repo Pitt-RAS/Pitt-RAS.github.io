@@ -42,49 +42,39 @@ project_tag: 2020-auto-indy
             <div class="about__person-title">Nayana Suvarna</div>
             <div class="about__person-position">Project Lead</div>
         </div>
-        
+
         <div class="about__person col-xs-12 col-sm-6 col-lg-4">
             <img src="/assets/images/projects/2020/mentors/andrew-saba.jpg">
             <div class="about__person-title">Andrew Saba</div>
-            <div class="about__person-position">Project Mentor</div>
+            <div class="about__person-position">Project Mentor / Perception Lead</div>
         </div>
         <div class="about__person col-xs-12 col-sm-6 col-lg-4">
             <img src="/assets/images/projects/2020/mentors/josh-spisak.jpg">
             <div class="about__person-title">Joshua Spisak</div>
-            <div class="about__person-position">Project Mentor
+            <div class="about__person-position">Project Mentor / Controls Lead
             </div>
         </div><div class="about__person col-xs-12 col-sm-6 col-lg-4">
             <img src="/assets/images/about/current/prem-bharatia.jpg">
             <div class="about__person-title">Prem Bharatia</div>
-            <div class="about__person-position">Controls Lead</div>
+            <div class="about__person-position">Systems Lead</div>
         </div>    
-        <div class="about__person col-xs-12 col-sm-6 col-lg-4">
-                <img src="/assets/images/projects/2020/members/morgan-visnesky.jpg">
-                <div class="about__person-title">Morgan Visnesky</div>
-                <div class="about__person-position">Perception Lead</div>
-            </div>
+
        <div class="about__person col-xs-12 col-sm-6 col-lg-4">
                 <img src="/assets/images/projects/2020/members/matthew-sivaprakasam.jpg">
                 <div class="about__person-title">Matthew Sivaprakasam</div>
                 <div class="about__person-position">Planning Lead</div>
             </div>
-       
-        <div class="about__person col-xs-12 col-sm-6 col-lg-4">
-                <img src="/assets/images/projects/2020/members/elissa-wilton.png">
-                <div class="about__person-title">Elissa Wilton</div>
-                <div class="about__person-position">Operations Lead</div>
-            </div>
-    
+
           <div class="about__person col-xs-12 col-sm-6 col-lg-4">
                 <img src="/assets/images/projects/2020/members/shane-raible.jpg">
                 <div class="about__person-title">Shane Raible</div>
-                <div class="about__person-position">Scrum Lead</div>
+                <div class="about__person-position">Operations Lead</div>
             </div>
              <div class="about__person col-xs-12 col-sm-6 col-lg-4">
             <img src="/assets/images/about/advisors/advisor-dickerson.jpg">
             <div class="about__person-title">Samuel Dickerson</div>
             <div class="about__person-position">Project Advisor</div>
-        </div> 
+        </div>
     </div>
 </section>
 
@@ -92,39 +82,61 @@ project_tag: 2020-auto-indy
 <section>
     {% include centerheading.html title='Project Members: ' %}
     <div class="row">
-     
+
             <div class="about__person col-xs-12 col-sm-6 col-lg-4">
-                <img src="/assets/images/projects/2020/members/lizzie-seward.jpg">
-                <div class="about__person-title">Lizzie Seward</div>
+                <img src="/assets/images/projects/2020/members/ThomasDetlefsen_r.jpeg">
+                <div class="about__person-title">Thomas Detlefsen</div>
                 <div class="about__person-position">Project Member</div>
             </div>
+
             <div class="about__person col-xs-12 col-sm-6 col-lg-4">
-                <img src="/assets/images/projects/2020/members/sridhar-reddy.jpg">
-                <div class="about__person-title">Sridhar Reddy Velagala</div>
+                <img src="/assets/images/projects/2020/members/LukeBlascovich_r.jpeg">
+                <div class="about__person-title">Luke Blascovich</div>
                 <div class="about__person-position">Project Member</div>
             </div>
-            
+
             <div class="about__person col-xs-12 col-sm-6 col-lg-4">
-                <img src="/assets/images/projects/2020/members/michael-sohnen.jpg">
-                <div class="about__person-title">Michael Sohnen</div>
+                    <img src="/assets/images/projects/2020/members/elissa-wilton.png">
+                    <div class="about__person-title">Elissa Wilton</div>
+                    <div class="about__person-position">Project Member</div>
+            </div>
+
+            <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/NoahGasparro_r.jpg">
+                <div class="about__person-title">Noah Gasparro</div>
                 <div class="about__person-position">Project Member</div>
             </div>
+
             <div class="about__person col-xs-12 col-sm-6 col-lg-4">
-                <img src="/assets/images/projects/2020/members/mike-hayden.jpg">
-                <div class="about__person-title">Mike Hayden</div>
+                    <img src="/assets/images/projects/2020/members/morgan-visnesky.jpg">
+                    <div class="about__person-title">Morgan Visnesky</div>
+                    <div class="about__person-position">Project Member</div>
+            </div>
+
+            <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/SaadiqJones_r.jpg">
+                <div class="about__person-title">Saadiq Jones</div>
                 <div class="about__person-position">Project Member</div>
             </div>
-           
+
             <div class="about__person col-xs-12 col-sm-6 col-lg-4">
-                <img src="/assets/images/projects/2020/members/shane-raible.jpg">
-                <div class="about__person-title">Shane Raible</div>
+                <img src="/assets/images/projects/2020/members/Zachary_Z_r.jpg">
+                <div class="about__person-title">Zachary Zdobinski</div>
                 <div class="about__person-position">Project Member</div>
             </div>
+
             <div class="about__person col-xs-12 col-sm-6 col-lg-4">
-                <img src="/assets/images/projects/2020/members/sush-acharya.jpg">
-                <div class="about__person-title">Sush Acharya</div>
+                <img src="/assets/images/projects/2020/members/SilasCuster_r.jpg">
+                <div class="about__person-title">Silas Custer</div>
                 <div class="about__person-position">Project Member</div>
             </div>
+
+            <div class="about__person col-xs-12 col-sm-6 col-lg-4">
+                <img src="/assets/images/projects/2020/members/Harshit_Aggarwal_r.JPG">
+                <div class="about__person-title">Harshit Aggarwal</div>
+                <div class="about__person-position">Project Member</div>
+            </div>
+
         </div>
 </section>
 
@@ -141,9 +153,9 @@ project_tag: 2020-auto-indy
 <!-- Media Coverage -->
 <section>
     {% include centerheading.html title='Media Coverage' %}
-    <a href="https://www.post-gazette.com/business/tech-news/2020/06/01/Indy-Autonomous-Challenge-Indy-500-Indianapolis-Motor-Speedway-Ansys-Aptiv-self-driving-cars/stories/202005280137">Self driving cars rev their engines for their own Indy 500 race</a> 
+    <a href="https://www.post-gazette.com/business/tech-news/2020/06/01/Indy-Autonomous-Challenge-Indy-500-Indianapolis-Motor-Speedway-Ansys-Aptiv-self-driving-cars/stories/202005280137">Self driving cars rev their engines for their own Indy 500 race</a>
 <br>
-<a href="https://riss.ri.cmu.edu/cmu-riss-alumni-spotlight/">CMU RISS Alumni Spotlight</a> 
+<a href="https://riss.ri.cmu.edu/cmu-riss-alumni-spotlight/">CMU RISS Alumni Spotlight</a>
 </section>
 
 <!-- Sponsorship -->
@@ -151,16 +163,3 @@ project_tag: 2020-auto-indy
     {% include centerheading.html title='Sponsorship' %}
     <p>If you are interested in sponsoring our team please email us at <a href="mailto:ras@pitt.edu">ras@pitt.edu</a></p>
 </section>
-
-
-
-    
-    
-    
-   
-
-    
-
-
-    
-    
