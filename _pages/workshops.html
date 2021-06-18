@@ -5,7 +5,30 @@ block: workshops
 permalink: /workshops/
 ---
 
+<section class="projects__times">
+    <div class="projects__times-table-container">
+    {% include centerheading.html title=" Spring 2021 Workshops: " %}
+        <br>
+        <table>
+            <tr>
+                <td>Topic:</td>
+                <td>Date:</td>
+                <td>Presenter:</td>
 
+            </tr>
+            <tr>
+                <td>Kalman Filters</td>
+                <td><b>3/16/2021<b/></td>
+                <td>Noah Gasparro</td>
+
+            </tr>
+
+        </table>
+        <br>
+  <p> A calendar with all of the workshops can be found  <a href="https://calendar.google.com/calendar/u/3?cid=b3BnOTRncTR2OHI3Y21zMnZldTk1NThvb2NAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ">here</a>.</p>
+
+    </div>
+</section>
 
 <section class="projects__times">
     <div class="projects__times-table-container">
@@ -55,13 +78,17 @@ permalink: /workshops/
 
             </tr>
         </table>
-	<br>
-	<br>
-<p> A calendar with all of the workshops can be found  <a href="https://calendar.google.com/calendar/u/3?cid=b3BnOTRncTR2OHI3Y21zMnZldTk1NThvb2NAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ">here</a>.</p>
     </div>
 </section>
 <section class="projects__prev row">
     {% include centerheading.html title='Workshop Archive' %}
+
+    {% include workshopcard.html
+        link="/workshops/2021-kalman"
+        image_source="/2021-kalman/kalmanCover.png"
+        name="Kalman Filters"
+        description="An introduction to Kalman filters."
+        %}
 
     {% include workshopcard.html
         link="/workshops/2020-workshop1"
@@ -69,14 +96,14 @@ permalink: /workshops/
         name="Intro to ROS"
         description="An introduction to the Robotic Operating System."
         %}
-        
+
       {% include workshopcard.html
         link="/workshops/2020-workshop2"
         image_source="/2020-workshop2/motors.jpg"
         name="Intro to Motors"
         description="An introduction to different types of motors."
         %}
-        
+
          {% include workshopcard.html
         link="/workshops/2020-workshop4"
         image_source="/2020-workshop4/robot.png"
